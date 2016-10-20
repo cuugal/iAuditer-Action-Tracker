@@ -312,5 +312,9 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+if(!ini_get('date.timezone') )
+{
+    date_default_timezone_set('Australia/Sydney');
+}
 include_once '../../../vendor/autoload.php';
 require_once BASEPATH.'core/CodeIgniter.php';

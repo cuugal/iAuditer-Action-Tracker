@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
 
 class Migration_Ion_auth extends CI_Migration {
 
