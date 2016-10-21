@@ -9,9 +9,7 @@ class Register extends Auth_Controller
         $this->load->library('session');
 
         $this->output->set_template('default');
-        $this->load->js('assets/themes/default/js/jquery-1.9.1.min.js');
-        $this->load->js('assets/themes/default/hero_files/bootstrap-transition.js');
-        $this->load->js('assets/themes/default/hero_files/bootstrap-collapse.js');
+
 
         $this->load->library('ion_auth');
         if($this->ion_auth->is_admin()===FALSE)

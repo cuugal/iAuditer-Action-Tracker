@@ -1,20 +1,43 @@
-<?php
-if($this->ion_auth->logged_in()===FALSE):
+<!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ">
+      <div class="container">
+          <div class="navbar-header page-scroll">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand page-scroll" href="#page-top"><img src="<?php echo base_url(); ?>assets/images/Black-UTS-logo.png" height="30px"></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav" style="float:right">
+                  <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                  <li class="hidden">
+                      <a class="page-scroll" href="#page-top"></a>
+                  </li>
+<?php if($this->ion_auth->logged_in()===FALSE):
     ?>
 
-<ul class="nav navbar-right">
-    <li class="active"><a href="<?php echo site_url(); ?>">Home</a></li>
+                  <li>
+                      <a class="page-scroll" href="<?php echo site_url(); ?>">Home</a>
+                  </li>
+                  <?php
+                  else: ?>
 
-</ul>
+                  <li>
+                      <a class="page-scroll" href="<?php echo site_url('Register'); ?>">Register</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="<?php echo site_url('user/logout'); ?>"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
+                  </li>
 
-<?php
-else: ?>
-<ul class="nav navbar-right">
-    <li class="active"><a href="<?php echo site_url(); ?>">Home</a></li>
-    <li><a href="<?php echo site_url('Register'); ?>">Register</a></li>
-    <li><a href="<?php echo site_url('example/example_2'); ?>">Example 2</a></li>
-    <li><a href="<?php echo site_url('example/example_3'); ?>">Example 3</a></li>
-    <li><a href="<?php echo site_url('user/logout'); ?>">Log Out</a></li>
-</ul>
-
-<?php endif;
+                  <?php endif; ?>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
