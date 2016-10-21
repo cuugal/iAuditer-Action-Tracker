@@ -1,19 +1,40 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<div class="container">
-    <?php
-    echo isset($_SESSION['auth_message']) ? $_SESSION['auth_message'] : FALSE;
-    ?>
-    <h1>Log in</h1>
-    <?php
-    echo form_open();
-    echo form_label('Username:','username').'<br />';
-    echo form_error('username');
-    echo form_input('username').'<br />';
-    echo form_label('Password:', 'password').'<br />';
-    echo form_error('password');
-    echo form_password('password').'<br />';
-    echo form_checkbox('remember','1',FALSE).' Remember me<br />';
-    echo form_submit('submit','Log In');
-    echo form_close();
-    ?>
+<div class="row">
+    <div class="col-md-12 col-lg-8">
+        <h1>Log In</h1>
+        <?php
+        echo isset($_SESSION['auth_message']) ? $_SESSION['auth_message'] : FALSE;
+        ?>
+        <?= $this->form_builder->open_form(array('action' => ''));
+        echo $this->form_builder->build_form_horizontal(
+            array(
+                array(
+                    'id' => 'username'
+                ),
+                array(
+                    'id' => 'password',
+                    'type' => 'password',
+                ),
+                array(
+                    'id' => 'remember',
+                    'label' => 'Remember Me',
+                    'type' => 'checkbox',
+                    'options' => array(
+                        array(
+                            'id' => 'remember',
+                            'value' => ''
+                            // If no label is set, the value will be used
+                        ),
+                    ),
+                ),
+                array(
+                    'id' => 'submit',
+                    'label' => 'Log In',
+                    'type' => 'submit'
+                )
+
+            ));
+?>
+
 </div>
+    </div>
