@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/fzaninotto" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/twbs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/ellislab" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/ellislab/codeigniter/application/ci_sessions" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

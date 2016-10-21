@@ -20,6 +20,7 @@ class User extends CI_Controller  {
 
     public function login()
     {
+        $this->load->library('form_builder');
         $this->data['title'] = "Login";
 
         $this->load->library('form_validation');

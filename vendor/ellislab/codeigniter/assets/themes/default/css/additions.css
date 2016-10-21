@@ -1,0 +1,7 @@
+.radio-inline, .checkbox-inline {
+    float:left;
+}
+
+.form-group .btn-primary{
+    float:left;
+}

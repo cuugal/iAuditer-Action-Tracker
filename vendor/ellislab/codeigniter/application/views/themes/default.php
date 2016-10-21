@@ -39,6 +39,7 @@
     <!-- Le styles -->
     <link href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/themes/default/css/scrolling-nav.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/themes/default/css/additions.css" rel="stylesheet">
     <!--<link href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap-responsive.css" rel="stylesheet">-->
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -63,10 +64,11 @@
     <?php if($this->load->get_section('text_header') != '') { ?>
     	<h1><?php echo $this->load->get_section('text_header');?></h1>
     <?php }?>
-    <div class="row">
+
+    <!--<div class="row">-->
 	    <?php echo $output;?>
 		<?php echo $this->load->get_section('sidebar'); ?>
-    </div>
+    <!--</div>-->
       <hr/>
 
       <footer>

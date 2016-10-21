@@ -20,6 +20,7 @@ class Register extends Auth_Controller
 
     public function index()
     {
+        $this->load->library('form_builder');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
@@ -31,7 +32,7 @@ class Register extends Auth_Controller
         if($this->form_validation->run()===FALSE)
         {
             $this->load->helper('form');
-            $this->load->view('register/index_view');
+            $this->load->view('register/register_view');
         }
         else
         {
@@ -49,13 +50,13 @@ class Register extends Auth_Controller
             $this->load->library('ion_auth');
             if($this->ion_auth->register($username,$password,$email,$additional_data))
             {
-                //$_SESSION['auth_message'] = 'The account has been created. You may now login.';
+                $_SESSION['auth_message'] = 'The account has been created. You may now login.';
                 $this->session->mark_as_flash('auth_message');
                 redirect('user/login');
             }
             else
             {
-                //$_SESSION['auth_message'] = $this->ion_auth->errors();
+                $_SESSION['auth_message'] = $this->ion_auth->errors();
                 $this->session->mark_as_flash('auth_message');
                 redirect('register');
             }
