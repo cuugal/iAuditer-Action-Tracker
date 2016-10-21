@@ -1,13 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends MY_Controller {
+class User extends CI_Controller  {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->library('ion_auth');
+
+        $this->output->set_template('default');
+
+        $this->load->js('assets/themes/default/js/jquery-1.9.1.min.js');
+        $this->load->js('assets/themes/default/hero_files/bootstrap-transition.js');
+        $this->load->js('assets/themes/default/hero_files/bootstrap-collapse.js');
     }
+
+
 
     public function index()
     {
@@ -24,7 +31,8 @@ class User extends MY_Controller {
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->helper('form');
-            $this->render('user/login_view');
+            $this->load->view('user/login_view');
+            //$this->render('user/login_view');
         }
         else
         {

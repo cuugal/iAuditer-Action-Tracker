@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/vendor/ellislab/codeigniter/application/database/data.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Sqlite (Xerial) - data.db [2]" uuid="f0dd16a7-c0f2-4a8d-b671-fd14abd0741f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/vendor/ellislab/codeigniter/application/database/data.db</jdbc-url>
+    </data-source>
   </component>
 </project>
