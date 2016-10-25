@@ -5,3 +5,30 @@
 .form-group .btn-primary{
     float:left;
 }
+
+.navbar-default .navbar-nav > li > a.active {
+    background-color:#fff;
+    border-top:solid 1px #eee;
+    border-left:solid 1px #eee;
+    border-right:solid 1px #eee;
+    margin-bottom: -1px;
+    color:#777;
+
+}
+
+.navbar-default {
+    background-color: #0099cc;
+    border-color: #007096;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-brand {
+    padding: 10px;
+}
+
+.navbar-brand img{
+    padding:2px;
+}
