@@ -7,6 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/twbs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/ellislab" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/ellislab/codeigniter/application/ci_sessions" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/guzzlehttp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor/react" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -17,6 +20,16 @@
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/composer.phar/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="PHP">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
         </SOURCES>
       </library>
     </orderEntry>

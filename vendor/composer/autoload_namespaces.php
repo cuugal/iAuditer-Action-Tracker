@@ -6,4 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Guzzle\\Tests' => array($vendorDir . '/guzzlehttp/guzzle/tests'),
+    'Guzzle' => array($vendorDir . '/guzzlehttp/guzzle/src'),
 );

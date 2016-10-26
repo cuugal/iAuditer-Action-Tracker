@@ -36,7 +36,11 @@
 	/** -- to here -- */
 ?>
 
-    <!-- Le styles -->
+
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/datatables.css"/>
+
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/datatables.js"></script>
+
     <link href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/themes/default/css/scrolling-nav.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/themes/default/css/additions.css" rel="stylesheet">

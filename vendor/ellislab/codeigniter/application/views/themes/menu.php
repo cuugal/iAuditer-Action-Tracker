@@ -27,6 +27,9 @@
                   <?php
                   else: ?>
                       <li>
+                          <a class="page-scroll " href="<?php echo site_url('Import/Process'); ?>">Import</a>
+                      </li>
+                      <li>
                           <a class="page-scroll active" href="<?php echo site_url('InspectionList'); ?>">Inspection List</a>
                       </li>
                       <li>
