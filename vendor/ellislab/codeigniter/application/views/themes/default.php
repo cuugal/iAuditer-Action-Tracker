@@ -36,12 +36,23 @@
 	/** -- to here -- */
 ?>
 
-
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/datatables.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/dataTables.bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/dataTables.foundation.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/dataTables.jqueryui.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables_themeroller.css"/>
 
+
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery-2.2.3.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/datatables.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.jqueryui.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.foundation.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.bootstrap.js"></script>
 
-    <link href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/themes/default/css/scrolling-nav.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/themes/default/css/additions.css" rel="stylesheet">
     <!--<link href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap-responsive.css" rel="stylesheet">-->
