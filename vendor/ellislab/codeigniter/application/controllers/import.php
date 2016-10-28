@@ -8,6 +8,7 @@ class Import extends CI_Controller
         parent::__construct();
 
         $this->load->helper('url');
+        $this->load->model('audits_model');
         $this->_init();
     }
 
@@ -53,9 +54,31 @@ class Import extends CI_Controller
             $audit['modified_at'] = $d->format('Y-m-d H:i:s');
         }
 
-        $this->db->insert_batch('audits', $data['audits']);
+        //$this->db->insert_batch('audits', $data['audits']);
+        $data['audits'] = $this->audits_model->upsertBatch($data['audits']);
         header('Content-Type: application/json');
         echo json_encode($data['audits']);
+    }
+
+    public function tester1(){
+        $url = 'https://api.safetyculture.io/audits/search?field=audit_id&field=modified_at&field=template_id';
+        $client = new Guzzle\Http\Client();
+        $client->setDefaultOption('headers', [
+            'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
+        ]);
+        $request = $client->get($url);
+        $res = $request->send();
+
+        $data = json_decode($res->getBody(), true);
+
+        foreach($data['audits'] as &$audit){
+            //Get rid of this blasted ISO8601 format
+            $d = new DateTime($audit['modified_at']);
+            //$audit['modified_at'] = $d->format('D M d Y H:i:s');
+            $audit['modified_at'] = $d->format('Y-m-d H:i:s');
+        }
+
+        echo json_encode($this->audits_model->tester($data['audits']));
     }
 
     public function tester(){
