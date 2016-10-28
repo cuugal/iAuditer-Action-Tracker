@@ -15,6 +15,9 @@ This will create the table structure and also a super-user:
 `Email: admin@admin.com
 Password: password`
 
+Hit this URL (relative to your application) to then initially populate the tables:
+`/import/getdata`
+
 
 Libraries used:
 - Template engine (albeit, heavily modified and updated to Bootstrap 3.0)
