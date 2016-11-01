@@ -25,6 +25,11 @@ class Migration_audits extends CI_Migration {
                 'constraint' => '50',
                 'null' => TRUE,
             ),
+            'description' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '250',
+                'null' => TRUE,
+            ),
             'location' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '50',
@@ -62,7 +67,12 @@ class Migration_audits extends CI_Migration {
                 'unsigned' => TRUE,
                 'null' => TRUE,
             ),
-
+            'template_archived' => array(
+                'type' => 'BOOL',
+                'unsigned' => TRUE,
+                'default' => FALSE,
+                'null' => TRUE,
+            ),
 
 
 

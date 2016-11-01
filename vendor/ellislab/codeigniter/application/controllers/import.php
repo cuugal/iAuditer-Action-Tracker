@@ -38,6 +38,8 @@ class Import extends CI_Controller
     }
 
     public function getData(){
+        $this->output->enable_profiler(TRUE);
+
         // Get templates
         $url = 'https://api.safetyculture.io/templates/search?field=template_id&field=name';
         $client = new Guzzle\Http\Client();
@@ -68,14 +70,25 @@ class Import extends CI_Controller
         $data = json_decode($res->getBody(), true);
 
         foreach($data['audits'] as &$audit){
-            //Get rid of this blasted ISO8601 format
-            $d = new DateTime($audit['modified_at']);
-            $audit['modified_at'] = $d->format('Y-m-d H:i:s');
+
+            //initialise values because insert_batch hates it when you don't initialise values.
+            $audit['inspection_type'] = '';
+            $audit['location'] = '';
+            $audit['modified_at'] = '';
+            $audit['created_at'] = '';
+            $audit['description'] = '';
+            $audit['location'] = '';
+            $audit['inspector_name'] = '';
+
+
+
             if(isset($map[$audit['template_id']])) {
                 $audit['inspection_type'] = $map[$audit['template_id']];
+                $audit['template_archived'] = false;
             }
             else{
-                $audit['inspection_type'] = '(template archived)';
+                $audit['inspection_type'] = '';
+                $audit['template_archived'] = true;
             }
 
             //backfill with data from individual calls, as required
@@ -91,55 +104,39 @@ class Import extends CI_Controller
 
                 //created at
                 $audit_data = json_decode($res->getBody(), true);
+
+                //Get rid of this blasted ISO8601 format
                 $d = new DateTime($audit_data['created_at']);
                 $audit['created_at'] = $d->format('Y-m-d H:i:s');
 
+                $d = new DateTime($audit_data['modified_at']);
+                $audit['modified_at'] = $d->format('Y-m-d H:i:s');
+
+                $audit['description'] = $audit_data['template_data']['metadata']['description'];
                 //Location
                 foreach ($audit_data['header_items'] as $header_item) {
                     if ($header_item['label'] == 'Location') {
-                        $audit['location'] = $header_item['responses']['location_text'];
+                        if (isset($header_item['responses']['text'])) {
+                            $audit['location'] = $header_item['responses']['text'];
+                        }
                     }
                 }
 
-
                 //Inspector
-                $audit['inspector_name'] = $audit_data['audit_data']['authorship']['author'];
+                if (isset($audit_data['audit_data']['authorship']['author'])) {
+                    $audit['inspector_name'] = $audit_data['audit_data']['authorship']['author'];
+                }
             }
 
         }
+
+
         $result['audits'] = $this->audits_model->upsertBatch($data['audits']);
 
-
-
-
-        header('Content-Type: application/json');
+        #header('Content-Type: application/json');
         echo json_encode($result);
     }
 
-    public function tester1(){
-        $url = 'https://api.safetyculture.io/audits/search?field=audit_id&field=modified_at&field=template_id';
-        $client = new Guzzle\Http\Client();
-        $client->setDefaultOption('headers', [
-            'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
-        ]);
-        $request = $client->get($url);
-        $res = $request->send();
 
-        $data = json_decode($res->getBody(), true);
-
-        foreach($data['audits'] as &$audit){
-            //Get rid of this blasted ISO8601 format
-            $d = new DateTime($audit['modified_at']);
-            //$audit['modified_at'] = $d->format('D M d Y H:i:s');
-            $audit['modified_at'] = $d->format('Y-m-d H:i:s');
-        }
-
-        echo json_encode($this->audits_model->tester($data['audits']));
-    }
-
-    public function tester(){
-        header('Content-Type: application/json');
-        echo json_encode(Date("2015-11-05T02:13:04.576Z"));
-    }
 
 }

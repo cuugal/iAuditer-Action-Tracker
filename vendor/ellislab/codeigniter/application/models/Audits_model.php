@@ -9,6 +9,13 @@ class Audits_model extends CI_Model {
         $this->load->database();
     }
 
+    public function getAudits(){
+        $this->db->where('template_archived', false);
+        $query = $this->db->get('audits');
+        $results = $query->result_array();
+        return $results;
+    }
+
     //Upsert script.
     public function upsertBatch($batch){
 
@@ -43,7 +50,7 @@ class Audits_model extends CI_Model {
         //insert/update as applicable
         $ret = array();
         if(count($inserts)>0) {
-            $ret['inserts'] = $this->db->insert_batch('audits', $inserts);
+            $ret['inserts'] = $this->db->insert_batch('audits', $inserts, true);
         }
         if(count($updates)> 0) {
             $ret['updates'] = $this->db->update_batch('audits', $updates, 'audit_id');

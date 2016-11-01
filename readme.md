@@ -9,14 +9,19 @@ Installation:
 - Point webroot to `/iAuditer-Action-Tracker/vendor/ellislab/codeigniter/`
 
 System uses SQLite, to set up tables navigate to webroot and run:
+
 `php index.php tools migrate`
 
 This will create the table structure and also a super-user:
+
 `Email: admin@admin.com
 Password: password`
 
-Hit this URL (relative to your application) to then initially populate the tables:
-`/import/getdata`
+Sign in with the admin account, and then navigate to the administrator menu function
+'Reload Audits'
+
+This will trigger a reload of all template and audit data from the iAuditor system (may take 2-3 minutes).
+
 
 
 Libraries used:
