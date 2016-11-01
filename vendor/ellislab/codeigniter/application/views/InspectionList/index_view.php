@@ -44,7 +44,8 @@
     var dataSet = <?=$dataSet?>;
     $(document).ready(function() {
 
-        $('#example').DataTable( {
+
+        var table = $('#example').DataTable( {
             "data": dataSet,
             "columns": [
                { "data": "inspection_type"},
@@ -61,6 +62,13 @@
             "order": [[ 6, "desc" ]]
 
         } );
+        yadcf.init(table, [{
+            column_number: 0,
+            filter_type: "multi_select",
+            select_type: 'chosen'
+        }]);
+
+
     } );
 
 </script>

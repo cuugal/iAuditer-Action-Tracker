@@ -45,6 +45,9 @@
         <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/dataTables.jqueryui.css"/>-->
         <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables_themeroller.css"/>-->
 
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables.yadcf.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/chosen.css"/>
+
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery-2.2.3.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.js"></script>
@@ -53,7 +56,8 @@
         <!--<script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.jqueryui.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.foundation.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.bootstrap.js"></script>
-
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.yadcf.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/chosen.jquery.js"></script>
 
         <link href="<?php echo base_url(); ?>assets/themes/default/css/scrolling-nav.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/themes/default/css/additions.css" rel="stylesheet">
