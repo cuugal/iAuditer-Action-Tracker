@@ -18,19 +18,7 @@ class Import extends CI_Controller
 
     }
     public function process(){
-    /*
-        $url = 'https://api.safetyculture.io/audits/search?field=audit_id&field=modified_at&field=template_id';
-        $client = new Guzzle\Http\Client();
-        $client->setDefaultOption('headers', [
-            'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
-        ]);
-        $request = $client->get($url);
-        $res = $request->send();
 
-        $data = array(
-            'response' => $res->getBody(),
-        );
-*/
         $data = array('nothing'=>'spam');
         $this->output->set_template('default');
         $this->load->view('dashboard/data_view', $data);
@@ -79,8 +67,7 @@ class Import extends CI_Controller
             $audit['description'] = '';
             $audit['location'] = '';
             $audit['inspector_name'] = '';
-
-
+            $audit['area_of_accountability'] = '';
 
             if(isset($map[$audit['template_id']])) {
                 $audit['inspection_type'] = $map[$audit['template_id']];
@@ -115,17 +102,30 @@ class Import extends CI_Controller
                 $audit['description'] = $audit_data['template_data']['metadata']['description'];
                 //Location
                 foreach ($audit_data['header_items'] as $header_item) {
-                    if ($header_item['label'] == 'Location') {
+                    if (strpos($header_item['label'], 'Location') !== false) {
                         if (isset($header_item['responses']['text'])) {
                             $audit['location'] = $header_item['responses']['text'];
                         }
                     }
+
+                    if (strpos($header_item['label'], 'Area to be Inspected') !== false) {
+                        $area = '';
+                        if (isset($header_item['responses']['selected'])) {
+                            foreach ($header_item['responses']['selected'] as $item) {
+                                $area .= $item['label'] . " ";
+                            }
+                        }
+                        $audit['area_of_accountability'] = $area;
+                    }
+
                 }
 
                 //Inspector
                 if (isset($audit_data['audit_data']['authorship']['author'])) {
                     $audit['inspector_name'] = $audit_data['audit_data']['authorship']['author'];
                 }
+
+
             }
 
         }

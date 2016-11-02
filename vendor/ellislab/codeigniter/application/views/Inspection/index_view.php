@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<div class="container">
+
     <h3>Inspection List</h3>
     <?php
     $d = new DateTime('2011-01-01T15:03:01.012345Z');
@@ -9,7 +9,7 @@
     <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
         <tr>
-
+            <th>&nbsp;</th>
             <th>Inspection Type</th>
             <th>Date of Inspection</th>
             <th>Area of Accountability</th>
@@ -17,8 +17,8 @@
             <th>Inspector Name</th>
             <th>Residual Risk (H,M,L)</th>
             <th>Last Updated</th>
-            <th>Number Outstanding Actions</th>
-            <th>Number of Actions In Progress</th>
+            <th>Actions Outstanding</th>
+            <th>Actions In Progress</th>
         </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
         </tbody>
         <tfoot>
         <tr>
-
+            <th>&nbsp;</th>
             <th>Inspection Type</th>
             <th>Date of Inspection</th>
             <th>Area of Accountability</th>
@@ -34,12 +34,12 @@
             <th>Inspector Name</th>
             <th>Residual Risk (H,M,L)</th>
             <th>Last Updated</th>
-            <th>Number Outstanding Actions</th>
-            <th>Number of Actions In Progress</th>
+            <th>Actions Outstanding </th>
+            <th>Actions In Progress</th>
         </tr>
         </tfoot>
     </table>
-</div>
+
 <script type="text/javascript">
     var dataSet = <?=$dataSet?>;
     $(document).ready(function() {
@@ -48,6 +48,11 @@
         var table = $('#example').DataTable( {
             "data": dataSet,
             "columns": [
+                { "data": "audit_id",
+                    "render": function ( data, type, full, meta ) {
+                        return '<a href="inspection/request/'+data+'" target="_blank">View</a>';
+                    }
+                },
                { "data": "inspection_type"},
                 { "data": "created_at"},
                 { "data": "area_of_accountability"},
@@ -59,11 +64,12 @@
                 { "data": "number_of_actions_in_progress"},
 
             ],
-            "order": [[ 6, "desc" ]]
+
+            "order": [[ 7, "desc" ]]
 
         } );
         yadcf.init(table, [{
-            column_number: 0,
+            column_number: 3,
             filter_type: "multi_select",
             select_type: 'chosen'
         }]);

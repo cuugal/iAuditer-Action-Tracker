@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<title><?php echo $title; ?></title>
@@ -38,12 +39,8 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap.css" rel="stylesheet">
 
 
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/datatables.css"/>-->
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/dataTables.foundation.css"/>-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/dataTables.bootstrap.css"/>
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables.css"/>-->
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/dataTables.jqueryui.css"/>-->
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables_themeroller.css"/>-->
+
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables.yadcf.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/chosen.css"/>
@@ -53,11 +50,12 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/datatables.js"></script>
-        <!--<script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.jqueryui.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.foundation.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.bootstrap.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.yadcf.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/chosen.jquery.js"></script>
+
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/pdfobject.min.js"></script>
 
         <link href="<?php echo base_url(); ?>assets/themes/default/css/scrolling-nav.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/themes/default/css/additions.css" rel="stylesheet">

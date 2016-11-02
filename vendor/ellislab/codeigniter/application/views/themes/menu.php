@@ -20,7 +20,7 @@
                   </li>
 
                     <li>
-                        <a class="page-scroll active" href="<?php echo site_url('InspectionList'); ?>">Inspection List</a>
+                        <a class="page-scroll active" href="<?php echo site_url('Inspection'); ?>">Inspections</a>
                     </li>
                   <?php if($this->ion_auth->logged_in()): ?>
 
