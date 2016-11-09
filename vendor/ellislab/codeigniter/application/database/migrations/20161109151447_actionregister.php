@@ -16,6 +16,22 @@ class Migration_actionregister extends CI_Migration {
 
 
         $fields = array(
+            'id' => array(
+                'type' => 'MEDIUMINT',
+                'constraint' => '8',
+                'unsigned' => TRUE,
+                'auto_increment' => TRUE
+            ),
+            'user'=>array(
+                'type' => 'MEDIUMINT',
+                'constraint' => '8',
+                'unsigned' => TRUE,
+                'null' => TRUE,
+            ),
+            'audit_id'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => '50',
+            ),
             'action_required'=>array(
                 'type' => 'VARCHAR',
                     'constraint' => 255,
@@ -43,12 +59,18 @@ class Migration_actionregister extends CI_Migration {
             ),
 
         );
-        $this->dbforge->add_column('audits', $fields);
+        $this->dbforge->add_field($fields);
+
+        $this->dbforge->add_key('audit_id');
+        $this->dbforge->add_key('user');
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('action_register');
     }
 
     public function down() {
         //$this->dbforge->drop_table('actionregister');
-        $this->dbforge->drop_column('table_name', 'column_to_drop');
+        $this->dbforge->drop_column('users', 'faculty_unit');
+        $this->dbforge->drop_table('action_register');
     }
 
 }
