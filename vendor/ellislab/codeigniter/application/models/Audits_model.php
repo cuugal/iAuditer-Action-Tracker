@@ -16,6 +16,19 @@ class Audits_model extends CI_Model {
         return $results;
     }
 
+    public function getMostRecentDate(){
+        $this->db->order_by('modified_at', 'desc');
+        $this->db->limit(1);
+        $this->db->select('modified_at');
+        $query = $this->db->get('audits');
+        $results = $query->result_array();
+        //convert to ISO8601 format for the API
+
+        $time = date(DATE_ATOM, strtotime($results[0]['modified_at']));
+        return urlencode($time);
+
+    }
+
     //Upsert script.
     public function upsertBatch($batch){
 

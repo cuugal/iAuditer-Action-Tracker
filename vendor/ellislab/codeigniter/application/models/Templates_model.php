@@ -9,6 +9,13 @@ class Templates_model extends CI_Model
         $this->load->database();
     }
 
+    public function getTemplates(){
+        $query = $this->db->get('templates');
+        $results = $query->result_array();
+        return $results;
+    }
+
+
 //Upsert script.
     public function upsertBatch($batch)
     {

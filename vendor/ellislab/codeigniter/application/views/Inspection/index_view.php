@@ -1,10 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
     <h3>Inspection List</h3>
-    <?php
-    $d = new DateTime('2011-01-01T15:03:01.012345Z');
-    //echo '<b>'.print_r($dataSet).'</b>';
-    ?>
 
     <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>

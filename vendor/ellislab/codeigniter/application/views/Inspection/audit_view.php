@@ -6,7 +6,6 @@
     */
     .pdfobject-container {
         width: 100%;
-        max-width: 600px;
         height: 600px;
         margin: 2em 0;
     }

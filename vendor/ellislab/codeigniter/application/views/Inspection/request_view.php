@@ -6,4 +6,10 @@
 <?php if(isset($error)):?>
     <p>Status: <?=$error; ?></p>
 <?php endif; ?>
+<?php if(isset($message)):?>
+    <p>Status: <?=$message; ?></p>
+<?php endif; ?>
+<?php if(isset($statusCode)):?>
+    <p>Status: <?=$statusCode; ?></p>
+<?php endif; ?>
 <a href="/inspection/request/<?=$audit_id;?>/<?=$request_id;?>" class="btn btn-primary">Refresh</a>
