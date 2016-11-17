@@ -7,6 +7,7 @@ class Audits_model extends CI_Model {
         // Call the CI_Model constructor
         parent::__construct();
         $this->load->database();
+        $this->load->model('actionregister_model');
     }
 
     public function loadAudits($map, $date){
@@ -27,6 +28,8 @@ class Audits_model extends CI_Model {
         $res = $request->send();
 
         $data = json_decode($res->getBody(), true);
+
+        $action_registers = array();
 
         foreach($data['audits'] as &$audit){
 
@@ -64,7 +67,8 @@ class Audits_model extends CI_Model {
                 $audit_data = json_decode($res->getBody(), true);
 
                 //Get rid of this blasted ISO8601 format
-                $d = new DateTime($audit_data['created_at']);
+                //$d = new DateTime($audit_data['created_at']);
+                $d = new DateTime($audit_data['audit_data']['date_started']);
                 $audit['created_at'] = $d->format('Y-m-d H:i:s');
 
                 $d = new DateTime($audit_data['modified_at']);
@@ -89,6 +93,83 @@ class Audits_model extends CI_Model {
                         $audit['area_of_accountability'] = $area;
                     }
 
+
+                }
+
+                //Action_Register
+                foreach ($audit_data['items'] as $item) {
+                    if (strpos($item['type'], 'question') !== false) {
+                        // no 'inactive' flag means its active
+                        if(!isset($item['inactive'])) {
+                            $action_register = array();
+                            $action_register['item_id'] = $item['item_id'];
+                            $action_register['audit_id'] = $audit['audit_id'];
+                            $action_register['issue'] = $item['label'];
+                            $action_register['type_of_hazard'] = '';
+                            $action_register['source'] = '';
+                            $action_register['initial_risk'] = '';
+
+                            if(isset($item['responses']['selected'])){
+                                $parent_2 = '';
+                                //locate category
+                                foreach($audit_data['items'] as $category){
+                                    if(strpos($category['type'], 'category') !== false){
+                                        if($category['item_id'] == $item['parent_id']){
+                                            $action_register['type_of_hazard'] = $category['label'];
+                                            $parent_2 = $category['parent_id'];
+                                        }
+                                    }
+                                }
+                                //locate source
+                                foreach($audit_data['items'] as $source){
+                                    if(strpos($source['type'], 'section') !== false){
+                                        if($source['item_id'] == $parent_2){
+                                            $action_register['source'] = $source['label'];
+                                        }
+                                    }
+                                }
+                                if(isset($item['children'])){
+                                    foreach($item['children'] as $child) {
+                                        $action_register['initial_risk'] = $child;
+
+                                        //locate priority
+                                        foreach ($audit_data['items'] as $source) {
+                                            //if the item is a list item and not inactive, and is label 'Rate priority'
+                                            if(strpos($source['type'], 'list') !== false && !isset($source['inactive'])
+                                                 && strpos($source['label'], 'priority') !== false ) {
+                                                #//if the list item's parent matches this items' child
+                                                if ($source['parent_id'] == $child) {
+
+                                                    if(isset($source['responses']['selected'])) {
+                                                        //take the response and add to DB
+                                                        foreach($source['responses']['selected'] as $i)
+                                                            $action_register['initial_risk'] = $i['label'];
+                                                    }
+
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+
+                                foreach($item['responses']['selected'] as $rp){
+                                    if(strpos($rp['type'], 'text') !== false){
+                                        $action_register['response'] = $rp['label'];
+                                    }
+                                }
+
+                            }
+                            //only add/update if the type matters
+                            if(isset($action_register['response'])){
+                                $action_register['key'] = $action_register['item_id'].$action_register['audit_id'];
+                                $action_registers[] = $action_register;
+                            }
+
+                        }
+
+                    }
+
                 }
 
                 //Inspector
@@ -103,6 +184,7 @@ class Audits_model extends CI_Model {
 
         $result['audits'] = $this->upsertBatch($data['audits']);
 
+        $result['action_registers'] = $this->actionregister_model->upsertBatch($action_registers);
         return $result;
     }
 
@@ -180,4 +262,5 @@ class Audits_model extends CI_Model {
         //$query = $this->db->get('audits');
         //return $query->result_array();
     }
+
 }

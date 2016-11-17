@@ -8,12 +8,12 @@ class ActionRegister extends Auth_Controller
     {
         parent::__construct();
         $this->output->set_template('default');
-        $this->load->model('audits_model');
+        $this->load->model('actionregister_model');
         $this->load->model('templates_model');
     }
 
     function index(){
-        $data = array();
+        $data = array('dataSet'=>json_encode($this->actionregister_model->getAR()));
         $this->load->view('actionregister/index_view', $data);
     }
 }

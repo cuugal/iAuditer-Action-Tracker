@@ -6,10 +6,19 @@
     <thead>
     <tr>
         <th>&nbsp;</th>
-        <th>Area of Accountability</th>
-        <th>Faculty/Unit</th>
-        <th>Accountable Person</th>
-        <th>Responsible Person/s</th>
+        <th>Date Identified</td>
+        <th>Inspector</th>
+        <th>Location</th>
+        <th>Source</th>
+        <th>Type of Hazard</th>
+        <th>Issue</th>
+        <th>Proposed Action</th>
+        <th>Initial Risk</th>
+        <th>Action Required</th>
+        <th>Reviewed Action</th>
+        <th>Residual Risk</th>
+        <th>Action Status</th>
+        <th>Date Closed</th>
     </tr>
     </thead>
     <tbody>
@@ -18,15 +27,71 @@
     <tfoot>
     <tr>
         <th>&nbsp;</th>
-        <th>Inspection Type</th>
-        <th>Date of Inspection</th>
-        <th>Area of Accountability</th>
+        <th>Date Identified</td>
+        <th>Inspector</th>
         <th>Location</th>
-        <th>Inspector Name</th>
-        <th>Residual Risk (H,M,L)</th>
-        <th>Last Updated</th>
-        <th>Actions Outstanding </th>
-        <th>Actions In Progress</th>
+        <th>Source</th>
+        <th>Type of Hazard</th>
+        <th>Issue</th>
+        <th>Proposed Action</th>
+        <th>Initial Risk</th>
+        <th>Action Required</th>
+        <th>Reviewed Action</th>
+        <th>Residual Risk</th>
+        <th>Action Status</th>
+        <th>Date Closed</th>
     </tr>
     </tfoot>
 </table>
+
+
+<script type="text/javascript">
+    var dataSet = <?=$dataSet?>;
+    $(document).ready(function() {
+
+
+        var table = $('#example').DataTable( {
+            "data": dataSet,
+            "columns": [
+                { "data": "audit_id",
+                    "render": function ( data, type, full, meta ) {
+                        return '<a href="actionregister/request/'+data+'" target="_blank">View</a>';
+                    }
+                },
+
+                { "data": "created_at"},
+                { "data": "inspector_name"},
+                { "data": "location"},
+                { "data": "source"},
+                { "data": "type_of_hazard"},
+                {"data": "issue",
+                    "render":function ( data, type, row ) {
+                        return data.length > 50 ?
+                        data.substr( 0, 50 ) +'…' :
+                            data;
+                    }
+                },
+                { "data": "proposed_action"},
+                { "data": "initial_risk"},
+                { "data": "action_required"},
+                { "data": "reviewed_action"},
+                { "data": "residual_risk"},
+                { "data": "action_status"},
+                { "data": "completion_date"},
+
+            ],
+
+            "order": [[ 1, "desc" ]]
+
+        } );
+        /*
+        yadcf.init(table, [{
+            column_number: 1,
+            filter_type: "multi_select",
+            select_type: 'chosen'
+        }]);
+*/
+
+    } );
+
+</script>

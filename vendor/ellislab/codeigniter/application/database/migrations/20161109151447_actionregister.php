@@ -16,11 +16,13 @@ class Migration_actionregister extends CI_Migration {
 
 
         $fields = array(
-            'id' => array(
-                'type' => 'MEDIUMINT',
-                'constraint' => '8',
-                'unsigned' => TRUE,
-                'auto_increment' => TRUE
+            'key' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '80',
+            ),
+            'item_id' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '40',
             ),
             'user'=>array(
                 'type' => 'MEDIUMINT',
@@ -32,6 +34,37 @@ class Migration_actionregister extends CI_Migration {
                 'type' => 'VARCHAR',
                 'constraint' => '50',
             ),
+            'source'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'null' => TRUE,
+            ),
+            'type_of_hazard'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'null' => TRUE,
+            ),
+            'proposed_action'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => TRUE,
+            ),
+            'initial_risk'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'null' => TRUE,
+            ),
+            'issue'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => TRUE,
+            ),
+            'response'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+                'null' => TRUE,
+            ),
+
             'action_required'=>array(
                 'type' => 'VARCHAR',
                     'constraint' => 255,
@@ -42,6 +75,7 @@ class Migration_actionregister extends CI_Migration {
                 'constraint' => 255,
                 'null' => TRUE,
             ),
+
             'residual_risk'=>array(
                 'type' => 'VARCHAR',
                 'constraint' => 10,
@@ -61,9 +95,7 @@ class Migration_actionregister extends CI_Migration {
         );
         $this->dbforge->add_field($fields);
 
-        $this->dbforge->add_key('audit_id');
-        $this->dbforge->add_key('user');
-        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('key');
         $this->dbforge->create_table('action_register');
     }
 
