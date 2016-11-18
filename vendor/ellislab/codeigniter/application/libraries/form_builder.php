@@ -468,6 +468,11 @@ class Form_builder {
         /* remove help element - don't need help properties to be in input elements */
         $this->elm_options_help = (isset($this->elm_options['help']) && !empty($this->elm_options['help'])) ? $this->elm_options['help'] : '';
         unset($this->elm_options['help']);
+
+        /* AA addition of star(via CSS/form group class) for 'Required' fields*/
+        $this->elm_options_required = (isset($this->elm_options['req']) && !empty($this->elm_options['req'])) ? true : false;
+        unset($this->elm_options['req']);
+
         return;
     }
 
@@ -784,7 +789,12 @@ class Form_builder {
     }
 
     private function _pre_elm() {
-        return '<div class="' . $this->config['default_input_container_class'] . '">';
+        if($this->elm_options_required) {
+            return '<div class="' . $this->config['default_input_container_class'] . ' required">';
+        }
+        else{
+            return '<div class="' . $this->config['default_input_container_class'] . '">';
+        }
     }
 
     private function _post_elm() {

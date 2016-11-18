@@ -2,9 +2,7 @@
 <div class="row">
     <div class="">
     <h2>Details</h2>
-    <?php
-    echo isset($_SESSION['ar_message']) ? $_SESSION['ar_message'] : FALSE;
-    ?>
+
 
 <?= $this->form_builder->open_form(array('action' => ''));
 echo $this->form_builder->build_form_horizontal(
@@ -62,9 +60,7 @@ echo $this->form_builder->close_form();
 <div class="row">
     <div class="">
         <h2>Hazard</h2>
-        <?php
-        echo isset($_SESSION['ar_message']) ? $_SESSION['ar_message'] : FALSE;
-        ?>
+
 
 <?= $this->form_builder->open_form(array('action' => ''));
 echo $this->form_builder->build_form_horizontal(
@@ -99,36 +95,55 @@ echo $this->form_builder->close_form();
     <div class="">
         <h2>Action Plan</h2>
         <?php
-        echo isset($_SESSION['ar_message']) ? $_SESSION['ar_message'] : FALSE;
-        ?>
+        if (isset($_SESSION['ar_message'])) : ?>
+        <div class="alert alert-success"><?=$_SESSION['ar_message'];?>
+            </div>
+        <?php endif; ?>
 
-        <?= $this->form_builder->open_form(array('action' => ''));
+       <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+
+
+
+        <?= $this->form_builder->open_form(array('action' => '', 'id'=>'mainform'));
         echo $this->form_builder->build_form_horizontal(
             array(
+                array(/* HIDDEN */
+                    'id' => 'key',
+                    'type' => 'hidden',
+                    'value' => $dataSet['key']
+                ),
                 array(
                     'id' => 'proposed_action',
                     'label' => 'Proposed Action',
+                    'class' => 'required',
                     'value' => $dataSet['proposed_action'],
+                    'req'=>true,
+
                 ),
                 array(/* RADIO */
                     'id' => 'action_required',
                     'label' => 'Action Required',
                     'type' => 'radio',
+                    'req'=>true,
+                    'value' => $dataSet['action_required'],
                     'options' => array(
                         array(
                             'id' => 'radio_button_yes',
-                            'value' => '',
-                            'label' => 'Yes'
+                            'value' => 'Yes',
+                            'label' => 'Yes',
+                            'checked' => $dataSet['action_required'] == 'Yes' ? true: false,
                         ),
                         array(
                             'id' => 'radio_button_no',
-                            'value' => '',
-                            'label' => 'No'
+                            'value' => 'No',
+                            'label' => 'No',
+                            'checked' => $dataSet['action_required'] == 'No' ? true: false,
                         ),
                         array(
                             'id' => 'radio_button_out',
-                            'value' => '',
-                            'label' => 'Outside Supervisors Control'
+                            'value' => 'Outside Supervisor\'s Control',
+                            'label' => 'Outside Supervisor\'s Control',
+                            'checked' => $dataSet['action_required'] == 'Outside Supervisor\'s Control' ? true: false,
                         ),
 
                     )
@@ -137,26 +152,31 @@ echo $this->form_builder->close_form();
                     'id' => 'reviewed_action',
                     'label' => 'Reviewed Action',
                     'value' => $dataSet['reviewed_action'],
+                    'req'=>true,
                 ),
                 array(/* RADIO */
                     'id' => 'residual_risk',
                     'label' => 'Residual Risk',
                     'type' => 'radio',
+                    'req'=>true,
                     'options' => array(
                         array(
                             'id' => 'radio_button_high',
-                            'value' => '',
-                            'label' => 'High'
+                            'value' => 'High',
+                            'label' => 'High',
+                            'checked' => $dataSet['residual_risk'] == 'High' ? true: false,
                         ),
                         array(
                             'id' => 'radio_button_medium',
-                            'value' => '',
-                            'label' => 'Medium'
+                            'value' => 'Medium',
+                            'label' => 'Medium',
+                            'checked' => $dataSet['residual_risk'] == 'Medium' ? true: false,
                         ),
                         array(
                             'id' => 'radio_button_low',
-                            'value' => '',
-                            'label' => 'Low'
+                            'value' => 'Low',
+                            'label' => 'Low',
+                            'checked' => $dataSet['residual_risk'] == 'Low' ? true: false,
                         ),
 
                     )
@@ -165,21 +185,25 @@ echo $this->form_builder->close_form();
                     'id' => 'action_status',
                     'label' => 'Action Status',
                     'type' => 'radio',
+                    'req'=>true,
                     'options' => array(
                         array(
                             'id' => 'radio_button_open',
-                            'value' => '',
-                            'label' => 'Open'
+                            'value' => 'Open',
+                            'label' => 'Open',
+                            'checked' => $dataSet['action_status'] == 'Open' ? true: false,
                         ),
                         array(
                             'id' => 'radio_button_progress',
-                            'value' => '',
-                            'label' => 'In Progress'
+                            'value' => 'In Progress',
+                            'label' => 'In Progress',
+                            'checked' => $dataSet['action_status'] == 'In Progress' ? true: false,
                         ),
                         array(
                             'id' => 'radio_button_closed',
-                            'value' => '',
-                            'label' => 'Closed'
+                            'value' => 'Closed',
+                            'label' => 'Closed',
+                            'checked' => $dataSet['action_status'] == 'Closed' ? true: false,
                         ),
 
                     )
@@ -188,9 +212,17 @@ echo $this->form_builder->close_form();
                     'id' => 'completion_date',
                     'label' => 'Completion Date',
                     'type' => 'date',
+                    'data-provide'=>'datepicker',
                     'value' => $dataSet['completion_date'],
+
                 ),
+                array(/* SUBMIT */
+                    'id' => 'submit',
+                    'label' => 'Save',
+                    'type' => 'submit'
+                )
             )
+
         );
         echo $this->form_builder->close_form();
         ?>

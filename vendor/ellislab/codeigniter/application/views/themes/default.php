@@ -45,6 +45,8 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/jquery.dataTables.yadcf.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/chosen.css"/>
 
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap-datepicker3.css"/>
+
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery-2.2.3.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.js"></script>
@@ -54,6 +56,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.bootstrap.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.yadcf.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/chosen.jquery.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap-datepicker.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/pdfobject.min.js"></script>
 
@@ -96,6 +99,17 @@
 				Copyright &copy; <a target="_blank" href="http://www.uts.edu.au">uts.edu.au</a>
 	        </div>
         </div>
+          <script type="text/javascript">
+            //Auto scroll to any error messages
+              $(document).ready(function (){
+                  if ($(".alert").length) {
+                      $('html, body').animate({
+                          scrollTop: ($(".alert").first().offset().top)
+                      },500);
+                  }
+
+              });
+          </script>
       </footer>
 
     </div> <!-- /container -->

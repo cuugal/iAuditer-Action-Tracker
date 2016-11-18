@@ -26,6 +26,11 @@ class Actionregister_model extends CI_Model
         return $results;
     }
 
+    public function update($record){
+        $this->db->where('key', $record['key']);
+        $this->db->update('action_register', $record);
+    }
+
 //Upsert script.
     public function upsertBatch($batch)
     {
