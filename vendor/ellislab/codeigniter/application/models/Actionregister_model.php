@@ -18,6 +18,14 @@ class Actionregister_model extends CI_Model
         return $results;
     }
 
+    public function getRequest($key){
+        $this->db->where('key', $key);
+        $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
+        $query = $this->db->get('action_register');
+        $results = $query->result_array()[0];
+        return $results;
+    }
+
 //Upsert script.
     public function upsertBatch($batch)
     {

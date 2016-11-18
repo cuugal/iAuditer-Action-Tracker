@@ -53,9 +53,9 @@
         var table = $('#example').DataTable( {
             "data": dataSet,
             "columns": [
-                { "data": "audit_id",
+                { "data": "key",
                     "render": function ( data, type, full, meta ) {
-                        return '<a href="actionregister/request/'+data+'" target="_blank">View</a>';
+                        return '<a href="actionregister/request/'+data+'">View</a>';
                     }
                 },
 

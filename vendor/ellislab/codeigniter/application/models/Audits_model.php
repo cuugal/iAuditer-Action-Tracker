@@ -109,6 +109,7 @@ class Audits_model extends CI_Model {
                             $action_register['source'] = '';
                             $action_register['initial_risk'] = '';
 
+                            //if there is a response noted on the page
                             if(isset($item['responses']['selected'])){
                                 $parent_2 = '';
                                 //locate category
@@ -130,7 +131,7 @@ class Audits_model extends CI_Model {
                                 }
                                 if(isset($item['children'])){
                                     foreach($item['children'] as $child) {
-                                        $action_register['initial_risk'] = $child;
+                                        //$action_register['initial_risk'] = $child;
 
                                         //locate priority
                                         foreach ($audit_data['items'] as $source) {
