@@ -33,6 +33,9 @@ class Audits_model extends CI_Model {
 
         foreach($data['audits'] as &$audit){
 
+            if($audit['audit_id'] != 'audit_9a24cb9d4b4e427e96856175451204b2'){
+                continue;
+            }
             //initialise values because insert_batch hates it when you don't initialise values.
             $audit['inspection_type'] = '';
             $audit['location'] = '';
@@ -96,6 +99,32 @@ class Audits_model extends CI_Model {
 
                 }
 
+                //Retrieve smartfields
+                unset($smartfields);
+                //Retrieve categories
+                unset($categories);
+                //retrieve checkboxes
+                unset($checkboxes);
+                //retrieve sections
+                unset($sections);
+
+                foreach ($audit_data['items'] as $item) {
+                    if($item['type'] == 'smartfield'){
+                        $smartfields[$item['item_id']] = $item['parent_id'];
+                    }
+
+                    if($item['type'] == 'checkbox'){
+                        $checkboxes[$item['item_id']] = $item['parent_id'];
+                    }
+                    if($item['type']== 'category'){
+                        $categories[$item['item_id']] = $item['label'];
+                    }
+                    if($item['type'] == 'section'){
+                        $sections[$item['item_id']] = $item;
+                    }
+                }
+
+
                 //Action_Register
                 foreach ($audit_data['items'] as $item) {
                     if (strpos($item['type'], 'question') !== false) {
@@ -109,26 +138,36 @@ class Audits_model extends CI_Model {
                             $action_register['source'] = '';
                             $action_register['initial_risk'] = '';
 
+
                             //if there is a response noted on the page
                             if(isset($item['responses']['selected'])){
-                                $parent_2 = '';
-                                //locate category
-                                foreach($audit_data['items'] as $category){
-                                    if(strpos($category['type'], 'category') !== false){
-                                        if($category['item_id'] == $item['parent_id']){
-                                            $action_register['type_of_hazard'] = $category['label'];
-                                            $parent_2 = $category['parent_id'];
+                                //Item-->smartfield-->checkbox-->section
+                                unset($sectionId);
+                                //locate topmost section
+                                if(isset($smartfields) && isset($checkboxes)) {
+                                    $checkboxId = $smartfields[$item['parent_id']];
+                                    $action_register['source'] = $checkboxId;
+                                    $sectionId = $checkboxes[$checkboxId];
+                                    $action_register['type_of_hazard'] = $sectionId;
+                                    //$action_register['source'] = $item['parent_id'];
+                                    unset($section);
+
+                                    if (isset($sectionId)) {
+                                        $section = $sections[$sectionId];
+                                    }
+                                    //Now we can start populating some items.
+                                    if (isset($section)) {
+                                        $action_register['source'] = $section['label'];
+                                        $index = array_search($checkboxId, $section['children']);
+                                        if ($index !== false) {
+                                            //children are in order: get the previous to get parent
+                                            //(Yes I know.  Unstructured data!!)
+                                            $action_register['type_of_hazard'] = $categories[$section['children'][$index - 1]];
                                         }
                                     }
+
                                 }
-                                //locate source
-                                foreach($audit_data['items'] as $source){
-                                    if(strpos($source['type'], 'section') !== false){
-                                        if($source['item_id'] == $parent_2){
-                                            $action_register['source'] = $source['label'];
-                                        }
-                                    }
-                                }
+
                                 if(isset($item['children'])){
                                     foreach($item['children'] as $child) {
                                         //$action_register['initial_risk'] = $child;
