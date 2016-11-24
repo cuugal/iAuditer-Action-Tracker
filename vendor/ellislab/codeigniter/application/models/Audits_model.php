@@ -32,10 +32,11 @@ class Audits_model extends CI_Model {
         $action_registers = array();
 
         foreach($data['audits'] as &$audit){
-
+            /*
             if($audit['audit_id'] != 'audit_9a24cb9d4b4e427e96856175451204b2'){
                 continue;
             }
+            */
             //initialise values because insert_batch hates it when you don't initialise values.
             $audit['inspection_type'] = '';
             $audit['location'] = '';
@@ -144,7 +145,7 @@ class Audits_model extends CI_Model {
                                 //Item-->smartfield-->checkbox-->section
                                 unset($sectionId);
                                 //locate topmost section
-                                if(isset($smartfields) && isset($checkboxes)) {
+                                if(isset($smartfields) && isset($checkboxes) && isset($smartfields[$item['parent_id']])) {
                                     $checkboxId = $smartfields[$item['parent_id']];
                                     $action_register['source'] = $checkboxId;
                                     $sectionId = $checkboxes[$checkboxId];
@@ -152,7 +153,7 @@ class Audits_model extends CI_Model {
                                     //$action_register['source'] = $item['parent_id'];
                                     unset($section);
 
-                                    if (isset($sectionId)) {
+                                    if (isset($sectionId) && isset($sections[$sectionId])){
                                         $section = $sections[$sectionId];
                                     }
                                     //Now we can start populating some items.
