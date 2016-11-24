@@ -23,16 +23,18 @@ class Inspection extends CI_Controller {
         // Load new edits since the previous last modified date
         $mostRecent = $this->audits_model->getMostRecentDate();
 
-        //get templates to build map
-        $templates = $this->templates_model->getTemplates();
+        if(strtotime($mostRecent) > strtotime("-15 minutes")) {
 
-        // create map
-        foreach($templates as $template){
-            $map[$template['template_id']] = $template['name'];
+            //get templates to build map
+            $templates = $this->templates_model->getTemplates();
+
+            // create map
+            foreach ($templates as $template) {
+                $map[$template['template_id']] = $template['name'];
+            }
+
+            $this->audits_model->loadAudits($map, $mostRecent);
         }
-
-        $this->audits_model->loadAudits($map, $mostRecent);
-
         $data = array('dataSet'=>json_encode($this->audits_model->getAudits()));
         $this->load->view('inspection/index_view', $data);
     }

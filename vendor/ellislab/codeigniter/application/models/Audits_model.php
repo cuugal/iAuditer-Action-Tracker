@@ -33,7 +33,7 @@ class Audits_model extends CI_Model {
 
         foreach($data['audits'] as &$audit){
             /*
-            if($audit['audit_id'] != 'audit_9a24cb9d4b4e427e96856175451204b2'){
+            if($audit['audit_id'] != 'audit_3c1491f2635344bf803b78f4a746a894'){
                 continue;
             }
             */
@@ -138,7 +138,7 @@ class Audits_model extends CI_Model {
                             $action_register['type_of_hazard'] = '';
                             $action_register['source'] = '';
                             $action_register['initial_risk'] = '';
-
+                            $action_register['source'] = $audit['description'];
 
                             //if there is a response noted on the page
                             if(isset($item['responses']['selected'])){
@@ -147,7 +147,7 @@ class Audits_model extends CI_Model {
                                 //locate topmost section
                                 if(isset($smartfields) && isset($checkboxes) && isset($smartfields[$item['parent_id']])) {
                                     $checkboxId = $smartfields[$item['parent_id']];
-                                    $action_register['source'] = $checkboxId;
+                                    //$action_register['source'] = $checkboxId;
                                     $sectionId = $checkboxes[$checkboxId];
                                     $action_register['type_of_hazard'] = $sectionId;
                                     //$action_register['source'] = $item['parent_id'];
@@ -158,17 +158,33 @@ class Audits_model extends CI_Model {
                                     }
                                     //Now we can start populating some items.
                                     if (isset($section)) {
-                                        $action_register['source'] = $section['label'];
+                                        //$action_register['source'] = $section['label'];
+
                                         $index = array_search($checkboxId, $section['children']);
                                         if ($index !== false) {
                                             //children are in order: get the previous to get parent
-                                            //(Yes I know.  Unstructured data!!)
+                                            while ($index > 0 and !isset($categories[$section['children'][$index - 1]])){
+                                                $index--;
+                                            }
                                             $action_register['type_of_hazard'] = $categories[$section['children'][$index - 1]];
                                         }
                                     }
 
                                 }
-
+                                //other case where there are no smartfields or checkboxes
+                                else if (isset($sections[$item['parent_id']])) {
+                                    $section = $sections[$item['parent_id']];
+                                    $index = array_search($item['item_id'], $section['children']);
+                                    if ($index !== false) {
+                                        //children are in order: get the previous to get parent
+                                        while ($index >= 0 and !isset($categories[$section['children'][$index]])) {
+                                            $index--;
+                                        }
+                                        if ($index >= 0) {
+                                            $action_register['type_of_hazard'] = $categories[$section['children'][$index]];
+                                        }
+                                    }
+                                }
                                 if(isset($item['children'])){
                                     foreach($item['children'] as $child) {
                                         //$action_register['initial_risk'] = $child;

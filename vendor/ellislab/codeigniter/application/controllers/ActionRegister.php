@@ -13,7 +13,7 @@ class ActionRegister extends Auth_Controller
     }
 
     function index(){
-        $data = array('dataSet'=>json_encode($this->actionregister_model->getAR()));
+        $data = array('dataSet'=>$this->actionregister_model->getAR($this->ion_auth->user()->row()->faculty_unit));
         $this->load->view('actionregister/index_view', $data);
     }
 

@@ -38,6 +38,7 @@
 
 <script type="text/javascript">
     var dataSet = <?=$dataSet?>;
+
     $(document).ready(function() {
 
 

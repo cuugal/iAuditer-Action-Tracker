@@ -2,11 +2,26 @@
 
 <h3>Action Register</h3>
 
-<table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+<?php foreach ($dataSet as $data): ?>
+
+<table class="table table-striped table-bordered table-hover" style="border: 2px solid #ddd" cellspacing="0" width="100%">
     <thead>
+    <tr class="arheader">
+        <th colspan="3">Area of Accountability:</th>
+        <th colspan="2"><?=$data[0]['area_of_accountability']?></th>
+        <th colspan="2">Faculty/Unit:</th>
+        <th colspan="2"><?=$data[0]['location']?></th>
+        <th colspan="2">Accountable Person:</th>
+        <th colspan="3"><?=$data[0]['inspector_name']?></th>
+    </tr>
+    <tr class="arheader">
+        <th colspan="3">Responsible Person/s:</th>
+        <th colspan="11">1,2,3,4</th>
+
+    </tr>
     <tr>
         <th>&nbsp;</th>
-        <th>Date Identified</td>
+        <th>Date Identified</th>
         <th>Inspector</th>
         <th>Location</th>
         <th>Source</th>
@@ -23,11 +38,29 @@
     </thead>
     <tbody>
 
+    <?php foreach($data as $i):?>
+        <tr>
+            <td><a href="actionregister/request/<?=$i['key']?>'">View</a></td>
+            <td><?=$i['created_at']?></td>
+            <td><?=$i['inspector_name']?></td>
+            <td><?=$i['location']?></td>
+            <td><?=$i['source']?></td>
+            <td><?=$i['type_of_hazard']?></td>
+            <td><?=$i['issue']?></td>
+            <td><?=$i['proposed_action']?></td>
+            <td><?=$i['initial_risk']?></td>
+            <td><?=$i['action_required']?></td>
+            <td><?=$i['reviewed_action']?></td>
+            <td><?=$i['residual_risk']?></td>
+            <td><?=$i['action_status']?></td>
+            <td><?=$i['completion_date']?></td>
+          </tr>
+    <?php endforeach; ?>
     </tbody>
     <tfoot>
     <tr>
         <th>&nbsp;</th>
-        <th>Date Identified</td>
+        <th>Date Identified</th>
         <th>Inspector</th>
         <th>Location</th>
         <th>Source</th>
@@ -43,55 +76,24 @@
     </tr>
     </tfoot>
 </table>
-
+<br/>
+    <br/>
+<?php endforeach; ?>
 
 <script type="text/javascript">
-    var dataSet = <?=$dataSet?>;
+
+
+
     $(document).ready(function() {
 
+            $('.table').DataTable({
+                "order": [[1, "desc"]],
+                "paging":   false,
+                "searching": false
 
-        var table = $('#example').DataTable( {
-            "data": dataSet,
-            "columns": [
-                { "data": "key",
-                    "render": function ( data, type, full, meta ) {
-                        return '<a href="actionregister/request/'+data+'">View</a>';
-                    }
-                },
+            });
 
-                { "data": "created_at"},
-                { "data": "inspector_name"},
-                { "data": "location"},
-                { "data": "source"},
-                { "data": "type_of_hazard"},
-                {"data": "issue",
-                    "render":function ( data, type, row ) {
-                        return data.length > 50 ?
-                        data.substr( 0, 50 ) +'…' :
-                            data;
-                    }
-                },
-                { "data": "proposed_action"},
-                { "data": "initial_risk"},
-                { "data": "action_required"},
-                { "data": "reviewed_action"},
-                { "data": "residual_risk"},
-                { "data": "action_status"},
-                { "data": "completion_date"},
-
-            ],
-
-            "order": [[ 1, "desc" ]]
-
-        } );
-        /*
-        yadcf.init(table, [{
-            column_number: 1,
-            filter_type: "multi_select",
-            select_type: 'chosen'
-        }]);
-*/
-
-    } );
+        });
 
 </script>
+

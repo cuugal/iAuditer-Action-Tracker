@@ -12,7 +12,49 @@ class Migration_actionregister extends CI_Migration {
             )
         );
         $this->dbforge->add_column('users', $fields);
+        $fields = array(
+            'iAuditor_Name'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'null' => TRUE,
+            )
+        );
+        $this->dbforge->add_column('users', $fields);
 
+        $data = array(
+            'id' => '2',
+            'ip_address' => '127.0.0.1',
+            'username' => 'dlj',
+            'password' => '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36',
+            'salt' => '',
+            'email' => 'dlj@admin.com',
+            'activation_code' => '',
+            'forgotten_password_code' => NULL,
+            'created_on' => '1268889823',
+            'last_login' => '1268889823',
+            'active' => '1',
+            'first_name' => 'David',
+            'last_name' => 'Lloyd-Jones',
+            'company' => 'ADMIN',
+            'phone' => '0',
+            'iAuditor_Name' => 'David Lloyd-Jones',
+            'faculty_unit' => 'PMO.office;HRU.floor '
+        );
+        $this->db->insert('users', $data);
+
+        $data = array(
+            array(
+                'id' => '3',
+                'user_id' => '2',
+                'group_id' => '1',
+            ),
+            array(
+                'id' => '4',
+                'user_id' => '2',
+                'group_id' => '2',
+            )
+        );
+        $this->db->insert_batch('users_groups', $data);
 
 
         $fields = array(
