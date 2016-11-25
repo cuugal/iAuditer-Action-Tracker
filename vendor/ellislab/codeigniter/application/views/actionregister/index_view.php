@@ -40,7 +40,7 @@
 
     <?php foreach($data as $i):?>
         <tr>
-            <td><a href="actionregister/request/<?=$i['key']?>'">View</a></td>
+            <td><a href="ActionRegister/request/<?=$i['key']?>">View</a></td>
             <td><?=$i['created_at']?></td>
             <td><?=$i['inspector_name']?></td>
             <td><?=$i['location']?></td>

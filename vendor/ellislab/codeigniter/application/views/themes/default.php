@@ -104,7 +104,7 @@
               $(document).ready(function (){
                   if ($(".alert").length) {
                       $('html, body').animate({
-                          scrollTop: ($(".alert").first().offset().top)
+                          scrollTop: ($(".alert").first().offset().top)-61
                       },500);
                   }
 

@@ -28,18 +28,18 @@
                       <li>
                           <a class="page-scroll <?php if($this->uri->segment(1)=="ActionRegister"){echo "active";}?>" href="<?php echo site_url('ActionRegister'); ?>">Action Register</a>
                       </li>
-                      <li>
-                          <a class="page-scroll <?php if($this->uri->segment(1)=="HazardEdit"){echo "active";}?>" href="<?php echo site_url('HazardEdit'); ?>">Hazard Edit</a>
-                      </li>
+
+
+
 
                           <?php if($this->ion_auth->is_admin()): ?>
-                              <li>
-                                  <a class="page-scroll <?php if($this->uri->segment(1)=="Register"){echo "active";}?>" href="<?php echo site_url('Register'); ?>">Register New User</a>
-                              </li>
 
-                              <li>
-                                  <a class="page-scroll <?php if($this->uri->segment(1)=="Register"){echo "active";}?>" href="<?php echo site_url('Register'); ?>">Admin Functions</a>
-                              </li>
+                          <li>
+                              <a class="page-scroll <?php if($this->uri->segment(1)=="User"){echo "active";}?>" href="<?php echo site_url('User'); ?>">Users</a>
+                          </li>
+
+
+
                               <li>
                                   <a class="page-scroll <?php if($this->uri->segment(1)=="Inspection"){echo "active";}?>" href="<?php echo site_url('Import/GetData'); ?>">Reload Audits</a>
                               </li>

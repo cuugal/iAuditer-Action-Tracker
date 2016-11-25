@@ -189,11 +189,6 @@ class Migration_Ion_auth extends CI_Migration {
                 'id' => '1',
                 'user_id' => '1',
                 'group_id' => '1',
-            ),
-            array(
-                'id' => '2',
-                'user_id' => '1',
-                'group_id' => '2',
             )
         );
         $this->db->insert_batch('users_groups', $data);

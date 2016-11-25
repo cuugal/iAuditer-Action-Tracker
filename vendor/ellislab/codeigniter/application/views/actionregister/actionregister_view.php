@@ -77,12 +77,14 @@ echo $this->form_builder->build_form_horizontal(
             'value' => $dataSet['issue'],
             'readonly' => 'readonly',
         ),
+        /*
         array(
             'id' => 'initial_risk',
             'label' => 'Initial Risk',
             'value' => $dataSet['initial_risk'],
             'readonly' => 'readonly',
         ),
+        */
     )
 );
 echo $this->form_builder->close_form();

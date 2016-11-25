@@ -48,3 +48,7 @@
 .arheader{
     background-color:rgba(0, 153, 204, 0.41);
 }
+
+li a.active{
+    border-radius: 5px 5px 0 0;
+}

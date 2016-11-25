@@ -2225,6 +2225,25 @@ class Ion_auth_model extends CI_Model
 	}
 
 
+	/* added by AA.  Function to return all users in list. */
+	public function getUsers(){
+
+        $this->db->join('users_groups', 'users.id = users_groups.user_id');
+        $this->db->join('groups', 'groups.id = users_groups.group_id');
+        $query = $this->db->get('users');
+        $results = $query->result_array();
+        return $results;
+    }
+
+    /* added by AA.  Function to return single user. */
+    public function getUser($userid){
+        $this->db->where('users.id', $userid);
+        $this->db->join('users_groups', 'users.id = users_groups.user_id');
+        $this->db->join('groups', 'groups.id = users_groups.group_id');
+        $query = $this->db->get('users');
+        $results = $query->result_array();
+        return $results[0];
+    }
 
 	protected function _filter_data($table, $data)
 	{
