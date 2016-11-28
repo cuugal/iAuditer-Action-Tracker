@@ -20,13 +20,13 @@
                   </li>
 
                     <li>
-                        <a class="page-scroll <?php if($this->uri->segment(1)=="Inspection"){echo "active";}?>" href="<?php echo site_url('Inspection'); ?>">Inspections</a>
+                        <a class="page-scroll <?php if(!strcasecmp($this->uri->segment(1),"Inspection")){echo "active";}?>" href="<?php echo site_url('Inspection'); ?>">Inspections</a>
                     </li>
                   <?php if($this->ion_auth->logged_in()): ?>
 
 
                       <li>
-                          <a class="page-scroll <?php if($this->uri->segment(1)=="ActionRegister"){echo "active";}?>" href="<?php echo site_url('ActionRegister'); ?>">Action Register</a>
+                          <a class="page-scroll <?php if(!strcasecmp($this->uri->segment(1),"ActionRegister")){echo "active";}?>" href="<?php echo site_url('ActionRegister'); ?>">Action Register</a>
                       </li>
 
 
@@ -35,13 +35,19 @@
                           <?php if($this->ion_auth->is_admin()): ?>
 
                           <li>
-                              <a class="page-scroll <?php if($this->uri->segment(1)=="User"){echo "active";}?>" href="<?php echo site_url('User'); ?>">Users</a>
+                              <a class="page-scroll <?php if(!strcasecmp($this->uri->segment(1),"User")){echo "active";}?>" href="<?php echo site_url('User'); ?>">Users</a>
+                          </li>
+
+                          <li>
+                              <a class="page-scroll <?php if(!strcasecmp($this->uri->segment(1),"AreaOfAccountability")){echo "active";}?>" href="<?php echo site_url('AreaOfAccountability'); ?>">Areas of Accountability</a>
+                          </li>
+                          <li>
+                              <a class="page-scroll <?php if(!strcasecmp($this->uri->segment(1),"Location")){echo "active";}?>" href="<?php echo site_url('User'); ?>">Location</a>
                           </li>
 
 
-
                               <li>
-                                  <a class="page-scroll <?php if($this->uri->segment(1)=="Inspection"){echo "active";}?>" href="<?php echo site_url('Import/GetData'); ?>">Reload Audits</a>
+                                  <a class="page-scroll <?php if(!strcasecmp($this->uri->segment(1),"import")){echo "active";}?>" href="<?php echo site_url('Import/GetData'); ?>">Reload Audits</a>
                               </li>
                           <?php endif; ?>
                   <?php endif; ?>

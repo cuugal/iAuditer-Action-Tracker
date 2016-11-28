@@ -2,7 +2,7 @@
 
     <h3>Users</h3>
 
-    <div style="float:right"><a href="User/register" class="btn btn-primary">Register New User</a></div>
+    <div style="float:left"><a href="User/register" class="btn btn-primary">Register New User</a></div>
 <div style="clear:both"></div>
 <br/>
 
@@ -24,7 +24,7 @@
 <?php foreach ($dataSet as $i): ?>
 
 <tr>
-    <td><a href="User/edit/<?=$i['user_id']?>">View</a></td>
+    <td><a href="User/edit/<?=$i['user_id']?>">View/Edit</a></td>
     <td><?=$i['first_name']?></td>
     <td><?=$i['last_name']?></td>
     <td><?=$i['username']?></td>

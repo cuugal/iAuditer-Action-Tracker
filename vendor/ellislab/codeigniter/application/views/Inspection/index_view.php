@@ -52,7 +52,7 @@
                 },
                { "data": "inspection_type"},
                 { "data": "created_at"},
-                { "data": "area_of_accountability"},
+                { "data": "area_of_accountability", "width":"20%"},
                 { "data": "location"},
                 { "data": "inspector_name"},
                 { "data": "risk_overview"},
