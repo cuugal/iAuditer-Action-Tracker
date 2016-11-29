@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AreaOfAccountability extends CI_Controller
+class AreaOfAccountability extends Auth_Controller
 {
 
     function __construct()
@@ -28,7 +28,8 @@ class AreaOfAccountability extends CI_Controller
 
         if($this->form_validation->run()===FALSE)
         {
-            $data = Array('users'=>$this->areaofaccountability_model->getUsers());
+            $data = Array('users'=>$this->areaofaccountability_model->getUsers(),
+                'aoaunallocated'=>$this->areaofaccountability_model->unallocatedAOA());
             $this->load->view('areaofaccountability/new_view', $data);
         }
         else
@@ -41,7 +42,8 @@ class AreaOfAccountability extends CI_Controller
             $_SESSION['aa_message'] = 'The Area of Accountability has been created';
             $this->session->mark_as_flash('aa_message');
 
-            $data = Array('users'=>$this->areaofaccountability_model->getUsers());
+            $data = Array('users'=>$this->areaofaccountability_model->getUsers(),
+                'aoaunallocated'=>$this->areaofaccountability_model->unallocatedAOA());
             $this->load->view('areaofaccountability/new_view', $data);
         }
 
@@ -58,16 +60,18 @@ class AreaOfAccountability extends CI_Controller
         if($this->form_validation->run()===FALSE)
         {
 
-            $data = Array('users'=>$this->areaofaccountability_model->getUsers(),'i'=>$this->areaofaccountability_model->getRecord($id));
+            $data = Array('users'=>$this->areaofaccountability_model->getUsers(),
+                'i'=>$this->areaofaccountability_model->getRecord($id));
             $this->load->view('areaofaccountability/edit_view', $data);
         }
         else
         {
             $record = array(
+                'id'=> $this->input->post('id'),
                 'name' => $this->input->post('name'),
                 'accountable_person' => $this->input->post('accountable_person'),
             );
-            $this->areaofaccountability_model->insert($record);
+            $this->areaofaccountability_model->update($record);
             $_SESSION['aa_message'] = 'The Area of Accountability has been updated';
             $this->session->mark_as_flash('aa_message');
 

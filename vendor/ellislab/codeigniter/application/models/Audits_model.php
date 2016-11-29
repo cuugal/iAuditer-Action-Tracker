@@ -83,7 +83,7 @@ class Audits_model extends CI_Model {
                 foreach ($audit_data['header_items'] as $header_item) {
                     if (strpos($header_item['label'], 'Location') !== false) {
                         if (isset($header_item['responses']['text'])) {
-                            $audit['location'] = $header_item['responses']['text'];
+                            $audit['location'] = trim($header_item['responses']['text']);
                         }
                     }
 
@@ -94,7 +94,7 @@ class Audits_model extends CI_Model {
                                 $area .= $item['label'] . " ";
                             }
                         }
-                        $audit['area_of_accountability'] = $area;
+                        $audit['area_of_accountability'] = trim($area);
                     }
 
 
@@ -132,13 +132,13 @@ class Audits_model extends CI_Model {
                         // no 'inactive' flag means its active
                         if(!isset($item['inactive'])) {
                             $action_register = array();
-                            $action_register['item_id'] = $item['item_id'];
-                            $action_register['audit_id'] = $audit['audit_id'];
-                            $action_register['issue'] = $item['label'];
+                            $action_register['item_id'] = trim($item['item_id']);
+                            $action_register['audit_id'] = trim($audit['audit_id']);
+                            $action_register['issue'] = trim($item['label']);
                             $action_register['type_of_hazard'] = '';
                             $action_register['source'] = '';
                             $action_register['initial_risk'] = '';
-                            $action_register['source'] = $audit['description'];
+                            $action_register['source'] = trim($audit['description']);
 
                             //if there is a response noted on the page
                             if(isset($item['responses']['selected'])){
@@ -149,7 +149,7 @@ class Audits_model extends CI_Model {
                                     $checkboxId = $smartfields[$item['parent_id']];
                                     //$action_register['source'] = $checkboxId;
                                     $sectionId = $checkboxes[$checkboxId];
-                                    $action_register['type_of_hazard'] = $sectionId;
+                                    $action_register['type_of_hazard'] = trim($sectionId);
                                     //$action_register['source'] = $item['parent_id'];
                                     unset($section);
 
@@ -166,7 +166,7 @@ class Audits_model extends CI_Model {
                                             while ($index > 0 and !isset($categories[$section['children'][$index - 1]])){
                                                 $index--;
                                             }
-                                            $action_register['type_of_hazard'] = $categories[$section['children'][$index - 1]];
+                                            $action_register['type_of_hazard'] = trim($categories[$section['children'][$index - 1]]);
                                         }
                                     }
 
@@ -181,7 +181,7 @@ class Audits_model extends CI_Model {
                                             $index--;
                                         }
                                         if ($index >= 0) {
-                                            $action_register['type_of_hazard'] = $categories[$section['children'][$index]];
+                                            $action_register['type_of_hazard'] = trim($categories[$section['children'][$index]]);
                                         }
                                     }
                                 }
@@ -200,7 +200,7 @@ class Audits_model extends CI_Model {
                                                     if(isset($source['responses']['selected'])) {
                                                         //take the response and add to DB
                                                         foreach($source['responses']['selected'] as $i)
-                                                            $action_register['initial_risk'] = $i['label'];
+                                                            $action_register['initial_risk'] = trim($i['label']);
                                                     }
 
                                                 }
@@ -231,7 +231,7 @@ class Audits_model extends CI_Model {
 
                 //Inspector
                 if (isset($audit_data['audit_data']['authorship']['author'])) {
-                    $audit['inspector_name'] = $audit_data['audit_data']['authorship']['author'];
+                    $audit['inspector_name'] = trim($audit_data['audit_data']['authorship']['author']);
                 }
 
 

@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<h3>Area of Accountability</h3>
+<h3>Locations</h3>
 
-<div style="float:left"><a href="AreaOfAccountability/newAoa" class="btn btn-primary">New Area of Accountability</a></div>
+<div style="float:left"><a href="Location/newLoc" class="btn btn-primary">New Location</a></div>
 <div style="clear:both"></div>
 <br/>
 
@@ -12,6 +12,7 @@
         <th>&nbsp;</th>
 
         <th>Name</th>
+        <th>Area of Accountability</th>
         <th>Accountable Person</th>
 
     </tr>
@@ -20,8 +21,9 @@
     <?php foreach ($dataSet as $i): ?>
 
         <tr>
-            <td><a href="AreaOfAccountability/editAoa/<?=$i['id']?>">View/Edit</a></td>
+            <td><a href="Location/editLoc/<?=$i['id']?>">View/Edit</a></td>
             <td><?=$i['name']?></td>
+            <td><?=$i['aoa_name']?></td>
             <td><?=$i['first_name']." ".$i['last_name']?></td>
 
         </tr>
@@ -32,6 +34,7 @@
         <th>&nbsp;</th>
 
         <th>Name</th>
+        <th>Area of Accountability</th>
         <th>Accountable Person</th>
     </tr>
     </tfoot>

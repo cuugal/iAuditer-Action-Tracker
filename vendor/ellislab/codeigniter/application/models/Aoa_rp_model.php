@@ -1,6 +1,6 @@
 <?php
 
-class Location_model extends CI_Model
+class Aoa_rp_model extends CI_Model
 {
     public function __construct()
     {
@@ -10,22 +10,25 @@ class Location_model extends CI_Model
 
     }
 
-    public function getAllLocation()
+    public function getRlns()
     {
-        $this->db->join('area_of_accountability', 'area_of_accountability.id = location.area_of_accountability');
-        $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
-        $this->db->select("location.*, area_of_accountability.name AS aoa_name, users.*");
-        $query = $this->db->get('location');
+
+        $this->db->join('area_of_accountability', 'area_of_accountability.id = aoa_rp.aoa');
+        $this->db->join('users', 'users.id = aoa_rp.rp');
+        $this->db->select("area_of_accountability.*, aoa_rp.id AS aoa_rp_id, users.*");
+        $query = $this->db->get('aoa_rp');
         $results = $query->result_array();
         return $results;
     }
 
     public function getAoa(){
+
         $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
         $this->db->select("area_of_accountability.*, area_of_accountability.id AS aoa_id, users.*");
         $query = $this->db->get('area_of_accountability');
         $results = $query->result_array();
         $ret = array();
+
         $ret[''] = '--';
         foreach($results as $res){
 
@@ -33,6 +36,19 @@ class Location_model extends CI_Model
         }
         return $ret;
     }
+    public function getUsers(){
+        //$this->db->join('users', 'users.id = area_of_accountability.accountable_person');
+        $query = $this->db->get('users');
+        $results = $query->result_array();
+        $ret = array();
+        $ret[''] = '--';
+        foreach($results as $res){
+            $ret[$res['id']] = $res['first_name']." ".$res['last_name'];
+        }
+        return $ret;
+    }
+
+
     public function getRecord($id){
         $this->db->where('id',$id);
         $query = $this->db->get('location');
@@ -41,7 +57,7 @@ class Location_model extends CI_Model
     }
 
     public function insert($data){
-        return $this->db->insert('location', $data);
+        return $this->db->insert('aoa_rp', $data);
     }
     public function update($data)
     {

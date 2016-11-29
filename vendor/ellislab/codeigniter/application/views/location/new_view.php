@@ -3,10 +3,11 @@
 
     <div class="row">
     <div class="col-md-12 col-lg-12">
-    <h1>New Area of Accountability</h1>
-<h6>Note: this screen will only show Area Names that are present in an audit from iAuditor, but currently unallocated in Action Tracker</h6>
-<?php if (isset($_SESSION['aa_message'])) : ?>
-    <div class="alert alert-success"><?=$_SESSION['aa_message'];?>
+    <h1>New Location</h1>
+
+
+<?php if (isset($_SESSION['ln_message'])) : ?>
+    <div class="alert alert-success"><?=$_SESSION['ln_message'];?>
     </div>
 <?php endif; ?>
 
@@ -17,14 +18,11 @@ echo $this->form_builder->build_form_horizontal(
     array(
         array(
             'id' => 'name',
-            'type'=>'dropdown',
-            'options' => $aoaunallocated,
-            'class'=>"chosen-select"
             ),
         array(
-            'id' => 'accountable_person',
+            'id' => 'area_of_accountability',
             'type'=>'dropdown',
-            'options' => $users,
+            'options' => $aoa,
             'class'=>"chosen-select"
 
         ),
