@@ -50,11 +50,7 @@ class Migration_audits extends CI_Migration {
                 'constraint' => '50',
                 'null' => TRUE,
             ),
-            'area_of_accountability' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '50',
-                'null' => TRUE,
-            ),
+
             'number_of_outstanding_actions' => array(
                 'type' => 'MEDIUMINT',
                 'constraint' => '8',
