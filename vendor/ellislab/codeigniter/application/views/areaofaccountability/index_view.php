@@ -2,7 +2,7 @@
 
 <h3>Area of Accountability</h3>
 
-<div style="float:left"><a href="AreaOfAccountability/newAoa" class="btn btn-primary">New Area of Accountability</a></div>
+<div style="float:left"><a href="AreaOfAccountability/newAoa" class="btn btn-primary">New</a></div>
 <div style="clear:both"></div>
 <br/>
 
@@ -20,7 +20,8 @@
     <?php foreach ($dataSet as $i): ?>
 
         <tr>
-            <td><a href="AreaOfAccountability/editAoa/<?=$i['id']?>">View/Edit</a></td>
+            <td><a class="btn btn-primary" href="AreaOfAccountability/editAoa/<?=$i['aoa_id']?>">View/Edit</a></td>
+
             <td><?=$i['name']?></td>
             <td><?=$i['first_name']." ".$i['last_name']?></td>
 

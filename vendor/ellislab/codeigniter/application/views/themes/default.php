@@ -55,6 +55,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.yadcf.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/chosen.jquery.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap-confirmation.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/pdfobject.min.js"></script>
 

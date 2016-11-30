@@ -29,7 +29,8 @@
                     'id' => 'area_of_accountability',
                     'type'=>'dropdown',
                     'options' => $aoa,
-                    'class'=>"chosen-select"
+                    'class'=>"chosen-select",
+                    'value'=>$i['area_of_accountability'],
 
                 ),
                 array(
@@ -37,7 +38,8 @@
                     'type' => 'submit',
                     'label'=>'Save'
 
-                )
+                ),
+
             )
         );
         echo $this->form_builder->close_form();?>
@@ -46,4 +48,7 @@
 
 <script type="text/javascript">
     $(".chosen-select").chosen();
+
+
+    $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="/location">Back</a>');
 </script>

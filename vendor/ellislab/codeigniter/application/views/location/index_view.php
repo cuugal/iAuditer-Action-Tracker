@@ -2,7 +2,7 @@
 
 <h3>Locations</h3>
 
-<div style="float:left"><a href="Location/newLoc" class="btn btn-primary">New Location</a></div>
+<div style="float:left"><a href="Location/newLoc" class="btn btn-primary">New</a></div>
 <div style="clear:both"></div>
 <br/>
 
@@ -21,7 +21,7 @@
     <?php foreach ($dataSet as $i): ?>
 
         <tr>
-            <td><a href="Location/editLoc/<?=$i['id']?>">View/Edit</a></td>
+            <td><a class="btn btn-primary" href="Location/editLoc/<?=$i['id']?>">View/Edit</a></td>
             <td><?=$i['name']?></td>
             <td><?=$i['aoa_name']?></td>
             <td><?=$i['first_name']." ".$i['last_name']?></td>

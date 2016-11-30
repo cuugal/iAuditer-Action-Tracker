@@ -59,9 +59,15 @@ class Aoa_rp_model extends CI_Model
     public function insert($data){
         return $this->db->insert('aoa_rp', $data);
     }
+
     public function update($data)
     {
         $this->db->where('id', $data['id']);
         $this->db->update('location', $data);
+    }
+
+    public function remove($id){
+        $this->db->where('id', $id);
+        $this->db->delete('aoa_rp');
     }
 }

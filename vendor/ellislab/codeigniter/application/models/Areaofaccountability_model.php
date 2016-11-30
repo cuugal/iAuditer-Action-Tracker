@@ -12,6 +12,7 @@ class Areaofaccountability_model extends CI_Model
 
     public function getAllAOA(){
         $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
+        $this->db->select('area_of_accountability.*, users.*, area_of_accountability.id as aoa_id');
         $query = $this->db->get('area_of_accountability');
         $results = $query->result_array();
         return $results;
