@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<h3>Action Register</h3>
+<br/>
 
 <?php foreach ($dataSet as $data): ?>
 
@@ -12,11 +12,11 @@
         <th colspan="2">Faculty/Unit:</th>
         <th colspan="2"><?=$data[0]['location']?></th>
         <th colspan="2">Accountable Person:</th>
-        <th colspan="3"><?=$data[0]['inspector_name']?></th>
+        <th colspan="3"><?=$data[0]['accountable']?></th>
     </tr>
     <tr class="arheader">
         <th colspan="3">Responsible Person/s:</th>
-        <th colspan="11">1,2,3,4</th>
+        <th colspan="11"><?=$data[0]['responsible'];?></th>
 
     </tr>
     <tr>

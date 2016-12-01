@@ -2245,6 +2245,16 @@ class Ion_auth_model extends CI_Model
         return $results[0];
     }
 
+    public function listGroups(){
+        $query = $this->db->get('groups');
+        $results = $query->result_array();
+        $ret = array();
+        foreach($results as $result){
+            $ret[$result['id']] = $result['description'];
+        }
+        return $ret;
+    }
+
 	protected function _filter_data($table, $data)
 	{
 		$filtered_data = array();

@@ -28,12 +28,14 @@ class User extends CI_Controller  {
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
         $this->form_validation->set_rules('username','Username','trim|required');
         $this->form_validation->set_rules('email','Email','trim|valid_email|required');
+        $this->form_validation->set_rules('group', 'Group','trim|required');
 
         if($this->form_validation->run()===FALSE)
         {
             unset($_SESSION['edit_message']);
             $this->load->helper('form');
-            $data = array('dataSet'=>$this->ion_auth->getUser($userid));
+            $data = array('dataSet'=>$this->ion_auth->getUser($userid),
+                'groups'=>$this->ion_auth->listGroups());
             $this->load->view('user/edit_view', $data);
         }
         else
@@ -44,9 +46,7 @@ class User extends CI_Controller  {
             $dataSet['last_name'] = $this->input->post('last_name');
             $dataSet['username'] = $this->input->post('username');
             $dataSet['email'] = $this->input->post('email');
-
-
-
+            $dataSet['group'] = $this->input->post('group');
 
             $this->load->library('ion_auth');
             if($this->ion_auth->update($id,$dataSet))
@@ -57,8 +57,18 @@ class User extends CI_Controller  {
             {
                 $_SESSION['edit_message'] = $this->ion_auth->errors();
             }
+            //fix up groups
+            $groups = $this->ion_auth->listGroups();
+
+            $ids = array_keys($groups);
+
+
+            $this->ion_auth->remove_from_group(false, $id);
+            $this->ion_auth->add_to_group($this->input->post('group'), $id);
+
             $dataSet['user_id'] = $id;
-            $data = array('dataSet'=>$dataSet);
+            $data = array('dataSet'=>$this->ion_auth->getUser($userid),
+                'groups'=>$groups);
             $this->load->view('user/edit_view', $data);
         }
 

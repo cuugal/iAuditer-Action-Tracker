@@ -35,6 +35,12 @@
                     'id' => 'email',
                     'value' => $dataSet['email'],
                 ),
+                array(
+                    'id' => 'group',
+                    'type'=>'dropdown',
+                    'options' => $groups,
+                    'value' => $dataSet['description'],
+                ),
 
                 array(
                     'id' => 'submit',

@@ -13,7 +13,12 @@ class ActionRegister extends Auth_Controller
     }
 
     function index(){
-        $data = array('dataSet'=>$this->actionregister_model->getAR($this->ion_auth->user()->row()->faculty_unit));
+        if($this->ion_auth->is_admin()){
+            $data = array('dataSet'=>$this->actionregister_model->getAR());
+        }
+        else {
+            $data = array('dataSet'=>$this->actionregister_model->getAR($this->ion_auth->get_user_id()));
+        }
         $this->load->view('actionregister/index_view', $data);
     }
 

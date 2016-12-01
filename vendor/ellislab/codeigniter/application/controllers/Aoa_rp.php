@@ -40,6 +40,7 @@ class Aoa_rp extends Auth_Controller
                 'aoa' => $this->input->post('aoa'),
             );
             $this->aoa_rp_model->insert($record);
+
             $_SESSION['ar_message'] = 'Responsible Person - Area of Accountability has been created';
             $this->session->mark_as_flash('ar_message');
 

@@ -10,13 +10,32 @@ class Actionregister_model extends CI_Model
         $this->load->database();
     }
 
-    public function getAR($location){
+    public function getAR($userId){
         $result = [];
-        if(isset($location)){
-            $vars = explode(';',$location);
-            foreach($vars as $i){
+        if(isset($userId)){
+            //Fetch AOA first where accountable
+            $this->db->where('accountable_person', $userId);
+            $this->db->select('area_of_accountability.*, area_of_accountability.id as aoa_id');
 
-                $tmp = $this->getARByLocation($i);
+            $query = $this->db->get('area_of_accountability');
+            $results = $query->result_array();
+            foreach($results as $i){
+
+                $tmp = $this->getARByArea($i['name']);
+                if(count($tmp)> 0){
+                    $result[] = $tmp;
+                }
+            }
+
+            //Then, where we are listed as RP
+            $this->db->where('rp', $userId);
+            $this->db->join('area_of_accountability', 'area_of_accountability.id = aoa_rp.aoa');
+            $this->db->select('aoa_rp.*, area_of_accountability.*, area_of_accountability.id as aoa_id');
+
+            $query = $this->db->get('aoa_rp');
+            $results = $query->result_array();
+            foreach($results as $i){
+                $tmp = $this->getARByArea($i['name']);
                 if(count($tmp)> 0){
                     $result[] = $tmp;
                 }
@@ -32,7 +51,7 @@ class Actionregister_model extends CI_Model
             $results = $query->result_array();
             foreach($results as $i){
 
-                $tmp = $this->getARByLocation($i['area_of_accountability']);
+                $tmp = $this->getARByArea($i['area_of_accountability']);
                 if(count($tmp)> 0){
                     $result[] = $tmp;
                 }
@@ -42,13 +61,45 @@ class Actionregister_model extends CI_Model
         return $result;
     }
 
-    private function getARByLocation($location){
-        $this->db->like('area_of_accountability', $location);
+    private function getARByArea($area){
+        $this->db->like('area_of_accountability', $area);
         $this->db->where('response', 'No');
         $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
+
         $query = $this->db->get('action_register');
         $results = $query->result_array();
+        $accountable =  $this->getAccountable($area);
+        $responsible = $this->getResponsible($area);
+        foreach($results as &$res){
+            $res['accountable'] = $accountable;
+            $res['responsible'] = implode($responsible,', ');
+        }
+        //$results['accountable'] = $this->getAccountable($area);
         return $results;
+    }
+
+    private function getAccountable($area){
+        $this->db->like('name', $area);
+        $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
+        $query = $this->db->get('area_of_accountability');
+        $results = $query->result_array()[0];
+        return $results['first_name']." ".$results['last_name'];
+    }
+
+    private function getResponsible($area){
+        //get RP by area
+        $this->db->where('name', $area);
+        $this->db->join('area_of_accountability', 'area_of_accountability.id = aoa_rp.aoa');
+        $this->db->join('users', 'users.id = aoa_rp.rp');
+        $this->db->select('users.*, aoa_rp.*, area_of_accountability.*, area_of_accountability.id as aoa_id');
+
+        $query = $this->db->get('aoa_rp');
+        $results = $query->result_array();
+        $ret = array();
+        foreach($results as $result){
+            $ret[] = $result['first_name']." ".$result['last_name'];
+        }
+        return $ret;
     }
 
     public function getRequest($key){
