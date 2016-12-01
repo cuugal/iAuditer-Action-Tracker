@@ -10,9 +10,9 @@ class Actionregister_model extends CI_Model
         $this->load->database();
     }
 
-    public function getAR($userId){
+    public function getAR($userId=false){
         $result = [];
-        if(isset($userId)){
+        if($userId){
             //Fetch AOA first where accountable
             $this->db->where('accountable_person', $userId);
             $this->db->select('area_of_accountability.*, area_of_accountability.id as aoa_id');
@@ -82,8 +82,13 @@ class Actionregister_model extends CI_Model
         $this->db->like('name', $area);
         $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
         $query = $this->db->get('area_of_accountability');
-        $results = $query->result_array()[0];
-        return $results['first_name']." ".$results['last_name'];
+        $allresults = $query->result_array();
+        if(count($allresults) > 0) {
+            $results = $query->result_array()[0];
+            return $results['first_name'] . " " . $results['last_name'];
+        }
+        //no accountable person
+        else return "--Not Set In Action Tracker--";
     }
 
     private function getResponsible($area){
@@ -98,6 +103,9 @@ class Actionregister_model extends CI_Model
         $ret = array();
         foreach($results as $result){
             $ret[] = $result['first_name']." ".$result['last_name'];
+        }
+        if(count($ret)== 0){
+            $ret[] = "--Not Set In Action Tracker--";
         }
         return $ret;
     }

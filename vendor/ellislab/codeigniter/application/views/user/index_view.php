@@ -24,7 +24,7 @@
 <?php foreach ($dataSet as $i): ?>
 
 <tr>
-    <td><a href="User/edit/<?=$i['user_id']?>">View/Edit</a></td>
+    <td><a class="btn btn-primary" href="User/edit/<?=$i['user_id']?>">View/Edit</a></td>
     <td><?=$i['first_name']?></td>
     <td><?=$i['last_name']?></td>
     <td><?=$i['username']?></td>

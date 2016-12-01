@@ -17,7 +17,7 @@
 
 
                     <li>
-                        <a class="page-scroll" href="<?php echo site_url('Inspection'); ?>">Inspections</a>
+                        <a id="defaulttab" class="page-scroll" href="<?php echo site_url('Inspection'); ?>">Inspections</a>
                     </li>
                   <?php if($this->ion_auth->logged_in()): ?>
 
@@ -95,6 +95,9 @@
                 //active_link.parent().parent().parent().addClass('active');
                 $("#admintab").addClass('active');
             }
+        }
+        else{
+            $("#defaulttab").addClass('active');
         }
     });
 
