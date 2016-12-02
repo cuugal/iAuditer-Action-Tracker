@@ -87,8 +87,9 @@
   </nav>
 <script type="text/javascript">
     $(document).ready(function () {
-        var active_link = $('.navbar li a[href~="<?=base_url(uri_string())?>"]');
+        var active_link = $('.navbar li a[href~="<?=base_url($this->uri->segment(1))?>"]');
         //console.log(active_link.html());
+        //console.log("<?=base_url($this->uri->segment(1));?>");
         if(active_link.size() > 0){
             active_link.addClass('active');
             if(active_link.parent().parent().prop("id") == 'admin') {
