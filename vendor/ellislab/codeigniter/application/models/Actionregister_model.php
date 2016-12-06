@@ -84,7 +84,8 @@ class Actionregister_model extends CI_Model
         $query = $this->db->get('area_of_accountability');
         $allresults = $query->result_array();
         if(count($allresults) > 0) {
-            $results = $query->result_array()[0];
+            $results = $query->result_array();
+            $results = $results[0];
             return $results['first_name'] . " " . $results['last_name'];
         }
         //no accountable person
@@ -114,7 +115,8 @@ class Actionregister_model extends CI_Model
         $this->db->where('key', $key);
         $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
         $query = $this->db->get('action_register');
-        $results = $query->result_array()[0];
+        $results = $query->result_array();
+        $results = $results[0];
         return $results;
     }
 
