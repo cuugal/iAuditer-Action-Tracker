@@ -11,7 +11,7 @@ class Actionregister_model extends CI_Model
     }
 
     public function getAR($userId=false){
-        $result = [];
+        $result = array();
         if($userId){
             //Fetch AOA first where accountable
             $this->db->where('accountable_person', $userId);
