@@ -21,9 +21,9 @@ class Audits_model extends CI_Model {
         }
 
         $client = new Guzzle\Http\Client();
-        $client->setDefaultOption('headers', [
+        $client->setDefaultOption('headers', array(
             'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
-        ]);
+        ));
         $request = $client->get($url);
         $res = $request->send();
 
@@ -61,9 +61,9 @@ class Audits_model extends CI_Model {
             if(isset($map[$audit['template_id']])) {
                 $url = 'https://api.safetyculture.io/audits/' . $audit['audit_id'];
                 $client = new Guzzle\Http\Client();
-                $client->setDefaultOption('headers', [
+                $client->setDefaultOption('headers', array(
                     'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
-                ]);
+                ));
                 $request = $client->get($url);
                 $res = $request->send();
 
