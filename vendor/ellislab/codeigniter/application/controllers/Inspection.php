@@ -46,9 +46,9 @@ class Inspection extends CI_Controller {
             //Request Audit
             $url = 'https://api.safetyculture.io/audits/' . $audit_id . '/export?format=pdf&timezone=Australia/Sydney';
             $client = new Guzzle\Http\Client();
-            $client->setDefaultOption('headers', [
+            $client->setDefaultOption('headers', array(
                 'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
-            ]);
+            ));
             $request = $client->post($url);
             $res = $request->send();
 
