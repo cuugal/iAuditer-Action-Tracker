@@ -12,4 +12,4 @@
 <?php if(isset($statusCode)):?>
     <p>Status: <?=$statusCode; ?></p>
 <?php endif; ?>
-<a href="/inspection/request/<?=$audit_id;?>/<?=$request_id;?>" class="btn btn-primary">Refresh</a>
+<a href="<?php echo site_url('Inspection'); ?>/request/<?=$audit_id;?>/<?=$request_id;?>" class="btn btn-primary">Refresh</a>
