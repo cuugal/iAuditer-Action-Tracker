@@ -21,10 +21,11 @@ class Inspection extends CI_Controller {
     {
         //$this->load->section('sidebar', 'ci_simplicity/sidebar');
         // Load new edits since the previous last modified date
-        $mostRecent = $this->audits_model->getMostRecentDate();
-
-        if(strtotime($mostRecent) > strtotime("-15 minutes")) {
-
+        $mostRecent = $this->audits_model->getMostRecentTime();
+        //print "MOST RECENT".$mostRecent;
+        //print "MOST RECENT".strtotime($mostRecent)."fiftenn".strtotime("-15 minutes");
+        if(strtotime($mostRecent) < strtotime("-15 minutes")) {
+            print "RELOADING";
             //get templates to build map
             $templates = $this->templates_model->getTemplates();
 
@@ -32,8 +33,9 @@ class Inspection extends CI_Controller {
             foreach ($templates as $template) {
                 $map[$template['template_id']] = $template['name'];
             }
-
+            $mostRecentISODate = $this->audits_model->getMostRecentDate();
             $this->audits_model->loadAudits($map, $mostRecent);
+            //$this->audits_model->loadAudits($map, $mostRecent);
         }
         $data = array('dataSet'=>json_encode($this->audits_model->getAudits()));
         $this->load->view('inspection/index_view', $data);

@@ -17,13 +17,13 @@
                 ),
                 array(
                     'id' => 'remember',
-                    'label' => 'Remember Me',
                     'type' => 'checkbox',
                     'options' => array(
                         array(
-                            'id' => 'remember',
-                            'value' => ''
-                            // If no label is set, the value will be used
+
+                            'label' => 'Remember Me',
+                            'value'=>TRUE,
+
                         ),
                     ),
                 ),

@@ -1,6 +1,6 @@
 <?php
 
-class Migration_issue_action extends CI_Migration {
+class Migration_issues extends CI_Migration {
 
     public function up() {
         $this->dbforge->add_field(array(
@@ -12,21 +12,19 @@ class Migration_issue_action extends CI_Migration {
             'issue' => array(
                 'type' => 'varchar',
                 'constraint' => 255,
-                'auto_increment' => TRUE
             ),
-            'action' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
-                'auto_increment' => TRUE
-            )
-
+            'proposed_action' => array(
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => TRUE,
+            ),
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('issue_action');
+        $this->dbforge->create_table('issues');
     }
 
     public function down() {
-        $this->dbforge->drop_table('issue_action');
+        $this->dbforge->drop_table('issues');
     }
 
 }

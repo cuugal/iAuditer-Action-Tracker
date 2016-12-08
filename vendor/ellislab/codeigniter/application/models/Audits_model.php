@@ -61,9 +61,9 @@ class Audits_model extends CI_Model {
             if(isset($map[$audit['template_id']])) {
                 $url = 'https://api.safetyculture.io/audits/' . $audit['audit_id'];
                 $client = new Guzzle\Http\Client();
-                $client->setDefaultOption('headers', array(
+                $client->setDefaultOption('headers', [
                     'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
-                ));
+                ]);
                 $request = $client->get($url);
                 $res = $request->send();
 
@@ -242,7 +242,49 @@ class Audits_model extends CI_Model {
         $result['audits'] = $this->upsertBatch($data['audits']);
 
         $result['action_registers'] = $this->actionregister_model->upsertBatch($action_registers);
+
+        $result['issues'] = $this->loadIssues();
         return $result;
+    }
+
+    public function loadIssues(){
+        //pull out the existing issues from table
+        $this->db->distinct();
+        $this->db->select('issue');
+        $query = $this->db->get('action_register');
+        $results = $query->result_array();
+
+        $ar_issues = array();
+        foreach ($results as $b) {
+            $ar_issues[] = $b['issue'];
+        }
+
+        //pull out existing issues from issues table
+        $this->db->select('issue');
+        $query = $this->db->get('issues');
+        $results = $query->result_array();
+
+        $issues = array();
+        foreach ($results as $b) {
+            $issues[] = $b['issue'];
+        }
+
+        $difference = array_diff($ar_issues, $issues);
+        //return $difference;
+
+        $inserts = array();
+        foreach($difference as $a){
+            if(trim($a) != '') {
+                $n = array();
+                $n['issue'] = $a;
+                $inserts[] = $n;
+            }
+        }
+        //return $inserts;
+        if(count($inserts) > 0) {
+            return $this->db->insert_batch('issues', $inserts);
+        }
+        return 0;
     }
 
     public function getAudits(){
@@ -263,6 +305,15 @@ class Audits_model extends CI_Model {
         $time = date(DATE_ATOM, strtotime($results[0]['modified_at']));
         return urlencode($time);
 
+    }
+
+    public function getMostRecentTime(){
+        $this->db->order_by('modified_at', 'desc');
+        $this->db->limit(1);
+        $this->db->select('modified_at');
+        $query = $this->db->get('audits');
+        $results = $query->result_array();
+        return $results[0]['modified_at'];
     }
 
     //Upsert script.

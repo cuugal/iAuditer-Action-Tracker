@@ -16,7 +16,6 @@ class Migration_area_of_accountability extends CI_Migration {
             'name' => array(
                 'type' => 'varchar',
                 'constraint' => 255,
-                'auto_increment' => TRUE
             )
         ));
         $this->dbforge->add_key('id', TRUE);

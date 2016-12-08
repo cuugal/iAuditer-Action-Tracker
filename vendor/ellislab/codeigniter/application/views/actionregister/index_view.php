@@ -7,29 +7,28 @@
 <table class="table table-striped table-bordered table-hover" style="border: 2px solid #ddd" cellspacing="0" width="100%">
     <thead>
     <tr class="arheader">
-        <th colspan="3">Area of Accountability:</th>
+        <th colspan="2">Area of Accountability:</th>
         <th colspan="2"><?=$data[0]['area_of_accountability']?></th>
         <th colspan="2">Faculty/Unit:</th>
         <th colspan="2"><?=$data[0]['location']?></th>
         <th colspan="2">Accountable Person:</th>
-        <th colspan="3"><?=$data[0]['accountable']?></th>
+        <th colspan="2"><?=$data[0]['accountable']?></th>
     </tr>
     <tr class="arheader">
-        <th colspan="3">Responsible Person/s:</th>
-        <th colspan="11"><?=$data[0]['responsible'];?></th>
+        <th colspan="2">Responsible Person/s:</th>
+        <th colspan="10"><?=$data[0]['responsible'];?></th>
 
     </tr>
     <tr>
         <th>&nbsp;</th>
         <th>Date Identified</th>
+        <th>Source</th>
         <th>Inspector</th>
         <th>Location</th>
-        <th>Source</th>
+
         <th>Type of Hazard</th>
         <th>Issue</th>
         <th>Proposed Action</th>
-        <th>Initial Risk</th>
-        <th>Action Required</th>
         <th>Reviewed Action</th>
         <th>Residual Risk</th>
         <th>Action Status</th>
@@ -42,14 +41,13 @@
         <tr>
             <td><a class="btn btn-primary" href="ActionRegister/request/<?=$i['key']?>">View</a></td>
             <td><?=$i['created_at']?></td>
+            <td><?=$i['source']?></td>
             <td><?=$i['inspector_name']?></td>
             <td><?=$i['location']?></td>
-            <td><?=$i['source']?></td>
+
             <td><?=$i['type_of_hazard']?></td>
             <td><?=$i['issue']?></td>
             <td><?=$i['proposed_action']?></td>
-            <td><?=$i['initial_risk']?></td>
-            <td><?=$i['action_required']?></td>
             <td><?=$i['reviewed_action']?></td>
             <td><?=$i['residual_risk']?></td>
             <td><?=$i['action_status']?></td>
@@ -61,14 +59,13 @@
     <tr>
         <th>&nbsp;</th>
         <th>Date Identified</th>
+        <th>Source</th>
         <th>Inspector</th>
         <th>Location</th>
-        <th>Source</th>
+
         <th>Type of Hazard</th>
         <th>Issue</th>
         <th>Proposed Action</th>
-        <th>Initial Risk</th>
-        <th>Action Required</th>
         <th>Reviewed Action</th>
         <th>Residual Risk</th>
         <th>Action Status</th>

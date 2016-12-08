@@ -10,19 +10,17 @@ class Import extends CI_Controller
         $this->load->helper('url');
         $this->load->model('audits_model');
         $this->load->model('templates_model');
-        $this->_init();
-    }
-
-    private function _init()
-    {
 
     }
-    public function process(){
 
-        $data = array('nothing'=>'spam');
-        $this->output->set_template('default');
-        $this->load->view('dashboard/data_view', $data);
 
+
+    public function reloadIssues(){
+        $this->output->enable_profiler(TRUE);
+
+        $result = $this->audits_model->loadIssues();
+
+        echo json_encode($result);
     }
 
     public function getData(){
