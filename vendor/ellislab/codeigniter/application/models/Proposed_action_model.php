@@ -34,4 +34,16 @@ class Proposed_action_model extends CI_Model
         $this->db->where('id', $data['id']);
         $this->db->update('proposed_action', $data);
     }
+    public function getAllActions(){
+        $query = $this->db->get('proposed_action');
+        $results = $query->result_array();
+
+        $actions = array();
+        $actions[''] = '--';
+        foreach($results as $a){
+            $actions[$a['id']] = $a['proposed_action'];
+        }
+
+        return $actions;
+    }
 }
