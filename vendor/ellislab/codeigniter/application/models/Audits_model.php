@@ -8,6 +8,7 @@ class Audits_model extends CI_Model {
         parent::__construct();
         $this->load->database();
         $this->load->model('actionregister_model');
+        $this->load->model('issue_model');
     }
 
     public function loadAudits($map, $date){
@@ -30,6 +31,8 @@ class Audits_model extends CI_Model {
         $data = json_decode($res->getBody(), true);
 
         $action_registers = array();
+
+        $issueActionMap = $this->issue_model->getIssueActionMap();
 
         foreach($data['audits'] as &$audit){
             /*
@@ -61,9 +64,9 @@ class Audits_model extends CI_Model {
             if(isset($map[$audit['template_id']])) {
                 $url = 'https://api.safetyculture.io/audits/' . $audit['audit_id'];
                 $client = new Guzzle\Http\Client();
-                $client->setDefaultOption('headers', [
+                $client->setDefaultOption('headers', array(
                     'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
-                ]);
+                ));
                 $request = $client->get($url);
                 $res = $request->send();
 
@@ -135,6 +138,11 @@ class Audits_model extends CI_Model {
                             $action_register['item_id'] = trim($item['item_id']);
                             $action_register['audit_id'] = trim($audit['audit_id']);
                             $action_register['issue'] = trim($item['label']);
+
+                            //fetch proposed actions
+                            if(isset($action_register['issue']) && isset($issueActionMap[$action_register['issue']])){
+                                $action_register['proposed_action'] = $issueActionMap[$action_register['issue']];
+                            }
                             $action_register['type_of_hazard'] = '';
                             $action_register['source'] = '';
                             $action_register['initial_risk'] = '';

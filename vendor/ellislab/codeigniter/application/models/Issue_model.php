@@ -39,4 +39,20 @@ class Issue_model extends CI_Model
         $this->db->update('issues', $data);
     }
 
+    public function getIssueActionMap(){
+        $this->db->join('proposed_action', 'issues.proposed_action = proposed_action.id', 'left outer');
+        $this->db->select("issues.*, issues.id AS issue_id, proposed_action.*");
+        $query = $this->db->get('issues');
+        $results = $query->result_array();
+
+        $map = array();
+        foreach($results as $a){
+            $actions[$a['issue']] = $a['proposed_action'];
+        }
+
+        return $map;
+
+
+    }
+
 }

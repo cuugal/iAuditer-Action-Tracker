@@ -119,7 +119,7 @@ echo $this->form_builder->close_form();
                     'label' => 'Proposed Action',
                     'class' => 'required',
                     'value' => $dataSet['proposed_action'],
-                    'req'=>true,
+                    'readonly' => 'readonly',
 
                 ),
                 array(/* RADIO */
