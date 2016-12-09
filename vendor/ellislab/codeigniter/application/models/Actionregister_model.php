@@ -17,12 +17,15 @@ class Actionregister_model extends CI_Model
             $this->db->where('accountable_person', $userId);
             $this->db->select('area_of_accountability.*, area_of_accountability.id as aoa_id');
 
+            //Some people may be accountable and responsible.
+            //Store the areas in a map to prevent fetching twice
+            $accountableMap = array();
             $query = $this->db->get('area_of_accountability');
             $results = $query->result_array();
             foreach($results as $i){
-
                 $tmp = $this->getARByArea($i['name']);
                 if(count($tmp)> 0){
+                    $accountableMap[$i['name']] = true;
                     $result[] = $tmp;
                 }
             }
@@ -34,13 +37,16 @@ class Actionregister_model extends CI_Model
 
             $query = $this->db->get('aoa_rp');
             $results = $query->result_array();
-            foreach($results as $i){
-                $tmp = $this->getARByArea($i['name']);
-                if(count($tmp)> 0){
-                    $result[] = $tmp;
+            foreach($results as $i) {
+                //only add if we haven't added them already as accountable person
+                if (!isset($accountableMap[$i['name']])){
+
+                    $tmp = $this->getARByArea($i['name']);
+                    if (count($tmp) > 0) {
+                        $result[] = $tmp;
+                    }
                 }
             }
-
         }
         else{
 
@@ -90,6 +96,24 @@ class Actionregister_model extends CI_Model
         }
         //no accountable person
         else return "--Not Set In Action Tracker--";
+    }
+
+    public function isAccountableUser($area, $userId){
+        $this->db->like('name', $area);
+        $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
+        $this->db->select('users.id as userId, users.*');
+        $query = $this->db->get('area_of_accountability');
+        $allresults = $query->result_array();
+        if(count($allresults) > 0) {
+            $results = $query->result_array();
+            $results = $results[0];
+            if($userId == $results['userId']){
+                return true;
+            }
+
+        }
+        //no accountable person
+        else return false;
     }
 
     private function getResponsible($area){

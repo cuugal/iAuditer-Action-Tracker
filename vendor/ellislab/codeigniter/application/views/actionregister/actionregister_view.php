@@ -187,25 +187,30 @@ echo $this->form_builder->close_form();
                     'id' => 'action_status',
                     'label' => 'Action Status',
                     'type' => 'radio',
-                    'req'=>true,
+                    (!$isAccountable) ? '':'req'=>true,
+
                     'options' => array(
                         array(
                             'id' => 'radio_button_open',
                             'value' => 'Open',
                             'label' => 'Open',
                             'checked' => $dataSet['action_status'] == 'Open' ? true: false,
+                            ($isAccountable) ? '':  'disabled'=>'disabled',
                         ),
                         array(
                             'id' => 'radio_button_progress',
                             'value' => 'In Progress',
                             'label' => 'In Progress',
                             'checked' => $dataSet['action_status'] == 'In Progress' ? true: false,
+
+                            ($isAccountable) ? '':  'disabled'=>'disabled',
                         ),
                         array(
                             'id' => 'radio_button_closed',
                             'value' => 'Closed',
                             'label' => 'Closed',
                             'checked' => $dataSet['action_status'] == 'Closed' ? true: false,
+                            ($isAccountable) ? '':  'disabled'=>'disabled',
                         ),
 
                     )
@@ -216,6 +221,7 @@ echo $this->form_builder->close_form();
                     'type' => 'date',
                     'data-provide'=>'datepicker',
                     'value' => $dataSet['completion_date'],
+                    ($isAccountable) ? '' :  'disabled'=>'disabled',
 
                 ),
                 array(/* SUBMIT */
@@ -227,6 +233,7 @@ echo $this->form_builder->close_form();
 
         );
         echo $this->form_builder->close_form();
+
         ?>
     </div>
 </div>

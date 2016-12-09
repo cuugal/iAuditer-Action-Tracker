@@ -10,7 +10,7 @@ class ProposedAction extends Auth_Controller
 
         $this->output->set_template('default');
         $this->load->model('proposed_action_model');
-        $this->load->model('issues_model');
+        $this->load->model('issue_model');
     }
 
     public function index()
@@ -69,7 +69,7 @@ class ProposedAction extends Auth_Controller
             $_SESSION['pa_message'] = 'The Location has been updated';
             $this->session->mark_as_flash('pa_message');
 
-            $data = Array('pa'=>$this->proposed_action_model->getRecord($id),'issues'=>$this->issues_model->getForProposedAction($id));
+            $data = Array('pa'=>$this->proposed_action_model->getRecord($id),'issues'=>$this->issue_model->getForProposedAction($id));
             $this->load->view('proposed_action/edit_view', $data);
         }
 
