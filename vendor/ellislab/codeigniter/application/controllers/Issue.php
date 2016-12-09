@@ -46,4 +46,8 @@ class Issue extends Auth_Controller
             $this->load->view('issue/edit_view', $data);
         }
     }
+
+    public function actionMap(){
+        echo json_encode($this->issue_model->getIssueActionMap());
+    }
 }
