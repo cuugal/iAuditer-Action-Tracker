@@ -138,7 +138,8 @@ class Audits_model extends CI_Model {
                             $action_register['item_id'] = trim($item['item_id']);
                             $action_register['audit_id'] = trim($audit['audit_id']);
                             $action_register['issue'] = trim($item['label']);
-
+                            $action_register['proposed_action'] = "";
+                            
                             //fetch proposed actions
                             if(isset($action_register['issue']) && isset($issueActionMap[$action_register['issue']])){
                                 $action_register['proposed_action'] = $issueActionMap[$action_register['issue']];
@@ -248,6 +249,7 @@ class Audits_model extends CI_Model {
         }
 
         $result['audits'] = $this->upsertBatch($data['audits']);
+    echo json_encode($action_registers);
 
         $result['action_registers'] = $this->actionregister_model->upsertBatch($action_registers);
 
