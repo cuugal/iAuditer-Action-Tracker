@@ -35,11 +35,11 @@ class Audits_model extends CI_Model {
         $issueActionMap = $this->issue_model->getIssueActionMap();
 
         foreach($data['audits'] as &$audit){
-            /*
-            if($audit['audit_id'] != 'audit_3c1491f2635344bf803b78f4a746a894'){
-                continue;
-            }
-            */
+
+            //if($audit['audit_id'] != 'audit_dfc36fa13bf44196b4548b4258121f62'){
+            //    continue;
+            //}
+
             //initialise values because insert_batch hates it when you don't initialise values.
             $audit['inspection_type'] = '';
             $audit['location'] = '';
@@ -102,6 +102,8 @@ class Audits_model extends CI_Model {
 
 
                 }
+                //SMartfieldmap
+                unset($smartfield_map);
 
                 //Retrieve smartfields
                 unset($smartfields);
@@ -111,12 +113,15 @@ class Audits_model extends CI_Model {
                 unset($checkboxes);
                 //retrieve sections
                 unset($sections);
+                //retrieve proposed actions
+                unset($proposed_actions);
+                unset($proposed_actions_map);
 
                 foreach ($audit_data['items'] as $item) {
                     if($item['type'] == 'smartfield'){
-                        $smartfields[$item['item_id']] = $item['parent_id'];
+                        $smartfield_map[$item['item_id']] = $item['parent_id'];
+                        $smartfields[$item['item_id']] = $item;
                     }
-
                     if($item['type'] == 'checkbox'){
                         $checkboxes[$item['item_id']] = $item['parent_id'];
                     }
@@ -125,6 +130,10 @@ class Audits_model extends CI_Model {
                     }
                     if($item['type'] == 'section'){
                         $sections[$item['item_id']] = $item;
+                    }
+                    if($item['type'] == 'information'){
+                        $proposed_action_map[$item['parent_id']] = $item['item_id'];
+                        $proposed_actions[$item['item_id']] = $item;
                     }
                 }
 
@@ -144,6 +153,29 @@ class Audits_model extends CI_Model {
                             if(isset($action_register['issue']) && isset($issueActionMap[$action_register['issue']])){
                                 $action_register['proposed_action'] = $issueActionMap[$action_register['issue']];
                             }
+
+                            //override with the action in the audit if available
+                            //echo $item['item_id']."<br/>".json_encode($proposed_action_map);
+                            if(isset($proposed_actions) && isset($proposed_action_map[$item['item_id']])) {
+                                $proposed_action_id = $proposed_action_map[$item['item_id']];
+                                $proposed_action = $proposed_actions[$proposed_action_id];
+                                $action_register['proposed_action'] = $proposed_action['label'];
+                            }
+                            else if(isset($smartfields) && isset($smartfields[$item['parent_id']])) {
+                                $smrt = $smartfields[$item['parent_id']];
+                                //echo json_encode($checkboxId);
+                                //$smrt is the smartfield, need to find the item+1 child to get the action
+                                $index = array_search( $item['item_id'],$smrt['children']);
+
+                                if(isset( $smrt['children'][$index+1])) {
+                                    $proposed_action_id = $smrt['children'][$index + 1];
+                                    if (isset($proposed_actions[$proposed_action_id])) {
+                                        $proposed_action = $proposed_actions[$proposed_action_id];
+                                        $action_register['proposed_action'] = $proposed_action['label'];
+                                    }
+                                }
+                            }
+
                             $action_register['type_of_hazard'] = '';
                             $action_register['source'] = '';
                             $action_register['initial_risk'] = '';
@@ -154,8 +186,8 @@ class Audits_model extends CI_Model {
                                 //Item-->smartfield-->checkbox-->section
                                 unset($sectionId);
                                 //locate topmost section
-                                if(isset($smartfields) && isset($checkboxes) && isset($smartfields[$item['parent_id']])) {
-                                    $checkboxId = $smartfields[$item['parent_id']];
+                                if(isset($smartfield_map) && isset($checkboxes) && isset($smartfield_map[$item['parent_id']])) {
+                                    $checkboxId = $smartfield_map[$item['parent_id']];
                                     //$action_register['source'] = $checkboxId;
                                     $sectionId = $checkboxes[$checkboxId];
                                     $action_register['type_of_hazard'] = trim($sectionId);
@@ -253,7 +285,7 @@ class Audits_model extends CI_Model {
 
         $result['action_registers'] = $this->actionregister_model->upsertBatch($action_registers);
 
-        $result['issues'] = $this->loadIssues();
+        $result['new issues'] = $this->loadIssues();
         return $result;
     }
 
