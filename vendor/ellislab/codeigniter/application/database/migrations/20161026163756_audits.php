@@ -69,7 +69,10 @@ class Migration_audits extends CI_Migration {
                 'default' => FALSE,
                 'null' => TRUE,
             ),
-
+            'last_fetched_api' => array(
+                'type' => 'DATETIME',
+                'null' => TRUE,
+            ),
 
 
 

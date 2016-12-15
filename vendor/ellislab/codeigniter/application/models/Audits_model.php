@@ -49,6 +49,7 @@ class Audits_model extends CI_Model {
             $audit['location'] = '';
             $audit['inspector_name'] = '';
             $audit['area_of_accountability'] = '';
+            $audit['last_fetched_api'] =  time();
 
             if(isset($map[$audit['template_id']])) {
                 $audit['inspection_type'] = $map[$audit['template_id']];
@@ -350,12 +351,15 @@ class Audits_model extends CI_Model {
     }
 
     public function getMostRecentTime(){
-        $this->db->order_by('modified_at', 'desc');
+        $this->db->order_by('last_fetched_api', 'desc');
         $this->db->limit(1);
-        $this->db->select('modified_at');
+        $this->db->select('last_fetched_api');
         $query = $this->db->get('audits');
         $results = $query->result_array();
-        return $results[0]['modified_at'];
+        if (count($results) > 0) {
+            return $results[0]['last_fetched_api'];
+        }
+        else return false;
     }
 
     //Upsert script.

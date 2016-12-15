@@ -23,8 +23,8 @@ class Inspection extends CI_Controller {
         // Load new edits since the previous last modified date
         $mostRecent = $this->audits_model->getMostRecentTime();
         //print "MOST RECENT".$mostRecent;
-        //print "MOST RECENT".strtotime($mostRecent)."fiftenn".strtotime("-15 minutes");
-        if(strtotime($mostRecent) < strtotime("-15 minutes")) {
+        //print "MOST RECENT".$mostRecent."fiftenn".strtotime("-15 minutes");
+        if($mostRecent && $mostRecent < strtotime("-15 minutes")) {
             print "RELOADING";
             //get templates to build map
             $templates = $this->templates_model->getTemplates();
@@ -34,8 +34,32 @@ class Inspection extends CI_Controller {
                 $map[$template['template_id']] = $template['name'];
             }
             $mostRecentISODate = $this->audits_model->getMostRecentDate();
-            $this->audits_model->loadAudits($map, $mostRecent);
+            $this->audits_model->loadAudits($map, $mostRecentISODate);
             //$this->audits_model->loadAudits($map, $mostRecent);
+        }
+        //If here, it means we've not yet done the initial load
+        else if(!$mostRecent){
+            // Get templates
+            $url = 'https://api.safetyculture.io/templates/search?field=template_id&field=name';
+            $client = new Guzzle\Http\Client();
+            $client->setDefaultOption('headers', array(
+                'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
+            ));
+            $request = $client->get($url);
+            $res = $request->send();
+
+            $data = json_decode($res->getBody(), true);
+
+            $result['templates'] = $this->templates_model->upsertBatch($data['templates']);
+
+            $templates = $this->templates_model->getTemplates();
+
+            // create map
+            foreach ($templates as $template) {
+                $map[$template['template_id']] = $template['name'];
+            }
+
+            $this->audits_model->loadAudits($map, null);
         }
         $data = array('dataSet'=>json_encode($this->audits_model->getAudits()));
         $this->load->view('inspection/index_view', $data);
