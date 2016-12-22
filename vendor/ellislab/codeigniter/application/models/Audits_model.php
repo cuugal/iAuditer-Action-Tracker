@@ -150,6 +150,7 @@ class Audits_model extends CI_Model {
                             $action_register['issue'] = trim($item['label']);
                             $action_register['proposed_action'] = "";
 
+
                             //fetch proposed actions
                             if(isset($action_register['issue']) && isset($issueActionMap[$action_register['issue']])){
                                 $action_register['proposed_action'] = $issueActionMap[$action_register['issue']];
@@ -178,7 +179,6 @@ class Audits_model extends CI_Model {
                             }
 
                             $action_register['type_of_hazard'] = '';
-                            $action_register['source'] = '';
                             $action_register['initial_risk'] = '';
                             $action_register['source'] = trim($audit['description']);
 

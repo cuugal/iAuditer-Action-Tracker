@@ -11,7 +11,7 @@
             <th>Area of Accountability</th>
             <th>Location</th>
             <th>Inspector Name</th>
-            <th>Residual Risk (H,M,L)</th>
+
             <th>Last Updated</th>
             <th>Actions Outstanding</th>
             <th>Actions In Progress</th>
@@ -28,7 +28,7 @@
             <th>Area of Accountability</th>
             <th>Location</th>
             <th>Inspector Name</th>
-            <th>Residual Risk (H,M,L)</th>
+
             <th>Last Updated</th>
             <th>Actions Outstanding </th>
             <th>Actions In Progress</th>
@@ -55,14 +55,13 @@
                 { "data": "area_of_accountability", "width":"20%"},
                 { "data": "location"},
                 { "data": "inspector_name"},
-                { "data": "risk_overview"},
                 { "data": "modified_at"},
                 { "data": "number_of_outstanding_actions"},
                 { "data": "number_of_actions_in_progress"},
 
             ],
 
-            "order": [[ 7, "desc" ]]
+            "order": [[ 6, "desc" ]]
 
         } );
         yadcf.init(table, [{
