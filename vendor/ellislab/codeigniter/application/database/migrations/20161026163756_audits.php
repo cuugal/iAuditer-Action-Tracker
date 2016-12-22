@@ -4,6 +4,11 @@ class Migration_audits extends CI_Migration {
 
     public function up() {
         $this->dbforge->add_field(array(
+            'id'=>array(
+                'type' => 'INT',
+                'constraint' => 11,
+                'auto_increment' => TRUE
+            ),
             'audit_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '50',

@@ -58,6 +58,11 @@ class Migration_actionregister extends CI_Migration {
 
 
         $fields = array(
+            'id'=>array(
+                'type' => 'INT',
+                'constraint' => 11,
+                'auto_increment' => TRUE
+            ),
             'key' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '80',
