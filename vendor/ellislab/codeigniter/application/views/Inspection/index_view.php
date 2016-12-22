@@ -47,7 +47,7 @@
             "columns": [
                 { "data": "audit_id",
                     "render": function ( data, type, full, meta ) {
-                        return '<a class="btn btn-primary" href="inspection/request/'+data+'" target="_blank">View</a>';
+                        return '<a class="btn btn-primary" href="inspection/request/'+data+'" >View</a>';
                     }
                 },
                { "data": "inspection_type"},
