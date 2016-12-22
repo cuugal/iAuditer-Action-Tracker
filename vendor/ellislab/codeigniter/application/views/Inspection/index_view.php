@@ -63,6 +63,7 @@
 
             "order": [[ 6, "desc" ]]
 
+
         } );
         yadcf.init(table, [{
             column_number: 3,

@@ -177,6 +177,7 @@ class Audits_model extends CI_Model {
                                     }
                                 }
                             }
+                            
 
                             $action_register['type_of_hazard'] = '';
                             $action_register['initial_risk'] = '';
