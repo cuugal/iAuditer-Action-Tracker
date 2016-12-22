@@ -192,4 +192,50 @@ class Actionregister_model extends CI_Model
         return $ret;
     }
 
+    public function getTotalMap(){
+        $this->db->select('audit_id as audit_id, COUNT(*) as total');
+        $this->db->group_by("audit_id");
+        $query = $this->db->get('action_register');
+
+        $results = $query->result_array();
+        $map = array();
+        foreach ($results as $r) {
+            $map[$r['audit_id']] = $r['total'];
+        }
+        return $map;
+    }
+
+    public function getOutstandingMap(){
+        $this->db->select('audit_id as audit_id, COUNT(*) as total');
+        $this->db->where('action_status =', 'Open');
+        $this->db->group_by("audit_id");
+        $query = $this->db->get('action_register');
+
+
+        $results = $query->result_array();
+
+
+        $map = array();
+        foreach ($results as $r) {
+            $map[$r['audit_id']] = $r['total'];
+        }
+        return $map;
+    }
+
+    public function getInProgressMap(){
+        $this->db->select('audit_id as audit_id, COUNT(*) as total');
+        $this->db->where('action_status', 'In Progress');
+        $this->db->group_by("audit_id");
+        $query = $this->db->get('action_register');
+
+
+        $results = $query->result_array();
+
+
+        $map = array();
+        foreach ($results as $r) {
+            $map[$r['audit_id']] = $r['total'];
+        }
+        return $map;
+    }
 }

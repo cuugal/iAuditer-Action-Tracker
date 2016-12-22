@@ -127,6 +127,7 @@ class Migration_actionregister extends CI_Migration {
                 'type' => 'VARCHAR',
                 'constraint' => 10,
                 'null' => TRUE,
+                'default'=>'Open'
             ),
             'completion_date'=>array(
                 'type' => 'DATETIME',

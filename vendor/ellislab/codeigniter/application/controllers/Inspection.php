@@ -9,12 +9,13 @@ class Inspection extends CI_Controller {
         $this->output->set_template('default');
         $this->load->model('audits_model');
         $this->load->model('templates_model');
+        $this->load->model('actionregister_model');
     }
 
     function tester(){
+        $this->output->enable_profiler(TRUE);
+        echo json_encode($this->actionregister_model->getOutstandingMap());
 
-        $data = array('message'=>json_encode($this->audits_model->getMostRecentDate()));
-        $this->load->view('inspection/request_view', $data);
     }
 
     public function index()
@@ -105,7 +106,7 @@ class Inspection extends CI_Controller {
             }
 
             if(isset($response['statusCode'])){
-            $data['statusCode'] = $response['statusCode'];
+                $data['statusCode'] = $response['statusCode'];
             }
             if($response['status'] == 'IN PROGRESS' || $response['status'] == 'FAILED'){
                 $this->load->view('inspection/request_view', $data);

@@ -335,6 +335,34 @@ class Audits_model extends CI_Model {
         $this->db->where('template_archived', false);
         $query = $this->db->get('audits');
         $results = $query->result_array();
+
+        $total = $this->actionregister_model->getTotalMap();
+        $outstanding = $this->actionregister_model->getOutstandingMap();
+        $inprogress = $this->actionregister_model->getInProgressMap();
+
+        foreach ($results as &$r) {
+            if (isset($outstanding[$r['audit_id']])){
+                $r['number_of_outstanding_actions'] = $outstanding[$r['audit_id']]."/".$total[$r['audit_id']];
+            }
+            else if (isset($total[$r['audit_id']])){
+                $r['number_of_outstanding_actions'] = "0/".$total[$r['audit_id']];
+            }
+            else{
+                $r['number_of_outstanding_actions'] = "0/0";
+            }
+
+            if (isset($inprogress[$r['audit_id']])){
+                $r['number_of_actions_in_progress'] = $inprogress[$r['audit_id']]."/".$total[$r['audit_id']];
+            }
+            else if (isset($total[$r['audit_id']])){
+                $r['number_of_actions_in_progress'] = "0/".$total[$r['audit_id']];
+            }
+            else{
+                $r['number_of_actions_in_progress'] = "0/0";
+            }
+        }
+
+
         return $results;
     }
 
