@@ -183,10 +183,18 @@ class Actionregister_model extends CI_Model
         //insert/update as applicable
         $ret = array();
         if (count($inserts) > 0) {
-            $ret['inserts'] = $this->db->insert_batch('action_register', $inserts, true);
+            //$ret['inserts'] = $this->db->insert_batch('action_register', $inserts, true);
+            foreach($inserts as $ins){
+                $this->db->insert('action_register', $ins, true);
+            }
+            $ret['inserts'] = count($inserts);
         }
         if (count($updates) > 0) {
-            $ret['updates'] = $this->db->update_batch('action_register', $updates, 'key');
+            //$ret['updates'] = $this->db->update_batch('action_register', $updates, 'key');
+            foreach($updates as $upd){
+                $this->db->insert('action_register', $upd, 'key');
+            }
+            $ret['updates'] = count($updates);
         }
 
         return $ret;

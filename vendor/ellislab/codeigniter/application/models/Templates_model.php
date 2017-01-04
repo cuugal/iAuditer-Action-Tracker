@@ -46,14 +46,23 @@ class Templates_model extends CI_Model
                 $inserts[] = $b;
             }
         }
-        echo json_encode($inserts);
+        //echo json_encode($inserts);
 //insert/update as applicable
         $ret = array();
         if (count($inserts) > 0) {
-            $ret['inserts'] = $this->db->insert_batch('templates', $inserts);
+            //$ret['inserts'] = $this->db->insert_batch('templates', $inserts);
+            foreach($inserts as $ins){
+                $this->db->insert('templates', $ins);
+            }
+            $ret['inserts'] = count($inserts);
         }
         if (count($updates) > 0) {
-            $ret['updates'] = $this->db->update_batch('templates', $updates, 'template_id');
+            //php 5.3 and SQLite3 can't do multiple inserts.  Woot.
+            //$ret['updates'] = $this->db->update_batch('templates', $updates, 'template_id');
+            foreach($updates as $upd){
+                $this->db->update('templates', $upd, 'template_id');
+            }
+            $ret['updates'] = count($updates);
         }
 
         return $ret;

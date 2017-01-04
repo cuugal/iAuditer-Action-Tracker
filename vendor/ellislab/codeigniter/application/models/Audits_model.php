@@ -327,7 +327,11 @@ class Audits_model extends CI_Model {
         }
         //return $inserts;
         if(count($inserts) > 0) {
-            return $this->db->insert_batch('issues', $inserts);
+            //return $this->db->insert_batch('issues', $inserts);
+            foreach($inserts as $ins){
+                $this->db->insert('issues', $ins);
+            }
+            return count($inserts);
         }
         return 0;
     }
@@ -426,10 +430,19 @@ class Audits_model extends CI_Model {
         //insert/update as applicable
         $ret = array();
         if(count($inserts)>0) {
-            $ret['inserts'] = $this->db->insert_batch('audits', $inserts, true);
+            //php 5.3 and mysqlite can't do batch insert
+            //$ret['inserts'] = $this->db->insert_batch('audits', $inserts, true);
+            foreach($inserts as $ins){
+                $this->db->insert('audits', $ins, true);
+            }
+            $ret['inserts'] = count($inserts);
         }
         if(count($updates)> 0) {
-            $ret['updates'] = $this->db->update_batch('audits', $updates, 'audit_id');
+            //$ret['updates'] = $this->db->update_batch('audits', $updates, 'audit_id');
+            foreach($updates as $upd){
+                $this->db->insert('audits', $upd, 'audit_id');
+            }
+            $ret['updates'] = count($updates);
         }
 
         return $ret;

@@ -7,7 +7,7 @@ class Tools extends CI_Controller {
 
         // can only be called from the command line
         if (!$this->input->is_cli_request()) {
-            exit('Direct access is not allowed. This is a command line tool, use the terminal');
+            //exit('Direct access is not allowed. This is a command line tool, use the terminal');
         }
 
         $this->load->dbforge();

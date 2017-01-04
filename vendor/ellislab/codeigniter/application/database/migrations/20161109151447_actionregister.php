@@ -42,20 +42,21 @@ class Migration_actionregister extends CI_Migration {
         );
         $this->db->insert('users', $data);
 
-        $data = array(
-            array(
+
+        $data1 =    array(
                 'id' => '3',
                 'user_id' => '2',
                 'group_id' => '1',
-            ),
-            array(
+            );
+         $data2 =   array(
                 'id' => '4',
                 'user_id' => '2',
                 'group_id' => '2',
-            )
-        );
-        $this->db->insert_batch('users_groups', $data);
+            );
 
+        $this->db->insert('users_groups', $data1);
+
+        $this->db->insert('users_groups', $data2);
 
         $fields = array(
             'id'=>array(

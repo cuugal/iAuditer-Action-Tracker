@@ -28,20 +28,21 @@ class Migration_Ion_auth extends CI_Migration {
         $this->dbforge->create_table('groups');
 
         // Dumping data for table 'groups'
-        $data = array(
-            array(
-                'id' => '1',
-                'name' => 'admin',
-                'description' => 'Administrator'
-            ),
-            array(
-                'id' => '2',
-                'name' => 'members',
-                'description' => 'General User'
-            )
-        );
-        $this->db->insert_batch('groups', $data);
 
+        $data1 =     array(
+                "id" => 1,
+                "name" => "admin",
+                "description" => "Administrator"
+            );
+        $data2 =    array(
+                "id" => 2,
+                "name" => "members",
+                "description" => "General User"
+            );
+
+
+        $this->db->insert('groups', $data1);
+        $this->db->insert('groups', $data2);
 
         // Drop table 'users' if it exists
         $this->dbforge->drop_table('users', TRUE);
