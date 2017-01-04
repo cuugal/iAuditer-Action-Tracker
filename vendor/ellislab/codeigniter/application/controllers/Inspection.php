@@ -54,7 +54,7 @@ class Inspection extends CI_Controller {
             $result['templates'] = $this->templates_model->upsertBatch($data['templates']);
 
             $templates = $this->templates_model->getTemplates();
-
+            $map = array();
             // create map
             foreach ($templates as $template) {
                 $map[$template['template_id']] = $template['name'];
