@@ -29,7 +29,7 @@ class Inspection extends CI_Controller {
             print "RELOADING";
             //get templates to build map
             $templates = $this->templates_model->getTemplates();
-
+            $map = array();
             // create map
             foreach ($templates as $template) {
                 $map[$template['template_id']] = $template['name'];

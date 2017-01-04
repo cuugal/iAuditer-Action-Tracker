@@ -46,7 +46,7 @@ class Templates_model extends CI_Model
                 $inserts[] = $b;
             }
         }
-
+        echo json_encode($inserts);
 //insert/update as applicable
         $ret = array();
         if (count($inserts) > 0) {
