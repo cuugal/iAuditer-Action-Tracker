@@ -147,7 +147,12 @@ class Actionregister_model extends CI_Model
 
     public function update($record){
 
-        if($record['action_status'] != 'Closed'){
+        if(isset($record['reviewed_action']) && strlen($record['reviewed_action']) > 0 && $record['action_status'] == 'Open'){
+            $record['action_status'] = 'In Progress';
+
+        }
+
+        if($record['action_status'] != 'Closed' && isset($record['completion_date'])){
             $record['action_closed_date'] = $record['completion_date'];
         }
         else{

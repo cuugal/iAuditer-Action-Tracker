@@ -134,18 +134,21 @@ echo $this->form_builder->close_form();
                             'value' => 'Yes',
                             'label' => 'Yes',
                             'checked' => $dataSet['action_required'] == 'Yes' ? true: false,
+                            ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
                         array(
                             'id' => 'radio_button_no',
                             'value' => 'No',
                             'label' => 'No',
                             'checked' => $dataSet['action_required'] == 'No' ? true: false,
+                            ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
                         array(
                             'id' => 'radio_button_out',
                             'value' => 'Outside Supervisor\'s Control',
                             'label' => 'Outside Supervisor\'s Control',
                             'checked' => $dataSet['action_required'] == 'Outside Supervisor\'s Control' ? true: false,
+                            ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
 
                     )
@@ -155,6 +158,9 @@ echo $this->form_builder->close_form();
                     'label' => 'Reviewed Action',
                     'value' => $dataSet['reviewed_action'],
                     'req'=>true,
+                    'help' => "Action Status will update to 'In Progress' once a Reviewed Action is proposed.",
+                    ($isOpen) ? '':  'disabled'=>'disabled',
+
                 ),
                 array(/* RADIO */
                     'id' => 'residual_risk',
@@ -167,18 +173,21 @@ echo $this->form_builder->close_form();
                             'value' => 'High',
                             'label' => 'High',
                             'checked' => $dataSet['residual_risk'] == 'High' ? true: false,
+                            ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
                         array(
                             'id' => 'radio_button_medium',
                             'value' => 'Medium',
                             'label' => 'Medium',
                             'checked' => $dataSet['residual_risk'] == 'Medium' ? true: false,
+                            ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
                         array(
                             'id' => 'radio_button_low',
                             'value' => 'Low',
                             'label' => 'Low',
                             'checked' => $dataSet['residual_risk'] == 'Low' ? true: false,
+                            ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
 
                     )
@@ -188,7 +197,6 @@ echo $this->form_builder->close_form();
                     'label' => 'Action Status',
                     'type' => 'radio',
                     (!$isAccountable) ? '':'req'=>true,
-
                     'options' => array(
                         array(
                             'id' => 'radio_button_open',
@@ -202,7 +210,6 @@ echo $this->form_builder->close_form();
                             'value' => 'In Progress',
                             'label' => 'In Progress',
                             'checked' => $dataSet['action_status'] == 'In Progress' ? true: false,
-
                             ($isAccountable) ? '':  'disabled'=>'disabled',
                         ),
                         array(
@@ -221,7 +228,7 @@ echo $this->form_builder->close_form();
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
                     'value' => $dataSet['completion_date'],
-                    ($isAccountable) ? '' :  'disabled'=>'disabled',
+                    ($isAccountable && $isOpen) ? '' :  'disabled'=>'disabled',
                 ),
                 array(
                     'id' => 'action_closed_date',
@@ -229,7 +236,8 @@ echo $this->form_builder->close_form();
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
                     'value' => $dataSet['action_closed_date'],
-                    'disabled'=>'disabled',
+                    'disabled'=>true,
+                    'help' => 'Action Closed date defaults to the completion date if the status is in progress, and the date closed if the status is closed.',
                 ),
                 array(/* SUBMIT */
                     'id' => 'submit',
