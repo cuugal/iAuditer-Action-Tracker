@@ -140,6 +140,11 @@ class Migration_actionregister extends CI_Migration {
                 'constraint' => 10,
                 'null' => TRUE,
             ),
+            'action_closed_date'=>array(
+                'type' => 'DATETIME',
+                'constraint' => 10,
+                'null' => TRUE,
+            ),
 
         );
         $this->dbforge->add_field($fields);

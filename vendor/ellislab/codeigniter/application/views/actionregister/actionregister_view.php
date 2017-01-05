@@ -8,15 +8,15 @@
 echo $this->form_builder->build_form_horizontal(
     array(
         array(
-            'id' => 'audit_id',
+            'id' => 'audit_pk',
             'label' => 'Inspection ID',
-            'value' => $dataSet['audit_id'],
+            'value' => $dataSet['audit_pk'],
             'readonly' => 'readonly',
         ),
         array(
-            'id' => 'item_id',
+            'id' => 'id',
             'label' => 'Hazard ID',
-            'value' => $dataSet['item_id'],
+            'value' => $dataSet['id'],
             'readonly' => 'readonly',
         ),
         array(
@@ -218,11 +218,18 @@ echo $this->form_builder->close_form();
                 array(
                     'id' => 'completion_date',
                     'label' => 'Completion Date',
-                    'type' => 'date',
                     'data-provide'=>'datepicker',
+                    'data-date-format'=>"dd/mm/yyyy",
                     'value' => $dataSet['completion_date'],
                     ($isAccountable) ? '' :  'disabled'=>'disabled',
-
+                ),
+                array(
+                    'id' => 'action_closed_date',
+                    'label' => 'Action Closed On',
+                    'data-provide'=>'datepicker',
+                    'data-date-format'=>"dd/mm/yyyy",
+                    'value' => $dataSet['action_closed_date'],
+                    'disabled'=>'disabled',
                 ),
                 array(/* SUBMIT */
                     'id' => 'submit',
