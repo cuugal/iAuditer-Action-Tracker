@@ -146,6 +146,14 @@ class Actionregister_model extends CI_Model
     }
 
     public function update($record){
+
+        if($record['action_status'] != 'Closed'){
+            $record['action_closed_date'] = $record['completion_date'];
+        }
+        else{
+            $record['action_closed_date'] = date("d/m/Y");
+        }
+
         $this->db->where('key', $record['key']);
         $this->db->update('action_register', $record);
     }

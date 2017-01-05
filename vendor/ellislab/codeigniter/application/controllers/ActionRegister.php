@@ -30,7 +30,7 @@ class ActionRegister extends Auth_Controller
         $isAccountable = $this->actionregister_model->isAccountableUser($dataSet['area_of_accountability'],
             $this->ion_auth->get_user_id());
 
-        $this->form_validation->set_rules('proposed_action', 'Proposed Action','trim|required');
+        //$this->form_validation->set_rules('proposed_action', 'Proposed Action','trim|required');
         $this->form_validation->set_rules('action_required', 'Action Required','trim|required');
         $this->form_validation->set_rules('reviewed_action', 'Reviewed Action','trim|required');
         $this->form_validation->set_rules('residual_risk', 'Residual Risk', 'trim|required');
