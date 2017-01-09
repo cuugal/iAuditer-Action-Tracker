@@ -183,14 +183,23 @@ class Actionregister_model extends CI_Model
             $keys[] = $r['key'];
         }
 
+        //Possibliity that an action item can be added
+        //to the incoming array twice, due to the
+        //complexity of the unstructured document.
+        //Remove duplicates by only processing once per key
+        $uniqueKeys[] = array();
+
         //separate into inserts and updates
         $inserts = array();
         $updates = array();
         foreach ($batch as $b) {
-            if (in_array($b['key'], $keys)) {
-                $updates[] = $b;
-            } else {
-                $inserts[] = $b;
+            if(!in_array($b['key'],$uniqueKeys )) {
+                if (in_array($b['key'], $keys)) {
+                    $updates[] = $b;
+                } else {
+                    $inserts[] = $b;
+                }
+                $uniqueKeys[] = $b['key'];
             }
         }
 
