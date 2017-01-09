@@ -15,6 +15,8 @@ class Actionregister_model extends CI_Model
         if($userId){
             //Fetch AOA first where accountable
             $this->db->where('accountable_person', $userId);
+
+
             $this->db->select('area_of_accountability.*, area_of_accountability.id as aoa_id');
 
             //Some people may be accountable and responsible.
@@ -52,6 +54,7 @@ class Actionregister_model extends CI_Model
 
             $this->db->group_by('area_of_accountability');
             $this->db->where('response', 'No');
+            $this->db->where('area_of_accountability !=', '');
             $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
             $query = $this->db->get('action_register');
             $results = $query->result_array();
