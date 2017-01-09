@@ -187,13 +187,14 @@ class Actionregister_model extends CI_Model
         //to the incoming array twice, due to the
         //complexity of the unstructured document.
         //Remove duplicates by only processing once per key
-        $uniqueKeys[] = array();
+        $uniqueKeys = array();
 
         //separate into inserts and updates
         $inserts = array();
         $updates = array();
         foreach ($batch as $b) {
             if(!in_array($b['key'],$uniqueKeys )) {
+                //echo "NOT IN ARRAY".$b['key'];
                 if (in_array($b['key'], $keys)) {
                     $updates[] = $b;
                 } else {
@@ -208,7 +209,7 @@ class Actionregister_model extends CI_Model
         if (count($inserts) > 0) {
             //$ret['inserts'] = $this->db->insert_batch('action_register', $inserts, true);
             foreach($inserts as $ins){
-                $this->db->insert('action_register', $ins, true);
+                $this->db->insert('action_register', $ins);
             }
             $ret['inserts'] = count($inserts);
         }
@@ -225,6 +226,7 @@ class Actionregister_model extends CI_Model
 
     public function getTotalMap(){
         $this->db->select('audit_id as audit_id, COUNT(*) as total');
+        $this->db->where('response', 'No');
         $this->db->group_by("audit_id");
         $query = $this->db->get('action_register');
 
@@ -239,6 +241,7 @@ class Actionregister_model extends CI_Model
     public function getOutstandingMap(){
         $this->db->select('audit_id as audit_id, COUNT(*) as total');
         $this->db->where('action_status =', 'Open');
+        $this->db->where('response', 'No');
         $this->db->group_by("audit_id");
         $query = $this->db->get('action_register');
 
@@ -256,6 +259,7 @@ class Actionregister_model extends CI_Model
     public function getInProgressMap(){
         $this->db->select('audit_id as audit_id, COUNT(*) as total');
         $this->db->where('action_status', 'In Progress');
+        $this->db->where('response', 'No');
         $this->db->group_by("audit_id");
         $query = $this->db->get('action_register');
 
