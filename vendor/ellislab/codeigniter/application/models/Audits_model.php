@@ -440,7 +440,7 @@ class Audits_model extends CI_Model {
         if(count($updates)> 0) {
             //$ret['updates'] = $this->db->update_batch('audits', $updates, 'audit_id');
             foreach($updates as $upd){
-                $this->db->insert('audits', $upd, 'audit_id');
+                $this->db->update('audits', $upd, 'audit_id');
             }
             $ret['updates'] = count($updates);
         }
