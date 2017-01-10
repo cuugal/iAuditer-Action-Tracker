@@ -7,11 +7,18 @@ class User extends CI_Controller  {
     {
         parent::__construct();
         $this->output->set_template('default');
+        $this->load->model('areaofaccountability_model');
     }
 
     public function index()
     {
         $data = array('dataSet'=>$this->ion_auth->getUsers());
+        //echo json_encode($data);
+        foreach($data['dataSet'] as &$d){
+            $aoa = $this->areaofaccountability_model->getAOAforUser($d['user_id']);
+            $concat = implode($aoa,'; ');
+            $d['aoa'] = $concat;
+        }
         $this->load->view('user/index_view', $data);
     }
 

@@ -15,7 +15,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>Last Login</th>
-            <th>Faculty/Unit</th>
+            <th>Areas of Accountability</th>
             <th>iAuditor Name</th>
             <th>Group</th>
         </tr>
@@ -30,7 +30,7 @@
     <td><?=$i['username']?></td>
     <td><?=$i['email']?></td>
     <td><?=date("Y-m-d H:i:s", $i['last_login'])?></td>
-    <td><?=$i['faculty_unit']?></td>
+    <td><?=$i['aoa']?></td>
     <td><?=$i['iAuditor_Name']?></td>
     <td><?=$i['description']?></td>
 </tr>
@@ -44,7 +44,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>Last Login</th>
-            <th>Faculty/Unit</th>
+            <th>Areas of Accountability</th>
             <th>iAuditor Name</th>
             <th>Group</th>
         </tr>
