@@ -3,9 +3,14 @@
 <div class="row">
     <div class="col-md-12 col-lg-8">
     <h1>Register</h1>
-    <?php
-    echo isset($_SESSION['auth_message']) ? $_SESSION['auth_message'] : FALSE;
-    ?>
+
+        <?php if (isset($_SESSION['register_message'])) : ?>
+            <div class="alert alert-success"><?=$_SESSION['register_message'];?>
+            </div>
+        <?php endif; ?>
+
+        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+
 
     <?= $this->form_builder->open_form(array('action' => ''));
     echo $this->form_builder->build_form_horizontal(

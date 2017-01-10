@@ -11,7 +11,7 @@
 
         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
-        <?= $this->form_builder->open_form(array('action' => ''));
+        <?= $this->form_builder->open_form(array('action' => '/user/edit/'.$dataSet['user_id']));
         echo $this->form_builder->build_form_horizontal(
             array(
                 array(
@@ -59,7 +59,7 @@
     <div class="col-md-12 col-lg-8">
 
     <h3>Change Password</h3>
-<?= $this->form_builder->open_form(array('action' => 'user/changepassword'));
+<?= $this->form_builder->open_form(array('action' => 'user/changepassword/'.$dataSet['user_id']));
     echo $this->form_builder->build_form_horizontal(
         array(
             array(

@@ -35,7 +35,7 @@ echo $this->form_builder->build_form_horizontal(
         array(
             'id' => 'org',
             'label' => 'Org Unit',
-            'value' => '',
+            'value' => $dataSet['area_of_accountability'],
             'readonly' => 'readonly',
         ),
         array(
@@ -173,21 +173,21 @@ echo $this->form_builder->close_form();
                             'value' => 'High',
                             'label' => 'High',
                             'checked' => $dataSet['residual_risk'] == 'High' ? true: false,
-                            ($isOpen) ? '':  'disabled'=>'disabled',
+                            ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
                         array(
                             'id' => 'radio_button_medium',
                             'value' => 'Medium',
                             'label' => 'Medium',
                             'checked' => $dataSet['residual_risk'] == 'Medium' ? true: false,
-                            ($isOpen) ? '':  'disabled'=>'disabled',
+                            ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
                         array(
                             'id' => 'radio_button_low',
                             'value' => 'Low',
                             'label' => 'Low',
                             'checked' => $dataSet['residual_risk'] == 'Low' ? true: false,
-                            ($isOpen) ? '':  'disabled'=>'disabled',
+                            ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
 
                     )
@@ -203,21 +203,21 @@ echo $this->form_builder->close_form();
                             'value' => 'Open',
                             'label' => 'Open',
                             'checked' => $dataSet['action_status'] == 'Open' ? true: false,
-                            ($isAccountable) ? '':  'disabled'=>'disabled',
+                            ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
                         array(
                             'id' => 'radio_button_progress',
                             'value' => 'In Progress',
                             'label' => 'In Progress',
                             'checked' => $dataSet['action_status'] == 'In Progress' ? true: false,
-                            ($isAccountable) ? '':  'disabled'=>'disabled',
+                            ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
                         array(
                             'id' => 'radio_button_closed',
                             'value' => 'Closed',
                             'label' => 'Closed',
                             'checked' => $dataSet['action_status'] == 'Closed' ? true: false,
-                            ($isAccountable) ? '':  'disabled'=>'disabled',
+                            ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
 
                     )
@@ -251,4 +251,7 @@ echo $this->form_builder->close_form();
 
         ?>
     </div>
+    <script type="text/javascript">
+        $(':radio[readonly]:not(:checked)').attr('disabled', true);
+    </script>
 </div>

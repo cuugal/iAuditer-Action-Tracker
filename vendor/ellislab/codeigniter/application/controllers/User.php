@@ -6,17 +6,53 @@ class User extends CI_Controller  {
     function __construct()
     {
         parent::__construct();
-
         $this->output->set_template('default');
-
     }
-
-
 
     public function index()
     {
         $data = array('dataSet'=>$this->ion_auth->getUsers());
         $this->load->view('user/index_view', $data);
+    }
+
+    public function changepassword($userid){
+        $this->load->library('form_builder');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('password','Password','trim|min_length[8]|max_length[20]|required');
+        $this->form_validation->set_rules('confirm_password','Confirm password','trim|matches[password]|required');
+        if($this->form_validation->run()===FALSE)
+        {
+            unset($_SESSION['edit_message']);
+            $groups = $this->ion_auth->listGroups();
+            $data = array('dataSet'=>$this->ion_auth->getUser($userid),
+                'groups'=>$groups);
+            $this->load->view('user/edit_view', $data);
+        }
+        else
+        {
+            unset($_SESSION['edit_message']);
+            $id = $this->input->post('id');
+
+            $dataSet['password'] = $this->input->post('password');
+
+            $this->load->library('ion_auth');
+            if($this->ion_auth->update($id,$dataSet))
+            {
+                $_SESSION['edit_message'] = 'Password has been updated.';
+            }
+            else
+            {
+                $_SESSION['edit_message'] = $this->ion_auth->errors();
+            }
+
+            $groups = $this->ion_auth->listGroups();
+
+            $dataSet['user_id'] = $id;
+            $data = array('dataSet'=>$this->ion_auth->getUser($id),
+                'groups'=>$groups);
+            $this->load->view('user/edit_view', $data);
+        }
     }
 
     public function edit($userid)
@@ -40,6 +76,7 @@ class User extends CI_Controller  {
         }
         else
         {
+            unset($_SESSION['edit_message']);
             $id = $this->input->post('id');
 
             $dataSet['first_name'] = $this->input->post('first_name');
@@ -109,16 +146,19 @@ class User extends CI_Controller  {
             );
 
             $this->load->library('ion_auth');
-            if($this->ion_auth->register($username,$password,$email,$additional_data))
+            $userid = $this->ion_auth->register($username,$password,$email,$additional_data);
+            if($userid)
             {
-                $_SESSION['auth_message'] = 'The account has been created. You may now login.';
-                $this->session->mark_as_flash('auth_message');
-                //redirect('user/login');
+                $_SESSION['register_message'] = 'The user: '.$first_name.' '.$last_name .' has been created.';
+                $this->session->mark_as_flash('register_message');
+
+                //redirect('user/edit/'.$userid);
+                $this->load->view('user/register_view');
             }
             else
             {
-                $_SESSION['auth_message'] = $this->ion_auth->errors();
-                $this->session->mark_as_flash('auth_message');
+                $_SESSION['register_message'] = $this->ion_auth->errors();
+                $this->session->mark_as_flash('register_message');
                 redirect('user/register');
             }
         }

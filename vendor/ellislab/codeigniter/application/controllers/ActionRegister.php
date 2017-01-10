@@ -35,12 +35,14 @@ class ActionRegister extends Auth_Controller
             $isOpen = false;
         }
 
-        $this->form_validation->set_rules('action_status', 'Action Status', 'trim|required');
+
         if($isOpen) {
+
             $this->form_validation->set_rules('action_required', 'Action Required', 'trim|required');
             $this->form_validation->set_rules('reviewed_action', 'Reviewed Action', 'trim|required');
             $this->form_validation->set_rules('residual_risk', 'Residual Risk', 'trim|required');
             if ($isAccountable) {
+                $this->form_validation->set_rules('action_status', 'Action Status', 'trim|required');
                 $this->form_validation->set_rules('completion_date', 'Completion Date', 'trim|required');
             }
         }
@@ -53,24 +55,10 @@ class ActionRegister extends Auth_Controller
         }
         else
         {
-            $record = array();
-            if($isOpen) {
-                $record = array(
-                    'proposed_action' => $this->input->post('proposed_action'),
-                    'action_required' => $this->input->post('action_required'),
-                    'reviewed_action' => $this->input->post('reviewed_action'),
-                    'residual_risk' => $this->input->post('residual_risk'),
-                    'action_status' => $this->input->post('action_status'),
-                    'completion_date' => $this->input->post('completion_date'),
-                    'key' => $this->input->post('key'),
-                );
-            }
-            else{
-                $record = array(
-                    'action_status' => $this->input->post('action_status'),
-                    'key' => $this->input->post('key'),
-                );
-            }
+
+            $record = $this->input->post();
+            unset($record['submit']);
+
             $this->actionregister_model->update($record);
             $_SESSION['ar_message'] = 'The Action Register has been updated';
             $this->session->mark_as_flash('ar_message');
