@@ -66,6 +66,19 @@ class Actionregister_model extends CI_Model
                 }
             }
         }
+        foreach($result as &$res) {
+            foreach($res as &$r) {
+                if (isset($r['area_of_accountability'])) {
+                    $tmp = explode('.', $r['area_of_accountability']);
+                    $r['OrgUnit'] = $tmp[0];
+                } else {
+                    $r['OrgUnit'] = '';
+                }
+                //echo "ARRAY";
+                //echo json_encode($r);
+            }
+        }
+
 
         return $result;
     }

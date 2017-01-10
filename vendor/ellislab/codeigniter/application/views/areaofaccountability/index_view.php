@@ -11,7 +11,7 @@
     <tr>
         <th>&nbsp;</th>
 
-        <th>Name</th>
+        <th>Area of Accountability Name</th>
         <th>Accountable Person</th>
 
     </tr>
@@ -32,7 +32,7 @@
     <tr>
         <th>&nbsp;</th>
 
-        <th>Name</th>
+        <th>Area of Accountability Name</th>
         <th>Accountable Person</th>
     </tr>
     </tfoot>

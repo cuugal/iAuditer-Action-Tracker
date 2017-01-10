@@ -28,6 +28,7 @@ class Areaofaccountability_model extends CI_Model
         $this->db->select('area_of_accountability.*, users.*, area_of_accountability.id as aoa_id');
         $query = $this->db->get('area_of_accountability');
         $results = $query->result_array();
+
         return $results;
     }
 

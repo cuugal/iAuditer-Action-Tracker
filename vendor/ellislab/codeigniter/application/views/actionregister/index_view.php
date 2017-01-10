@@ -4,13 +4,14 @@
 
 <?php foreach ($dataSet as $data): ?>
 
+
 <table class="table table-striped table-bordered table-hover" style="border: 2px solid #ddd" cellspacing="0" width="100%">
     <thead>
     <tr class="arheader">
         <th colspan="2">Area of Accountability:</th>
         <th colspan="2"><?=$data[0]['area_of_accountability']?></th>
         <th colspan="2">Faculty/Unit:</th>
-        <th colspan="2"><?=$data[0]['location']?></th>
+        <th colspan="2"><?=$data[0]['OrgUnit']?></th>
         <th colspan="2">Accountable Person:</th>
         <th colspan="2"><?=$data[0]['accountable']?></th>
     </tr>
