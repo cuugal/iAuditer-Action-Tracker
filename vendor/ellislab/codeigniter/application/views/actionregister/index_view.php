@@ -10,7 +10,7 @@
     <tr class="arheader">
         <th colspan="2">Area of Accountability:</th>
         <th colspan="2"><?=$data[0]['area_of_accountability']?></th>
-        <th colspan="2">Faculty/Unit:</th>
+        <th colspan="2">Org Unit:</th>
         <th colspan="2"><?=$data[0]['OrgUnit']?></th>
         <th colspan="2">Accountable Person:</th>
         <th colspan="2"><?=$data[0]['accountable']?></th>

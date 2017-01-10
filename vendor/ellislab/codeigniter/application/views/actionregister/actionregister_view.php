@@ -35,7 +35,7 @@ echo $this->form_builder->build_form_horizontal(
         array(
             'id' => 'org',
             'label' => 'Org Unit',
-            'value' => $dataSet['area_of_accountability'],
+            'value' => $dataSet['OrgUnit'],
             'readonly' => 'readonly',
         ),
         array(

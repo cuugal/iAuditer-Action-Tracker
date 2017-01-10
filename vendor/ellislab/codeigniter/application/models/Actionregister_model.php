@@ -158,6 +158,12 @@ class Actionregister_model extends CI_Model
         $query = $this->db->get('action_register');
         $results = $query->result_array();
         $results = $results[0];
+        if (isset($results['area_of_accountability'])) {
+            $tmp = explode('.', $results['area_of_accountability']);
+            $results['OrgUnit'] = $tmp[0];
+        } else {
+            $results['OrgUnit'] = '';
+        }
         return $results;
     }
 
