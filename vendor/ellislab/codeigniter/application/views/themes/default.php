@@ -45,10 +45,10 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/chosen.bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap-datepicker3.css"/>
 
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/tether.min.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery-2.2.3.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.js"></script>
-       <!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/datatables.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.foundation.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.bootstrap.js"></script>
@@ -56,6 +56,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/chosen.jquery.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/bootstrap-confirmation.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/ellipsis.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/pdfobject.min.js"></script>
 
