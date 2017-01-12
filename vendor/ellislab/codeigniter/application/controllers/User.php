@@ -149,13 +149,17 @@ class User extends CI_Controller  {
 
             $additional_data = array(
                 'first_name' => $first_name,
-                'last_name' => $last_name
+                'last_name' => $last_name,
+                'active'=>true
             );
 
             $this->load->library('ion_auth');
-            $userid = $this->ion_auth->register($username,$password,$email,$additional_data);
+            $group = array('2');
+            $userid = $this->ion_auth->register($username,$password,$email,$additional_data, $group);
             if($userid)
             {
+
+
                 $_SESSION['register_message'] = 'The user: '.$first_name.' '.$last_name .' has been created.';
                 $this->session->mark_as_flash('register_message');
 

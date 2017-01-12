@@ -39,7 +39,7 @@
                     'id' => 'group',
                     'type'=>'dropdown',
                     'options' => $groups,
-                    'value' => $dataSet['description'],
+                    'value' => $dataSet['group_id'],
                 ),
 
                 array(
