@@ -33,9 +33,9 @@ echo $this->form_builder->build_form_horizontal(
             'readonly' => 'readonly',
         ),
         array(
-            'id' => 'org',
-            'label' => 'Org Unit',
-            'value' => $dataSet['OrgUnit'],
+            'id' => 'aoa',
+            'label' => 'Area of Accountability',
+            'value' => $dataSet['area_of_accountability'],
             'readonly' => 'readonly',
         ),
         array(
