@@ -227,7 +227,7 @@ echo $this->form_builder->close_form();
                     'label' => 'Completion Date',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
-                    'value' => $dataSet['completion_date'],
+                    'value' => (isset($dataSet['completion_date']) ? $dataSet['completion_date']: date("d/m/Y")) ,
                     ($isAccountable && $isOpen) ? '' :  'disabled'=>'disabled',
                 ),
                 array(
@@ -235,7 +235,7 @@ echo $this->form_builder->close_form();
                     'label' => 'Action Closed On',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
-                    'value' => $dataSet['action_closed_date'],
+                    'value' => (isset($dataSet['action_closed_date']) ? $dataSet['action_closed_date']: date("d/m/Y")) ,
                     'disabled'=>true,
                     'help' => 'Action Closed date defaults to the completion date if the status is in progress, and the date closed if the status is closed.',
                 ),
@@ -254,4 +254,6 @@ echo $this->form_builder->close_form();
     <script type="text/javascript">
         $(':radio[readonly]:not(:checked)').attr('disabled', true);
     </script>
+
+    <b>ACCOUTNABLE: <?=$isAccountable;?></b>
 </div>

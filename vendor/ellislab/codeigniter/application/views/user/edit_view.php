@@ -68,12 +68,12 @@
                 'type' => 'hidden'
             ),
             array(
-            'id' => 'password',
-            'type' => 'password',
+                'id' => 'password',
+                'type' => 'password',
             ),
             array(
-            'id' => 'confirm_password',
-            'type' => 'password',
+                'id' => 'confirm_password',
+                'type' => 'password',
 
             ),
             array(

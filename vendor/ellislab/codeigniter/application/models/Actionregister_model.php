@@ -87,6 +87,7 @@ class Actionregister_model extends CI_Model
         $this->db->like('area_of_accountability', $area);
         $this->db->where('response', 'No');
         $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
+        $this->db->select('action_register.*, action_register.id as ar_id, audits.*, audits.id as au_id');
 
         $query = $this->db->get('action_register');
         $results = $query->result_array();
