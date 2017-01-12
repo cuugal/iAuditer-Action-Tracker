@@ -16,7 +16,7 @@ class Import extends CI_Controller
 
 
     public function reloadIssues(){
-        $this->output->enable_profiler(TRUE);
+        //$this->output->enable_profiler(TRUE);
 
         $result = $this->audits_model->loadIssues();
 

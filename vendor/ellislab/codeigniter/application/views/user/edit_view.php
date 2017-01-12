@@ -27,10 +27,12 @@
                     'id' => 'last_name',
                     'value' => $dataSet['last_name'],
                 ),
+                /*
                 array(
                     'id' => 'username',
                     'value' => $dataSet['username'],
                 ),
+                */
                 array(
                     'id' => 'email',
                     'value' => $dataSet['email'],

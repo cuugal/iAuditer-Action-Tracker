@@ -12,7 +12,6 @@
             <th>&nbsp;</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Username</th>
             <th>Email</th>
             <th>Last Login</th>
             <th>Areas of Accountability</th>
@@ -27,7 +26,6 @@
     <td><a class="btn btn-primary" href="User/edit/<?=$i['user_id']?>">View/Edit</a></td>
     <td><?=$i['first_name']?></td>
     <td><?=$i['last_name']?></td>
-    <td><?=$i['username']?></td>
     <td><?=$i['email']?></td>
     <td><?=date("Y-m-d H:i:s", $i['last_login'])?></td>
     <td><?=$i['aoa']?></td>
@@ -41,7 +39,6 @@
             <th>&nbsp;</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Username</th>
             <th>Email</th>
             <th>Last Login</th>
             <th>Areas of Accountability</th>

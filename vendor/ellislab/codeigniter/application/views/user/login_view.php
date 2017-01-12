@@ -9,7 +9,7 @@
         echo $this->form_builder->build_form_horizontal(
             array(
                 array(
-                    'id' => 'username'
+                    'id' => 'email'
                 ),
                 array(
                     'id' => 'password',

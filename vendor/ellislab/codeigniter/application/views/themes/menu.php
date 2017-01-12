@@ -42,10 +42,14 @@
                                       <a class="page-scroll" href="<?php echo site_url('AreaOfAccountability'); ?>">Areas of Accountability</a>
                                   </li>
                                   <li class="divider"></li>
+
+                                 <?/*
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Location'); ?>">Location</a>
                                   </li>
+
                                   <li class="divider"></li>
+*/?>
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Aoa_rp'); ?>">Responsible Person/s</a>
                                   </li>
@@ -56,7 +60,7 @@
                                       <a class="page-scroll" href="<?php echo site_url('ProposedAction'); ?>">Proposed Action</a>
                                   </li>
                                   <li>
-                                      <a class="page-scroll" href="<?php echo site_url('Issue'); ?>">Issue - Proposed Action</a>
+                                      <a class="page-scroll" href="<?php echo site_url('Issue'); ?>">Issue -> Proposed Action</a>
                                   </li>
 
                                   <li class="divider"></li>

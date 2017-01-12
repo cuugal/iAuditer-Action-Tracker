@@ -69,7 +69,7 @@ class User extends CI_Controller  {
 
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
-        $this->form_validation->set_rules('username','Username','trim|required');
+        //$this->form_validation->set_rules('username','Username','trim|required');
         $this->form_validation->set_rules('email','Email','trim|valid_email|required');
         $this->form_validation->set_rules('group', 'Group','trim|required');
 
@@ -129,8 +129,8 @@ class User extends CI_Controller  {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
-        $this->form_validation->set_rules('username','Username','trim|required|is_unique[users.username]');
-        $this->form_validation->set_rules('email','Email','trim|valid_email|required');
+        //$this->form_validation->set_rules('username','Username','trim|required|is_unique[users.username]');
+        $this->form_validation->set_rules('email','Email','trim|valid_email|required|is_unique[users.email]');
         $this->form_validation->set_rules('password','Password','trim|min_length[8]|max_length[20]|required');
         $this->form_validation->set_rules('confirm_password','Confirm password','trim|matches[password]|required');
 
@@ -143,7 +143,7 @@ class User extends CI_Controller  {
         {
             $first_name = $this->input->post('first_name');
             $last_name = $this->input->post('last_name');
-            $username = $this->input->post('username');
+            //$username = $this->input->post('username');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
 
@@ -155,7 +155,7 @@ class User extends CI_Controller  {
 
             $this->load->library('ion_auth');
             $group = array('2');
-            $userid = $this->ion_auth->register($username,$password,$email,$additional_data, $group);
+            $userid = $this->ion_auth->register($email,$password,$email,$additional_data, $group);
             if($userid)
             {
 
@@ -183,7 +183,7 @@ class User extends CI_Controller  {
         $this->data['title'] = "Login";
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         if ($this->form_validation->run() === FALSE)
         {
@@ -194,7 +194,7 @@ class User extends CI_Controller  {
         else
         {
             $remember = (bool) $this->input->post('remember');
-            if ($this->ion_auth->login($this->input->post('username'), $this->input->post('password'), $remember))
+            if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password'), $remember))
             {
                 redirect('inspection');
             }

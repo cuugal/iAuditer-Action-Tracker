@@ -21,9 +21,11 @@
         array(
             'id' => 'last_name'
         ),
+        /*
         array(
             'id' => 'username'
         ),
+        */
         array(
             'id' => 'email'
         ),
