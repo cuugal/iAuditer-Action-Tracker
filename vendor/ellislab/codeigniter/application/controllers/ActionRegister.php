@@ -46,6 +46,11 @@ class ActionRegister extends Auth_Controller
                 $this->form_validation->set_rules('completion_date', 'Completion Date', 'trim|required');
             }
         }
+        else{
+            if ($isAccountable) {
+                $this->form_validation->set_rules('action_status', 'Action Status', 'trim|required');
+            }
+        }
 
         if($this->form_validation->run()===FALSE)
         {

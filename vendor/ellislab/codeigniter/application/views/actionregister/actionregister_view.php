@@ -124,6 +124,7 @@ echo $this->form_builder->close_form();
                 ),
                 array(/* RADIO */
                     'id' => 'action_required',
+
                     'label' => 'Action Required',
                     'type' => 'radio',
                     'req'=>true,
@@ -131,6 +132,7 @@ echo $this->form_builder->close_form();
                     'options' => array(
                         array(
                             'id' => 'radio_button_yes',
+                            'class'=>'action_required',
                             'value' => 'Yes',
                             'label' => 'Yes',
                             'checked' => $dataSet['action_required'] == 'Yes' ? true: false,
@@ -138,6 +140,7 @@ echo $this->form_builder->close_form();
                         ),
                         array(
                             'id' => 'radio_button_no',
+                            'class'=>'action_required',
                             'value' => 'No',
                             'label' => 'No',
                             'checked' => $dataSet['action_required'] == 'No' ? true: false,
@@ -145,6 +148,7 @@ echo $this->form_builder->close_form();
                         ),
                         array(
                             'id' => 'radio_button_out',
+                            'class'=>'action_required',
                             'value' => 'Outside Supervisor\'s Control',
                             'label' => 'Outside Supervisor\'s Control',
                             'checked' => $dataSet['action_required'] == 'Outside Supervisor\'s Control' ? true: false,
@@ -253,7 +257,17 @@ echo $this->form_builder->close_form();
     </div>
     <script type="text/javascript">
         $(':radio[readonly]:not(:checked)').attr('disabled', true);
+
+
+            $('.action_required').click(function() {
+                if (this.value == 'Yes'){
+                    $('#reviewed_action').prop('readonly', false);
+                }
+                else{
+                    $('#reviewed_action').prop('readonly', true);
+                }
+            });
     </script>
 
-    <b>ACCOUTNABLE: <?=$isAccountable;?></b>
+
 </div>
