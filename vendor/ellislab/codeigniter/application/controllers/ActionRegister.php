@@ -27,8 +27,13 @@ class ActionRegister extends Auth_Controller
         $this->load->library('form_validation');
 
         $dataSet = $this->actionregister_model->getRequest($key);
-        $isAccountable = $this->actionregister_model->isAccountableUser($dataSet['area_of_accountability'],
-            $this->ion_auth->get_user_id());
+
+        //Let Admin always edit, otherwise check user to see if they are accountable for this area
+        $isAccountable = $this->ion_auth->is_admin();
+        if(!$isAccountable) {
+            $isAccountable = $this->actionregister_model->isAccountableUser($dataSet['area_of_accountability'],
+                $this->ion_auth->get_user_id());
+        }
 
         $isOpen = true;
         if($dataSet['action_status'] == 'Closed'){
