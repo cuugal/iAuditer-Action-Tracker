@@ -113,6 +113,7 @@ class Migration_actionregister extends CI_Migration {
                 'type' => 'VARCHAR',
                     'constraint' => 255,
                     'null' => TRUE,
+                    'default'=>'Yes'
                 ),
             'reviewed_action'=>array(
                 'type' => 'VARCHAR',

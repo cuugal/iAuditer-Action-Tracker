@@ -135,7 +135,7 @@ echo $this->form_builder->close_form();
                             'class'=>'action_required',
                             'value' => 'Yes',
                             'label' => 'Yes',
-                            'checked' => $dataSet['action_required'] == 'Yes' ? true: false,
+                            'checked' => ($dataSet['action_required'] == 'Yes'|| !isset($dataSet['action_required'])) ? true: false,
                             ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
                         array(
