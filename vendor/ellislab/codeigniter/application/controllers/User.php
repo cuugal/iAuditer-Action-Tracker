@@ -88,7 +88,7 @@ class User extends CI_Controller  {
 
             $dataSet['first_name'] = $this->input->post('first_name');
             $dataSet['last_name'] = $this->input->post('last_name');
-            $dataSet['username'] = $this->input->post('username');
+            //$dataSet['username'] = $this->input->post('username');
             $dataSet['email'] = $this->input->post('email');
             $dataSet['group'] = $this->input->post('group');
 

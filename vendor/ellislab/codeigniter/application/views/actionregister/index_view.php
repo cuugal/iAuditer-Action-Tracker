@@ -49,7 +49,7 @@
             <td><?=$i['residual_risk']?></td>
             <td><?=$i['action_status']?>
 
-                <?php if($i['action_status'] == 'In Progress' && isset($i['completion_date'])):
+                <?php if(($i['action_status'] == 'In Progress' || $i['action_status'] == 'In Progress') && isset($i['completion_date'])):
 
             ?> - Due to complete on: <?= $i['completion_date'];?>
             <?php endif;?>
