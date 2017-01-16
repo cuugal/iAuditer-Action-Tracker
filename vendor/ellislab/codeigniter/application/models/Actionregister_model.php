@@ -239,8 +239,11 @@ class Actionregister_model extends CI_Model
         if (count($updates) > 0) {
             //$ret['updates'] = $this->db->update_batch('action_register', $updates, 'key');
             foreach($updates as $upd){
-                $this->db->update('action_register', $upd, 'key');
+                $errors[] = $this->db->update('action_register', $upd, array('key' => $upd['key']));
+
             }
+            //echo "ERRORS:".json_encode($errors);
+            //echo json_encode($updates);
             $ret['updates'] = count($updates);
         }
 

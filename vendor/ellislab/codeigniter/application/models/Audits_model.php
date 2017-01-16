@@ -9,6 +9,7 @@ class Audits_model extends CI_Model {
         $this->load->database();
         $this->load->model('actionregister_model');
         $this->load->model('issue_model');
+        $this->load->model('media_model');
     }
 
     public function loadAudits($map, $date){
@@ -36,7 +37,7 @@ class Audits_model extends CI_Model {
 
         foreach($data['audits'] as &$audit){
 
-            //if($audit['audit_id'] != 'audit_dfc36fa13bf44196b4548b4258121f62'){
+            //if($audit['audit_id'] != 'audit_9ae9c9fc6b714eec9a160e998bdccff2'){
             //    continue;
             //}
 
@@ -149,6 +150,7 @@ class Audits_model extends CI_Model {
                             $action_register['audit_id'] = trim($audit['audit_id']);
                             $action_register['issue'] = trim($item['label']);
                             $action_register['proposed_action'] = "";
+                            $action_register['notes'] = "";
 
 
                             //fetch proposed actions
@@ -260,9 +262,29 @@ class Audits_model extends CI_Model {
                                 }
 
                             }
+                            //Add media items to media table
+                            if(isset($item['media'])){
+                                foreach($item['media'] as $m) {
+                                    $media['ar_id'] = $action_register['item_id'] . $action_register['audit_id'];
+                                    //media ID looks to be unique against audit, hence cn use item id/media ID as key
+                                    $media['key'] = $action_register['item_id'] . $m['media_id'];
+                                    $media['label'] = $m['label'];
+                                    $media['media_id'] = $m['media_id'];
+                                    $media['href'] = $m['href'];
+                                    $media_items[] = $media;
+                                }
+
+                            }
+                            //if there is a note on the page
+                            if(isset($item['responses']['text'])){
+                                //echo json_encode($item['responses']['text']);
+                                $action_register['notes'] = $item['responses']['text'];
+                            }
+
                             //only add/update if the type matters
                             if(isset($action_register['response'])){
                                 $action_register['key'] = $action_register['item_id'].$action_register['audit_id'];
+                                //echo json_encode($action_register);
                                 $action_registers[] = $action_register;
                             }
 
@@ -287,6 +309,11 @@ class Audits_model extends CI_Model {
         //echo json_encode($action_registers);
 
         $result['action_registers'] = $this->actionregister_model->upsertBatch($action_registers);
+
+        //upload media
+        if(isset($media_items) && count($media_items) > 0){
+            $result['media_items'] = $this->media_model->upsertBatch($media_items);
+        }
 
         $result['new issues'] = $this->loadIssues();
         return $result;
@@ -440,7 +467,7 @@ class Audits_model extends CI_Model {
         if(count($updates)> 0) {
             //$ret['updates'] = $this->db->update_batch('audits', $updates, 'audit_id');
             foreach($updates as $upd){
-                $this->db->update('audits', $upd, 'audit_id');
+                $this->db->update('audits', $upd, array('audit_id' => $upd['audit_id']));
             }
             $ret['updates'] = count($updates);
         }

@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="">
     <h2>Details</h2>
@@ -77,6 +76,12 @@ echo $this->form_builder->build_form_horizontal(
             'value' => $dataSet['issue'],
             'readonly' => 'readonly',
         ),
+        array(
+            'id' => 'notes',
+            'label' => 'Notes',
+            'value' => $dataSet['notes'],
+            'readonly' => 'readonly',
+        ),
         /*
         array(
             'id' => 'initial_risk',
@@ -92,6 +97,44 @@ echo $this->form_builder->close_form();
     </div>
 </div>
 
+
+<?php if(isset($media) && count($media) > 0):?>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000" style="background-color:grey">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <?php for ($i = 1; $i < count($media); $i++) : ?>
+            <li data-target="#myCarousel" data-slide-to="<?=$i;?>"></li>
+        <?php endfor;?>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <?php
+        $firstRun = true;
+        foreach($media as $m): ?>
+        <div class="item <?=($firstRun)?'active':'';?>">
+            <img src="<?=base_url();?>tmp/<?=$m;?>" alt="<?=$m;?>">
+        </div>
+            <?php $firstRun = false; ?>
+        <?php endforeach;?>
+
+
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<?php endif;?>
 
 <div class="row">
     <div class="">
@@ -271,3 +314,8 @@ echo $this->form_builder->close_form();
 
 
 </div>
+<style type="text/css">
+    .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+        display: inline !important;
+</style>
+

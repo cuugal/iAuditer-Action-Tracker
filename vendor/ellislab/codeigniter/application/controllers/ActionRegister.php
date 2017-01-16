@@ -10,6 +10,7 @@ class ActionRegister extends Auth_Controller
         $this->output->set_template('default');
         $this->load->model('actionregister_model');
         $this->load->model('templates_model');
+        $this->load->model('media_model');
     }
 
     function index(){
@@ -59,8 +60,9 @@ class ActionRegister extends Auth_Controller
 
         if($this->form_validation->run()===FALSE)
         {
+            $media = $this->media_model->getForAR($key);
 
-            $data = array('dataSet'=>$dataSet, 'isAccountable'=>$isAccountable, 'isOpen'=>$isOpen);
+            $data = array('dataSet'=>$dataSet, 'isAccountable'=>$isAccountable, 'isOpen'=>$isOpen, 'media'=>$media);
             $this->load->view('actionregister/actionregister_view', $data);
         }
         else
@@ -79,7 +81,8 @@ class ActionRegister extends Auth_Controller
                 $isOpen = false;
             }
 
-            $data = array('dataSet'=>$dataSet, 'isAccountable'=>$isAccountable, 'isOpen'=>$isOpen);
+            $media = $this->media_model->getForAR($key);
+            $data = array('dataSet'=>$dataSet, 'isAccountable'=>$isAccountable, 'isOpen'=>$isOpen, 'media'=>$media);
             $this->load->view('actionregister/actionregister_view', $data);
         }
     }

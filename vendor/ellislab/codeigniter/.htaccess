@@ -1,0 +1,12 @@
+DirectoryIndex index.php
+RewriteEngine on
+<IfModule mod_rewrite.c>
+	RewriteCond %{REQUEST_FILENAME} !-f 
+	RewriteCond %{REQUEST_FILENAME} !-d 
+	
+	RewriteRule ^(.*)$ index.php?/$1 [L]
+
+
+	#RewriteCond $1 !^(index\.php|resources|uploads|robots\.txt)
+	#RewriteRule ^(.*)$ /atlas_reports/index.php/$1 [L]
+</IfModule>
