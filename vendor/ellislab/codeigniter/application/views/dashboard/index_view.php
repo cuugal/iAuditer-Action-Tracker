@@ -27,7 +27,7 @@
     <?php foreach($dataSet as $i):?>
         <tr>
             <td>
-                <a class="btn btn-primary" href="Dashboard/request/<?=$i['task_id']?>">Edit</a>
+                <a class="btn btn-primary" href="ActionRegister/request/<?=$i['task_id']?>">Open</a>
             </td>
             <td><?=$i['task_id']?></td>
 

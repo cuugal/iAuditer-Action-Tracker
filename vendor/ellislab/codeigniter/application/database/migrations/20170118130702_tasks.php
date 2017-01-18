@@ -33,9 +33,13 @@ class Migration_tasks extends CI_Migration {
                 'null' => TRUE,
             ),
             'audit'=>array(
-                'type' => 'MEDIUMINT',
-                'constraint' => '8',
-                'unsigned' => TRUE,
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+                'null' => TRUE,
+            ),
+            'item_id'=>array(
+                'type' => 'VARCHAR',
+                'constraint' => '100',
                 'null' => TRUE,
             ),
 
