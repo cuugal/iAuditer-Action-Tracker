@@ -398,6 +398,13 @@ class Audits_model extends CI_Model {
         return $results;
     }
 
+    public function getRecord($id){
+        $this->db->where('audit_id',$id);
+        $query = $this->db->get('audits');
+        $results = $query->result_array();
+        return $results[0];
+    }
+
     public function getMostRecentDate(){
         $this->db->order_by('modified_at', 'desc');
         $this->db->limit(1);

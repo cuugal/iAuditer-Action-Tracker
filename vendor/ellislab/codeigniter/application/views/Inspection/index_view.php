@@ -59,7 +59,12 @@
                 { "data": "number_of_outstanding_actions"},
                 { "data": "number_of_actions_in_progress"},
 
+
             ],
+            columnDefs: [ {
+                targets: [2,6],
+                render:  $.fn.dataTable.render.moment( 'DD/MM/YYYY'),
+            } ],
 
             "order": [[ 6, "desc" ]]
 

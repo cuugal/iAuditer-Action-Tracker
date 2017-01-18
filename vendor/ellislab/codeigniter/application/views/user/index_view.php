@@ -27,7 +27,7 @@
     <td><?=$i['first_name']?></td>
     <td><?=$i['last_name']?></td>
     <td><?=$i['email']?></td>
-    <td><?=date("Y-m-d H:i:s", $i['last_login'])?></td>
+    <td><?=isset($i['last_login']) ? date("Y-m-d H:i:s", $i['last_login']) : '';?></td>
     <td><?=$i['aoa']?></td>
     <td><?=$i['iAuditor_Name']?></td>
     <td><?=$i['description']?></td>

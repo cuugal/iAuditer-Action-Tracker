@@ -16,7 +16,7 @@ class Media_model extends CI_Model
         $query = $this->db->get('media');
         $results = $query->result_array();
 
-
+        $images = array();
         foreach ($results as $result) {
 
             if(file_exists(APPPATH.'../tmp/'.$result['label'])){

@@ -21,8 +21,7 @@ echo $this->form_builder->build_form_horizontal(
         array(
             'id' => 'created_at',
             'label' => 'Date Identified',
-            'type' => 'date',
-            'value' => $dataSet['created_at'],
+            'value' => date("d/m/Y", strtotime($dataSet['created_at'])) ,
             'readonly' => 'readonly',
         ),
         array(
@@ -274,7 +273,7 @@ echo $this->form_builder->close_form();
                     'label' => 'Completion Date',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
-                    'value' => (isset($dataSet['completion_date']) ? $dataSet['completion_date']: date("d/m/Y")) ,
+                    'value' => (isset($dataSet['completion_date']) ? date("d/m/Y", strtotime($dataSet['completion_date'])) : date("d/m/Y")) ,
                     ($isAccountable && $isOpen) ? '' :  'disabled'=>'disabled',
                 ),
                 array(
@@ -282,7 +281,7 @@ echo $this->form_builder->close_form();
                     'label' => 'Action Closed On',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
-                    'value' => (isset($dataSet['action_closed_date']) ? $dataSet['action_closed_date']: date("d/m/Y")) ,
+                    'value' => (isset($dataSet['action_closed_date']) ? date("d/m/Y", strtotime($dataSet['action_closed_date'])): date("d/m/Y")) ,
                     'disabled'=>true,
                     'help' => 'Action Closed date defaults to the completion date if the status is in progress, and the date closed if the status is closed.',
                 ),

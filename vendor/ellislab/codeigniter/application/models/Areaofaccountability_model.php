@@ -23,6 +23,22 @@ class Areaofaccountability_model extends CI_Model
         return $res;
     }
 
+    public function getUserforAoa($aoa){
+        $this->db->select('accountable_person');
+        $this->db->where('name', $aoa);
+        $query = $this->db->get('area_of_accountability');
+        $results = $query->result_array();
+        return $results[0]['accountable_person'];
+    }
+
+    public function getInspector($name){
+        $this->db->select('id');
+        $this->db->where('iAuditor_Name', $name);
+        $query = $this->db->get('users');
+        $results = $query->result_array();
+        return $results[0]['id'];
+    }
+
     public function getAllAOA(){
         $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
         $this->db->select('area_of_accountability.*, users.*, area_of_accountability.id as aoa_id');

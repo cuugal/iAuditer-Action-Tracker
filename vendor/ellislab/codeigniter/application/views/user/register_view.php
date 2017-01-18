@@ -21,11 +21,13 @@
         array(
             'id' => 'last_name'
         ),
-        /*
+
         array(
-            'id' => 'username'
+            'id' => 'iAuditor_Name',
+            'help' => 'The user\'s name as it appears in the iAuditor system.  Used for matching to inspector name in audits' ,
+
         ),
-        */
+
         array(
             'id' => 'email'
         ),

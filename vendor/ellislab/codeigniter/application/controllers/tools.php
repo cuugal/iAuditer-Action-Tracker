@@ -16,6 +16,11 @@ class Tools extends CI_Controller {
         $this->faker = Faker\Factory::create();
     }
 
+    function cronTasks(){
+        $this->load->model('task_model');
+        echo json_encode($this->task_model->CreateTasks());
+    }
+
     public function message($to = 'World') {
         echo "Hello {$to}!" . PHP_EOL;
     }

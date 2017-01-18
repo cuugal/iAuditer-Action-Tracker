@@ -71,6 +71,7 @@ class ActionRegister extends Auth_Controller
             $record = $this->input->post();
             unset($record['submit']);
 
+
             $this->actionregister_model->update($record);
             $_SESSION['ar_message'] = 'The Action Register has been updated';
             $this->session->mark_as_flash('ar_message');

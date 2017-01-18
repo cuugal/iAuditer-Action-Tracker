@@ -68,12 +68,7 @@ class Migration_actionregister extends CI_Migration {
                 'type' => 'VARCHAR',
                 'constraint' => '40',
             ),
-            'user'=>array(
-                'type' => 'MEDIUMINT',
-                'constraint' => '8',
-                'unsigned' => TRUE,
-                'null' => TRUE,
-            ),
+
             'audit_id'=>array(
                 'type' => 'VARCHAR',
                 'constraint' => '50',

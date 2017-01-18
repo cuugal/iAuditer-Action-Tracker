@@ -69,7 +69,7 @@ class User extends CI_Controller  {
 
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
-        //$this->form_validation->set_rules('username','Username','trim|required');
+        $this->form_validation->set_rules('iAuditor_Name','iAuditor Name','trim|required');
         $this->form_validation->set_rules('email','Email','trim|valid_email|required');
         $this->form_validation->set_rules('group', 'Group','trim|required');
 
@@ -88,7 +88,7 @@ class User extends CI_Controller  {
 
             $dataSet['first_name'] = $this->input->post('first_name');
             $dataSet['last_name'] = $this->input->post('last_name');
-            //$dataSet['username'] = $this->input->post('username');
+            $dataSet['iAuditor_Name'] = $this->input->post('iAuditor_Name');
             $dataSet['email'] = $this->input->post('email');
             $dataSet['group'] = $this->input->post('group');
 
@@ -129,7 +129,7 @@ class User extends CI_Controller  {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
-        //$this->form_validation->set_rules('username','Username','trim|required|is_unique[users.username]');
+        $this->form_validation->set_rules('iAuditor_Name','iAuditor Name','trim|required');
         $this->form_validation->set_rules('email','Email','trim|valid_email|required|is_unique[users.email]');
         $this->form_validation->set_rules('password','Password','trim|min_length[8]|max_length[20]|required');
         $this->form_validation->set_rules('confirm_password','Confirm password','trim|matches[password]|required');
@@ -143,7 +143,7 @@ class User extends CI_Controller  {
         {
             $first_name = $this->input->post('first_name');
             $last_name = $this->input->post('last_name');
-            //$username = $this->input->post('username');
+            $dataSet['iAuditor_Name'] = $this->input->post('iAuditor_Name');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
 
@@ -196,7 +196,7 @@ class User extends CI_Controller  {
             $remember = (bool) $this->input->post('remember');
             if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password'), $remember))
             {
-                redirect('inspection');
+                redirect('dashboard');
             }
             else
             {

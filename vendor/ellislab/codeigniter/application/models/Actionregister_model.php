@@ -170,6 +170,16 @@ class Actionregister_model extends CI_Model
 
     public function update($record){
 
+        if(isset($record['completion_date'])){
+            //Have to remove the slashes, otherwise PHP thinks its an american date.  Thanks, Trump.
+            $record['completion_date'] = str_replace('/', '-', $record['completion_date']);
+            $record['completion_date'] = date("Y-m-d", strtotime($record['completion_date']));
+        }
+        if(isset($record['action_closed_date'])){
+            $record['action_closed_date'] = str_replace('/', '-', $record['action_closed_date']);
+            $record['action_closed_date'] = date("Y-m-d", strtotime($record['action_closed_date']));
+        }
+
         if(isset($record['reviewed_action']) && strlen($record['reviewed_action']) > 0 && $record['action_status'] == 'Open'){
             $record['action_status'] = 'In Progress';
 
@@ -179,7 +189,7 @@ class Actionregister_model extends CI_Model
             $record['action_closed_date'] = $record['completion_date'];
         }
         else{
-            $record['action_closed_date'] = date("d/m/Y");
+            $record['action_closed_date'] = date("Y-m-d");
         }
 
         $this->db->where('key', $record['key']);

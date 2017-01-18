@@ -2,7 +2,7 @@
 
 
 <div class="row">
-    <div class="col-md-12 col-lg-8">
+    <div class="col-lg-12">
         <h1>Edit User</h1>
         <?php if (isset($_SESSION['edit_message'])) : ?>
         <div class="alert alert-success"><?=$_SESSION['edit_message'];?>
@@ -27,12 +27,13 @@
                     'id' => 'last_name',
                     'value' => $dataSet['last_name'],
                 ),
-                /*
+
                 array(
-                    'id' => 'username',
-                    'value' => $dataSet['username'],
+                    'id' => 'iAuditor_Name',
+                    'value' => $dataSet['iAuditor_Name'],
+                    'help' => 'The user\'s name as it appears in the iAuditor system.  Used for matching to inspector name in audits' ,
                 ),
-                */
+
                 array(
                     'id' => 'email',
                     'value' => $dataSet['email'],
@@ -58,7 +59,7 @@
     </div>
 
 <div class="row">
-    <div class="col-md-12 col-lg-8">
+    <div class="col-lg-12">
 
     <h3>Change Password</h3>
 <?= $this->form_builder->open_form(array('action' => 'User/changepassword/'.$dataSet['user_id']));

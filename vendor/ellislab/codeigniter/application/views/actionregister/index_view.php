@@ -51,10 +51,10 @@
 
                 <?php if(($i['action_status'] == 'In Progress' || $i['action_status'] == 'In Progress') && isset($i['completion_date'])):
 
-            ?> - Due to complete on: <?= $i['completion_date'];?>
+            ?> - Due to complete on: <b><?=date("d/m/Y", strtotime($i['completion_date']))?></b>
             <?php endif;?>
                 <?php if($i['action_status'] == 'Closed' && isset($i['action_closed_date'])):
-                    ?> on: <?= $i['action_closed_date'];?>
+                    ?> on: <b><?= date("d/m/Y", strtotime($i['action_closed_date']));?></b>
                 <?php endif;?>
             </td>
 
