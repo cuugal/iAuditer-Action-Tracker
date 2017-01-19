@@ -14,7 +14,8 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Last Login</th>
-            <th>Areas of Accountability</th>
+            <th>Areas where Accountable</th>
+            <th>Areas where Responsible</th>
             <th>iAuditor Name</th>
             <th>Group</th>
         </tr>
@@ -29,6 +30,7 @@
     <td><?=$i['email']?></td>
     <td><?=isset($i['last_login']) ? date("Y-m-d H:i:s", $i['last_login']) : '';?></td>
     <td><?=$i['aoa']?></td>
+    <td><?=$i['rp']?></td>
     <td><?=$i['iAuditor_Name']?></td>
     <td><?=$i['description']?></td>
 </tr>
@@ -41,7 +43,8 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Last Login</th>
-            <th>Areas of Accountability</th>
+            <th>Areas where Accountable</th>
+            <th>Areas where Responsible</th>
             <th>iAuditor Name</th>
             <th>Group</th>
         </tr>

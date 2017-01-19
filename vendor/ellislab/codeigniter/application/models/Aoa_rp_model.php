@@ -48,6 +48,19 @@ class Aoa_rp_model extends CI_Model
         return $ret;
     }
 
+    public function getRPforUser($userid){
+        $this->db->select('area_of_accountability.name');
+        $this->db->join('area_of_accountability', 'aoa_rp.aoa = area_of_accountability.id');
+        $this->db->where('rp', $userid);
+        $query = $this->db->get('aoa_rp');
+        $results = $query->result_array();
+        $res = array();
+        foreach($results as $row)
+        {
+            $res[] = $row['name']; // add each user id to the array
+        }
+        return $res;
+    }
 
     public function getRecord($id){
         $this->db->where('id',$id);

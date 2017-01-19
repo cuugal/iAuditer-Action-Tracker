@@ -8,6 +8,7 @@ class User extends CI_Controller  {
         parent::__construct();
         $this->output->set_template('default');
         $this->load->model('areaofaccountability_model');
+        $this->load->model('aoa_rp_model');
     }
 
     public function index()
@@ -18,6 +19,11 @@ class User extends CI_Controller  {
             $aoa = $this->areaofaccountability_model->getAOAforUser($d['user_id']);
             $concat = implode($aoa,'; ');
             $d['aoa'] = $concat;
+        }
+        foreach($data['dataSet'] as &$d){
+            $aoa = $this->aoa_rp_model->getRPforUser($d['user_id']);
+            $concat = implode($aoa,'; ');
+            $d['rp'] = $concat;
         }
         $this->load->view('user/index_view', $data);
     }
