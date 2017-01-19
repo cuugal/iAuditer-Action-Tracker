@@ -5,7 +5,7 @@
 <?php foreach ($dataSet as $data): ?>
 
 
-<table class="table table-striped table-bordered table-hover" style="border: 2px solid #ddd" cellspacing="0" width="100%">
+<table class="action_register table table-striped table-bordered table-hover" style="border: 2px solid #ddd" cellspacing="0" width="100%">
     <thead>
     <tr class="arheader">
         <th colspan="2">Area of Accountability:</th>
@@ -46,7 +46,7 @@
             <td><?=$i['issue']?><b> - No</b></td>
             <td><?=$i['proposed_action']?></td>
             <td><?=$i['reviewed_action']?></td>
-            <td><?=$i['residual_risk']?></td>
+            <td class="priority"><?=$i['residual_risk']?></td>
             <td><?=$i['action_status']?>
 
                 <?php if(($i['action_status'] == 'In Progress' || $i['action_status'] == 'In Progress') && isset($i['completion_date'])):
@@ -125,8 +125,18 @@
                 columnDefs: [ {
                     targets: [3,4],
                     render: $.fn.dataTable.render.ellipsis( 90, true )
-                } ]
-
+                } ],
+                "createdRow": function( row, data, dataIndex ) {
+                    if (data[6] == 'High') {
+                        $(row).addClass('high');
+                    }
+                    else if (data[6] == 'Medium') {
+                        $(row).addClass('medium');
+                    }
+                    else if (data[6] == 'Low') {
+                        $(row).addClass('low');
+                    }
+                },
             });
 
         });
@@ -163,4 +173,32 @@
     })
 
 </script>
+
+<style type="text/css">
+    .action_register > tbody > tr.high td.priority{
+        background-color: #ff9000;
+        /*
+    border-style: solid;
+        border-color: #ff9000;
+        border-width: 2px;
+        */
+    }
+    .action_register > tbody > tr.medium td.priority{
+
+        background-color: #f5d328;
+        /*
+        border-style: solid;
+        border-color: #f5d328;
+        border-width: 2px;
+        */
+    }
+    .action_register > tbody > tr.low td.priority{
+        background-color: #70bf41;
+
+        /*border-style: solid;
+        border-color: #70bf41;
+        border-width: 2px;
+        */
+    }
+    </script>
 

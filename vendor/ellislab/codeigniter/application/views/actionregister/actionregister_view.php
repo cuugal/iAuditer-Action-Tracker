@@ -314,6 +314,18 @@ echo $this->form_builder->close_form();
                     $('#reviewed_action').prop('readonly', true);
                 }
             });
+
+        $( document ).ready(function() {
+
+
+            if ($('[name="action_required"]:checked').val() == 'Yes'){
+
+                $('#reviewed_action').prop('readonly', false);
+            }
+            else{
+                $('#reviewed_action').prop('readonly', true);
+            }
+        });
     </script>
 
 

@@ -31,7 +31,7 @@
 
 
             <td><?=$i['completion_date']?></td>
-            <td><?=$i['diff']?></td>
+            <td class="diff"><?=$i['diff']?></td>
             <td><?=$i['residual_risk']?></td>
             <td><?=$i['action_status']?>
 
@@ -56,9 +56,6 @@
         <th>Inspection ID <br/>- Hazard ID</th>
         <th>Location</th>
         <th>Issue</th>
-
-
-
         <th>Due Date</th>
         <th>Days Overdue</th>
         <th>Residual Risk</th>
@@ -148,14 +145,8 @@
                 render:  $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'),
             } ],
             "createdRow": function( row, data, dataIndex ) {
-                if ( data[5] > 10 ) {
-                    $(row).addClass( 'urgent' );
-                }
-                else if(data[5] > 5){
-                    $(row).addClass( 'caution' );
-                }
-                else{
-                    $(row).addClass( 'new' );
+                if ( data[5] > 7 ) {
+                    $(row).addClass( 'overdue' );
                 }
             }
 
@@ -167,10 +158,10 @@
 </script>
 
 <style type="text/css">
-    .outstanding > tbody > tr.urgent{background-color: #ff9ca5;
-    }
-    .outstanding > tbody > tr.caution{background-color: #ffdba3;
-    }
-    .outstanding > tbody > tr.new{background-color: #f4ffa0;
+
+    .outstanding > tbody > tr.overdue >td.diff{
+        font-weight:bold;
+        background-color: #fcf8e3;
+        padding: 0.2em;
     }
 </style>
