@@ -54,7 +54,7 @@
     $(".chosen-select").chosen();
 
 
-    $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="/Issue">Back</a>');
+    $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="<?php echo site_url('Back'); ?>">Back</a>');
 
 
     $(document).ready(function() {

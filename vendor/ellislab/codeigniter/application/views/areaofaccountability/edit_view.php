@@ -47,6 +47,6 @@
 
 <script type="text/javascript">
     $(".chosen-select").chosen();
-    $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="/areaofaccountability">Back</a>');
+    $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="<?php echo site_url('AreaOfAccountability'); ?>">Back</a>');
 
 </script>
