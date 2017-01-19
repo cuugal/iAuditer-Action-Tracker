@@ -86,7 +86,9 @@
                       <li><a class="page-scroll">Welcome, <?= $this->ion_auth->user()->row()->first_name;?>
                               <?=$this->ion_auth->user()->row()->last_name;?></a>
                       </li>
-                      <li>
+                            <li ><a class="page-scroll" href="<?php echo site_url('user/profile'); ?>"><span class="glyphicon glyphicon-user"/></a>
+                            </li>
+                      <li >
                           <a class="page-scroll" href="<?php echo site_url('user/logout'); ?>"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
                       </li>
 

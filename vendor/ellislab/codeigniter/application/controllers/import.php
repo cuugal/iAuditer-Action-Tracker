@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Import extends CI_Controller
+class Import extends Auth_Controller
 {
 
     function __construct()

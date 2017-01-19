@@ -13,6 +13,11 @@ class User extends CI_Controller  {
 
     public function index()
     {
+        if($this->ion_auth->is_admin()===FALSE)
+        {
+            redirect('/');
+        }
+
         $data = array('dataSet'=>$this->ion_auth->getUsers());
         //echo json_encode($data);
         foreach($data['dataSet'] as &$d){
@@ -28,7 +33,20 @@ class User extends CI_Controller  {
         $this->load->view('user/index_view', $data);
     }
 
+    public function profile(){
+
+        $data['aoa'] = $this->areaofaccountability_model->getAOAforUser($this->ion_auth->get_user_id());
+        $data['rp'] =  $this->aoa_rp_model->getRPforUser($this->ion_auth->get_user_id());
+
+        $this->load->view('user/profile_view', $data);
+    }
+
     public function changepassword($userid){
+        if($this->ion_auth->is_admin()===FALSE)
+        {
+            redirect('/');
+        }
+
         $this->load->library('form_builder');
         $this->load->library('form_validation');
 
@@ -70,6 +88,11 @@ class User extends CI_Controller  {
 
     public function edit($userid)
     {
+        if($this->ion_auth->is_admin()===FALSE)
+        {
+            redirect('/');
+        }
+
         $this->load->library('form_builder');
         $this->load->library('form_validation');
 
