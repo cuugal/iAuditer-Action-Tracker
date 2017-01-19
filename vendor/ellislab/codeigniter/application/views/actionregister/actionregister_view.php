@@ -215,7 +215,7 @@ echo $this->form_builder->close_form();
                 ),
                 array(/* RADIO */
                     'id' => 'residual_risk',
-                    'label' => 'Residual Risk',
+                    'label' => 'Priority',
                     'type' => 'radio',
                     'req'=>true,
                     'options' => array(

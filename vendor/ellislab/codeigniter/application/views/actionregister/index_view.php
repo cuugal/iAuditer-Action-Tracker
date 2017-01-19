@@ -27,7 +27,7 @@
         <th>Issue</th>
         <th>Proposed Action</th>
         <th>Reviewed Action</th>
-        <th>Residual Risk</th>
+        <th>Priority</th>
         <th>Action Status</th>
     </tr>
     </thead>
@@ -70,7 +70,7 @@
         <th>Issue</th>
         <th>Proposed Action</th>
         <th>Reviewed Action</th>
-        <th>Residual Risk</th>
+        <th>Priority</th>
         <th>Action Status</th>
 
     </tr>
