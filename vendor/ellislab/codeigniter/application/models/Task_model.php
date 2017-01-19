@@ -14,7 +14,7 @@ class Task_model extends CI_Model
 
         $this->db->join('action_register', 'tasks.action_register = action_register.id');
         $this->db->join('audits', 'action_register.audit_id = audits.audit_id');
-        $this->db->where('user',$user);
+        $this->db->where('tasks.user',$user);
         $this->db->where('status',$status);
         $this->db->select('tasks.*, audits.*, action_register.*, audits.id as au_id, action_register.id as ar_id');
 
