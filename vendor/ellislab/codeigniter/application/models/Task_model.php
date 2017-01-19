@@ -10,10 +10,16 @@ class Task_model extends CI_Model
 
     }
 
-    public function getForUser($user){
+    public function getForUser($user, $status){
 
+        $this->db->join('action_register', 'tasks.action_register = action_register.id');
+        $this->db->join('audits', 'action_register.audit_id = audits.audit_id');
         $this->db->where('user',$user);
+        $this->db->where('status',$status);
+        $this->db->select('tasks.*, audits.*, action_register.*, audits.id as au_id, action_register.id as ar_id');
+
         $query = $this->db->get('tasks');
+
         $results = $query->result_array();
         foreach ($results as &$res){
             $now = time(); // or your date as well
@@ -23,6 +29,29 @@ class Task_model extends CI_Model
         }
         return $results;
     }
+
+    public function closeTasks($ar_id){
+        $this->db->where('action_register',$ar_id);
+        $query = $this->db->get('tasks');
+        $results = $query->result_array();
+
+        foreach ($results as $r) {
+            $task['key'] = $r['key'];
+            $task['status'] = 'Closed';
+            $tasks[] = $task;
+        }
+
+        $d = array();
+        if(isset($tasks) && count($tasks) > 0){
+            $d['result'] = $this->upsertBatch($tasks);
+        }
+        else{
+            $d['result'] = 'nothing to do';
+        }
+        return $d;
+    }
+
+
 
     //Upsert script.
     public function upsertBatch($batch)
@@ -109,6 +138,7 @@ class Task_model extends CI_Model
             if($ap) {
                 $task['user'] = $ap;
                 $task['key'] = $result['item_id']."_".$ap;
+                $task['item_id'] = $result['item_id'];
                 $task['status'] = 'Open';
                 $task['action_register'] = $result['id'];
                 $task['audit'] = $result['audit_id'];
@@ -119,6 +149,7 @@ class Task_model extends CI_Model
             if($inspector) {
                 $task['user'] = $inspector;
                 $task['key'] = $result['item_id']."_".$inspector;
+                $task['item_id'] = $result['item_id'];
                 $task['status'] = 'Open';
                 $task['action_register'] = $result['id'];
                 $task['audit'] = $result['audit_id'];

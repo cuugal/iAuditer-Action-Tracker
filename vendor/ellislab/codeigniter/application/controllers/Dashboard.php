@@ -13,12 +13,10 @@ class Dashboard extends Auth_Controller
     }
 
     function index(){
-        if($this->ion_auth->is_admin()){
-            $data = array('dataSet'=>$this->task_model->getForUser($this->ion_auth->get_user_id()));
-        }
-        else {
-            $data = array('dataSet'=>$this->task_model->getForUser($this->ion_auth->get_user_id()));
-        }
+
+        $data = array('outstanding'=>$this->task_model->getForUser($this->ion_auth->get_user_id(), 'Open'),
+            'completed'=>$this->task_model->getForUser($this->ion_auth->get_user_id(), 'Closed'));
+
         $this->load->view('dashboard/index_view', $data);
     }
 

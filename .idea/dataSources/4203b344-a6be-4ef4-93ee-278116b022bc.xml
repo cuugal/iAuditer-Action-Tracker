@@ -297,101 +297,104 @@
     <column id="97" parent="14" name="completion_date">
       <data-type>DATETIME(0,-1)|12</data-type>
     </column>
-    <key id="98" parent="14">
+    <column id="98" parent="14" name="item_id">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <key id="99" parent="14">
       <columns>task_id</columns>
       <primary>1</primary>
     </key>
-    <column id="99" parent="15" name="template_id">
+    <column id="100" parent="15" name="template_id">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="100" parent="15" name="name">
+    <column id="101" parent="15" name="name">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <key id="101" parent="15">
+    <key id="102" parent="15">
       <columns>template_id</columns>
       <primary>1</primary>
     </key>
-    <column id="102" parent="16" name="id">
+    <column id="103" parent="16" name="id">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="103" parent="16" name="ip_address">
+    <column id="104" parent="16" name="ip_address">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="104" parent="16" name="username">
+    <column id="105" parent="16" name="username">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="105" parent="16" name="password">
+    <column id="106" parent="16" name="password">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="106" parent="16" name="salt">
+    <column id="107" parent="16" name="salt">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="107" parent="16" name="email">
+    <column id="108" parent="16" name="email">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="108" parent="16" name="activation_code">
+    <column id="109" parent="16" name="activation_code">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="109" parent="16" name="forgotten_password_code">
+    <column id="110" parent="16" name="forgotten_password_code">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="110" parent="16" name="forgotten_password_time">
+    <column id="111" parent="16" name="forgotten_password_time">
       <data-type>INT(0,-1)|4</data-type>
     </column>
-    <column id="111" parent="16" name="remember_code">
+    <column id="112" parent="16" name="remember_code">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="112" parent="16" name="created_on">
+    <column id="113" parent="16" name="created_on">
       <mandatory>1</mandatory>
       <data-type>INT(0,-1)|4</data-type>
     </column>
-    <column id="113" parent="16" name="last_login">
+    <column id="114" parent="16" name="last_login">
       <data-type>INT(0,-1)|4</data-type>
     </column>
-    <column id="114" parent="16" name="active">
+    <column id="115" parent="16" name="active">
       <data-type>TINYINT(0,-1)|4</data-type>
     </column>
-    <column id="115" parent="16" name="first_name">
+    <column id="116" parent="16" name="first_name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="116" parent="16" name="last_name">
+    <column id="117" parent="16" name="last_name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="117" parent="16" name="company">
+    <column id="118" parent="16" name="company">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="118" parent="16" name="phone">
+    <column id="119" parent="16" name="phone">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="119" parent="16" name="faculty_unit">
+    <column id="120" parent="16" name="faculty_unit">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="120" parent="16" name="iAuditor_Name">
+    <column id="121" parent="16" name="iAuditor_Name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <key id="121" parent="16">
+    <key id="122" parent="16">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="122" parent="17" name="id">
+    <column id="123" parent="17" name="id">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="123" parent="17" name="user_id">
+    <column id="124" parent="17" name="user_id">
       <mandatory>1</mandatory>
       <data-type>MEDIUMINT(0,-1)|4</data-type>
     </column>
-    <column id="124" parent="17" name="group_id">
+    <column id="125" parent="17" name="group_id">
       <mandatory>1</mandatory>
       <data-type>MEDIUMINT(0,-1)|4</data-type>
     </column>
-    <key id="125" parent="17">
+    <key id="126" parent="17">
       <columns>id</columns>
       <primary>1</primary>
     </key>

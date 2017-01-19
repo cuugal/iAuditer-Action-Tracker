@@ -15,8 +15,6 @@ class Actionregister_model extends CI_Model
         if($userId){
             //Fetch AOA first where accountable
             $this->db->where('accountable_person', $userId);
-
-
             $this->db->select('area_of_accountability.*, area_of_accountability.id as aoa_id');
 
             //Some people may be accountable and responsible.
@@ -190,6 +188,9 @@ class Actionregister_model extends CI_Model
         }
         else{
             $record['action_closed_date'] = date("Y-m-d");
+            //close tasks
+            $this->load->model('task_model');
+            $this->task_model->closeTasks($record['id']);
         }
 
         $this->db->where('key', $record['key']);

@@ -157,6 +157,11 @@ echo $this->form_builder->close_form();
                     'value' => $dataSet['key']
                 ),
                 array(
+                    'id' => 'id',
+                    'type' => 'hidden',
+                    'value' => $dataSet['id'],
+                ),
+                array(
                     'id' => 'proposed_action',
                     'label' => 'Proposed Action',
                     'class' => 'required',
