@@ -62,7 +62,15 @@ class Inspection extends CI_Controller {
 
             $this->audits_model->loadAudits($map, null);
         }
-        $data = array('dataSet'=>json_encode($this->audits_model->getAudits()));
+
+        if($this->ion_auth->is_admin()){
+            $data = array('dataSet' => json_encode($this->audits_model->getAudits()));
+        }
+        else {
+            $data = array('dataSet' => json_encode($this->audits_model->getAudits($this->ion_auth->get_user_id())));
+        }
+
+
         $this->load->view('inspection/index_view', $data);
     }
 

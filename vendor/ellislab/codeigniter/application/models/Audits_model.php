@@ -50,6 +50,7 @@ class Audits_model extends CI_Model {
             $audit['location'] = '';
             $audit['inspector_name'] = '';
             $audit['area_of_accountability'] = '';
+            $audit['OrgUnit'] = '';
             $audit['last_fetched_api'] =  time();
 
             if(isset($map[$audit['template_id']])) {
@@ -100,6 +101,9 @@ class Audits_model extends CI_Model {
                             }
                         }
                         $audit['area_of_accountability'] = trim($area);
+
+                        $tmp = explode('.', $audit['area_of_accountability']);
+                        $audit['OrgUnit'] = $tmp[0];
                     }
 
 
@@ -363,7 +367,37 @@ class Audits_model extends CI_Model {
         return 0;
     }
 
-    public function getAudits(){
+    //Finish this after lunch
+
+    public function getAudits($userId=false){
+
+        if($userId){
+            $orgunits = array();
+            //Get AOA
+            $this->db->where('accountable_person', $userId);
+            $query = $this->db->get('area_of_accountability');
+            $results = $query->result_array();
+            foreach($results as $res){
+                $orgunits[] = $res['OrgUnit'];
+            }
+            //echo json_encode($orgunits);
+
+
+            //Get RP
+            $this->db->join('area_of_accountability', 'area_of_accountability.id = aoa_rp.aoa');
+            $this->db->where('rp', $userId);
+            $query = $this->db->get('aoa_rp');
+            $results = $query->result_array();
+            foreach($results as $res){
+                $orgunits[] = $res['OrgUnit'];
+            }
+
+            //Add to query
+            $orgunits = array_unique ($orgunits);
+            echo json_encode($orgunits);
+
+            $this->db->where_in('OrgUnit', $orgunits);
+        }
         $this->db->where('template_archived', false);
         $query = $this->db->get('audits');
         $results = $query->result_array();

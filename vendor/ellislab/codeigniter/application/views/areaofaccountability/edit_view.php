@@ -22,7 +22,8 @@
                 ),
                 array(
                     'id' => 'name',
-                    'value'=>$i['name']
+                    'value'=>$i['name'],
+                    'readonly'=>true
                 ),
                 array(
                     'id' => 'accountable_person',

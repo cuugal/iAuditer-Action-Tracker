@@ -58,7 +58,7 @@
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Aoa_rp'); ?>">Responsible Person/s</a>
                                   </li>
-
+<!--
                                   <li class="divider"></li>
 
                                   <li>
@@ -67,7 +67,7 @@
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Issue'); ?>">Issue -> Proposed Action</a>
                                   </li>
-
+-->
                                   <li class="divider"></li>
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Import/GetData'); ?>">Reload Audits</a>

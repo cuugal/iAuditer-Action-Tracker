@@ -92,14 +92,17 @@ class Areaofaccountability_model extends CI_Model
     }
 
     public function insert($data){
+        $tmp = explode('.', $data['name']);
+        $data['OrgUnit'] = $tmp[0];
         return $this->db->insert('area_of_accountability', $data, true);
     }
     public function update($data)
     {
+        $tmp = explode('.', $data['name']);
+        $data['OrgUnit'] = $tmp[0];
+
         $this->db->where('id', $data['id']);
         $this->db->update('area_of_accountability', $data);
-
-
     }
 
 }
