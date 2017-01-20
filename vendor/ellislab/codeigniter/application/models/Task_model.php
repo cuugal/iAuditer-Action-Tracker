@@ -7,6 +7,7 @@ class Task_model extends CI_Model
         // Call the CI_Model constructor
         parent::__construct();
         $this->load->database();
+        $this->load->model('Mail_model');
 
     }
 
@@ -100,8 +101,12 @@ class Task_model extends CI_Model
             //$ret['inserts'] = $this->db->insert_batch('action_register', $inserts, true);
             foreach($inserts as $ins){
                 $this->db->insert('tasks', $ins);
+                //Send mail
+                $arkey = $ins['item_id'].$ins['audit'];
+                $mails[$ins['user'].'_'.$arkey] = $this->Mail_model->passed_completion($ins['user'],$arkey);
             }
             $ret['inserts'] = count($inserts);
+            $ret['mails'] = $mails;
         }
         if (count($updates) > 0) {
             //$ret['updates'] = $this->db->update_batch('action_register', $updates, 'key');
@@ -121,6 +126,7 @@ class Task_model extends CI_Model
         $this->load->model('audits_model');
         $this->load->model('areaofaccountability_model');
 
+
         /*$query = $this->db->query("select id, audit_id, key, item_id, CURRENT_DATE, completion_date, action_status
           from action_register
           where action_register.id not in (select action_register from tasks)
@@ -132,6 +138,7 @@ class Task_model extends CI_Model
         $results = $query->result_array();
 
         $tasks = array();
+
         foreach($results as $result){
             $audit = $this->audits_model->getRecord($result['audit_id']);
             $ap = $this->areaofaccountability_model->getUserforAoa($audit['area_of_accountability']);
@@ -144,6 +151,7 @@ class Task_model extends CI_Model
                 $task['audit'] = $result['audit_id'];
                 $task['completion_date'] = $result['completion_date'];
                 $tasks[] = $task;
+
             }
             $inspector = $this->areaofaccountability_model->getInspector($audit['inspector_name']);
             if($inspector) {
@@ -155,6 +163,8 @@ class Task_model extends CI_Model
                 $task['audit'] = $result['audit_id'];
                 $task['completion_date'] = $result['completion_date'];
                 $tasks[] = $task;
+
+
             }
         }
         $d = array();
@@ -164,6 +174,7 @@ class Task_model extends CI_Model
         else{
             $d['result'] = 'nothing to do';
         }
+
 
         return $d;
 
