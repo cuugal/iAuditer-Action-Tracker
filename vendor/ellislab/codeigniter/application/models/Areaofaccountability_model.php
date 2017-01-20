@@ -28,7 +28,10 @@ class Areaofaccountability_model extends CI_Model
         $this->db->where('name', $aoa);
         $query = $this->db->get('area_of_accountability');
         $results = $query->result_array();
-        return $results[0]['accountable_person'];
+        if(count($results)> 0) {
+            return $results[0]['accountable_person'];
+        }
+        else return null;
     }
 
     public function getInspector($name){
@@ -36,7 +39,11 @@ class Areaofaccountability_model extends CI_Model
         $this->db->where('iAuditor_Name', $name);
         $query = $this->db->get('users');
         $results = $query->result_array();
-        return $results[0]['id'];
+
+        if(count($results)> 0) {
+            return $results[0]['id'];
+        }
+        else return null;
     }
 
     public function getAllAOA(){

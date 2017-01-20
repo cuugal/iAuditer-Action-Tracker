@@ -19,6 +19,8 @@ class Tools extends CI_Controller {
     function cronTasks(){
         $this->load->model('task_model');
         echo json_encode($this->task_model->CreateTasks());
+        $this->load->model('Actionregister_model');
+        echo json_encode($this->Actionregister_model->sendMailForNew());
     }
 
     public function message($to = 'World') {

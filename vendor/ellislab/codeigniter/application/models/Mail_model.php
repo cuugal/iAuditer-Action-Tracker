@@ -4,7 +4,8 @@ class Mail_model extends CI_Model
 {
     private $defaultFromMail = 'safetyandwellbeing@uts.edu.au';
     private $defaultFromName = 'iAuditor Action Tracker';
-    private $defaultSubject = 'iAuditor Action Tracker - Past Completion Date';
+    private $defaultCompletionSubject = 'iAuditor Action Tracker - Past Completion Date';
+    private $defaultAssignedSubject = 'iAuditor Action Tracker - Assigned Item';
 
     function __construct() {
         parent::__construct();
@@ -51,14 +52,61 @@ class Mail_model extends CI_Model
         $to = $user['email'];
         $this->email->to($to);  // replace it with receiver mail id
         //$this->email->to('alger.andrew@gmail.com');
-        $this->email->subject($this->defaultSubject); // replace it with relevant subject
+        $this->email->subject($this->defaultCompletionSubject); // replace it with relevant subject
 
         $body = $this->load->view('emails/passed_completion',$data, TRUE);
         $this->email->message($body);
-        $r = array('id'=>$id, 'to'=>$to, 'key'=>$key, 'inspection'=>$ar['audit_pk'],'Hazard'=>$ar['id']);
-        echo json_encode($r);
-        echo json_encode($this->email->send());
-        echo $this->email->print_debugger();
+
+        $sent = $this->email->send();
+        if($sent) {
+            $r = array('id' => $id, 'to' => $to, 'key' => $key, 'inspection' => $ar['audit_pk'], 'Hazard' => $ar['id'], 'sent' => $sent);
+        }
+        else{
+            $r = array('id' => $id, 'to' => $to, 'key' => $key, 'inspection' => $ar['audit_pk'], 'Hazard' => $ar['id'], 'error' =>  $this->email->print_debugger());
+
+        }
+
+        return $r;
+    }
+
+    public function item_assigned($id, $ar){
+
+        //$ar = $this->Actionregister_model->getRequest($key);
+        //echo json_encode($ar);
+        $data['TaskDueDate'] = $ar['completion_date'];
+        $data['InspectionID'] = $ar['audit_pk'];
+        $data['HazardID'] = $ar['id'];
+        $data['DateIdentified'] = $ar['created_at'];
+        $data['AoA'] = $ar['area_of_accountability'];
+        $data['InspectorName'] = $ar['inspector_name'];
+        $data['Issue'] = $ar['issue'];
+        $data['ProposedAction'] = $ar['proposed_action'];
+        $data['Location'] = $ar['location'];
+
+        $this->email->clear();
+
+        $this->email->set_newline("\r\n");
+        $this->email->set_mailtype("html");
+        $this->email->from($this->defaultFromMail, $this->defaultFromName);
+
+        $user = $this->ion_auth_model->getUser($id);
+
+        $to = $user['email'];
+        $this->email->to($to);  // replace it with receiver mail id
+        //$this->email->to('alger.andrew@gmail.com');
+        $this->email->subject($this->defaultAssignedSubject); // replace it with relevant subject
+
+        $body = $this->load->view('emails/item_assigned',$data, TRUE);
+        $this->email->message($body);
+
+        $sent = $this->email->send();
+        if($sent) {
+            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['audit_pk'], 'Hazard' => $ar['id'], 'sent' => $sent);
+        }
+        else{
+            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['audit_pk'], 'Hazard' => $ar['id'], 'error' =>  $this->email->print_debugger());
+
+        }
         return $r;
     }
 }

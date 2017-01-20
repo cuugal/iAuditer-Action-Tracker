@@ -45,35 +45,35 @@
         <div class="row">
             <div class="col-md-12 col-lg-8">
 
-                <p class="lead">A health and safety inspection hazard, assigned to you via <a href="<?php echo base_url(); ?>">UTS iAuditor Action Tracker</a> requires your attention. It has passed the target completion date of <mark><?=$TaskDueDate?></mark>.</p>
+                <p class="lead">A health and safety inspection hazard, assigned to you via <a href="<?php echo base_url(); ?>">UTS iAuditor Action Tracker</a> has been assigned to you. </p>
                 <p class="text-primary strong">
-                A summary of the hazard follows:
+                    A summary of the hazard follows:
 
-                    <table class="table">
-                        <tr><td class="text-right strong">Reference number: </td>           <td class="text-left"><mark><?=$InspectionID?>-<?=$HazardID?></mark></td></tr>
-                        <tr><td class="text-right strong">Date the hazard was noticed:</td> <td class="text-left"><mark><?=$DateIdentified?></td></mark></tr>
-                        <tr><td class="text-right strong">Hazard identified by:</td>        <td class="text-left"><mark><?=$InspectorName?></td></mark></tr>
-                        <tr><td class="text-right strong">Description of the hazard:</td>   <td class="text-left"><mark><?=$Issue?> - NO</td></mark></tr>
-                        <tr><td class="text-right strong">Proposed action to fix this hazard is:</td><td class="text-left"><mark><?=$ProposedAction?>.</td></mark></tr>
+                <table class="table">
+                    <tr><td class="text-right strong">Reference number: </td>           <td class="text-left"><mark><?=$InspectionID?>-<?=$HazardID?></mark></td></tr>
+                    <tr><td class="text-right strong">Date the hazard was noticed:</td> <td class="text-left"><mark><?=$DateIdentified?></td></mark></tr>
+                    <tr><td class="text-right strong">Hazard identified by:</td>        <td class="text-left"><mark><?=$InspectorName?></td></mark></tr>
+                    <tr><td class="text-right strong">Area of Accountability:</td>      <td class="text-left"><mark><?=$AoA?></td></mark></tr>
+                    <tr><td class="text-right strong">Description of the hazard:</td>   <td class="text-left"><mark><?=$Issue?> - NO</td></mark></tr>
+                    <tr><td class="text-right strong">Location:</td>                    <td class="text-left"><mark><?=$Location?>.</td></mark></tr>
 
-                    </table>
+                </table>
 
 
                 </p>
                 <p>
-                Please log into <a href="<?php echo base_url(); ?>">iAuditor Action Tracker</a> using your UTS email and Action Tracker password (not your UTS password) and:
+                    Please log into <a href="<?php echo base_url(); ?>">iAuditor Action Tracker</a> using your UTS email and Action Tracker password (not your UTS password) and:
                 <ul>
-                    <li>Note Action Status as "Closed"  <strong>OR</strong></li>
-                    <li>Amend the "Completion Date" to date you expect this action will be completed.</li>
+                    <li>Nominate an appropriate corrective action to reduce the level of risk presented by the hazard</li>
+                    <li>Assign a priority</li>
+                    <li>Close the action when action is completed</li>
                 </ul>
                 </p>
-                <p class="text-primary strong">
-                You may also amend the reviewed action if necessary.</p>
-                <p>
 
-                Note: Please do not reply to this message. Replies to this message are routed to an unmonitored mailbox. If you have questions please email <a href="mailto:safetyandwellbeing@uts.edu.au?subject=Action Tracker">safetyandwellbeing@uts.edu.au</a> or call us on <strong>(02) 9514 1342</strong>.
+
+                    Note: Please do not reply to this message. Replies to this message are routed to an unmonitored mailbox. If you have questions please email <a href="mailto:safetyandwellbeing@uts.edu.au?subject=Action Tracker">safetyandwellbeing@uts.edu.au</a> or call us on <strong>(02) 9514 1342</strong>.
                 </p>
-</div>
+            </div>
 
 
 

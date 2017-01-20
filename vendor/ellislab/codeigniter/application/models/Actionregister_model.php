@@ -8,6 +8,8 @@ class Actionregister_model extends CI_Model
         // Call the CI_Model constructor
         parent::__construct();
         $this->load->database();
+        $this->load->model('Mail_model');
+        $this->load->model('Areaofaccountability_model');
     }
 
     public function getAR($userId=false){
@@ -244,6 +246,8 @@ class Actionregister_model extends CI_Model
             //$ret['inserts'] = $this->db->insert_batch('action_register', $inserts, true);
             foreach($inserts as $ins){
                 $this->db->insert('action_register', $ins);
+
+
             }
             $ret['inserts'] = count($inserts);
         }
@@ -258,7 +262,36 @@ class Actionregister_model extends CI_Model
             $ret['updates'] = count($updates);
         }
 
+
+
         return $ret;
+    }
+
+    public function sendMailForNew(){
+        $this->db->where('mail_sent', false);
+        $this->db->select('audits.*, action_register.*, audits.id as audit_pk');
+        $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
+        $query = $this->db->get('action_register');
+        $results = $query->result_array();
+        $updates = array();
+        $info = array();
+        foreach($results as $res) {
+            $ap = $this->Areaofaccountability_model->getUserforAoa($res['area_of_accountability']);
+            if($ap) {
+               $info[] = $this->Mail_model->item_assigned($ap, $res);
+            }
+            $inspector = $this->Areaofaccountability_model->getInspector($res['inspector_name']);
+            if($inspector) {
+                $info[] = $this->Mail_model->item_assigned($inspector, $res);
+            }
+            if($inspector || $ap){
+                $update['key'] = $res['key'];
+                $update['mail_sent'] = true;
+                $updates[] = $update;
+            }
+        }
+        $info['ar_updates'] = $this->upsertBatch($updates);
+        return $info;
     }
 
     public function getTotalMap(){
