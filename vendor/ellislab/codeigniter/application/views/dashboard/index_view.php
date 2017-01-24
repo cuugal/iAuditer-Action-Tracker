@@ -155,6 +155,10 @@
     });
 
 
+    //Hit Crontasks URL
+    console.log($.ajax('<?php echo site_url('Tools/cronTasks'); ?>'));
+
+
 </script>
 
 <style type="text/css">

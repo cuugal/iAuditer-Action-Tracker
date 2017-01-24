@@ -148,6 +148,14 @@ class User extends CI_Controller  {
 
     }
 
+    public function delete_user($userid){
+            $this->ion_auth->delete_user($userid);
+            $_SESSION['ar_message'] = 'User has been deleted';
+            $this->session->mark_as_flash('ar_message');
+            redirect('User');
+
+    }
+
     public function register()
     {
         if($this->ion_auth->is_admin()===FALSE)
@@ -172,14 +180,15 @@ class User extends CI_Controller  {
         {
             $first_name = $this->input->post('first_name');
             $last_name = $this->input->post('last_name');
-            $dataSet['iAuditor_Name'] = $this->input->post('iAuditor_Name');
+            $iAuditor_Name = $this->input->post('iAuditor_Name');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
 
             $additional_data = array(
                 'first_name' => $first_name,
                 'last_name' => $last_name,
-                'active'=>true
+                'active'=>true,
+                'iAuditor_Name' => $iAuditor_Name
             );
 
             $this->load->library('ion_auth');

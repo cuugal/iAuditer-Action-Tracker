@@ -18,6 +18,8 @@ class Dashboard extends Auth_Controller
             'completed'=>$this->task_model->getForUser($this->ion_auth->get_user_id(), 'Closed'));
 
         $this->load->view('dashboard/index_view', $data);
+
+
     }
 
 

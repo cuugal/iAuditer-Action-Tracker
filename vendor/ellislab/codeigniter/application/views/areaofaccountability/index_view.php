@@ -20,7 +20,7 @@
     <?php foreach ($dataSet as $i): ?>
 
         <tr>
-            <td><a class="btn btn-primary" href="AreaOfAccountability/editAoa/<?=$i['aoa_id']?>">View/Edit</a></td>
+            <td><a class="btn btn-primary" href="AreaOfAccountability/editAoa/<?=$i['aoa_id']?>">Edit</a></td>
 
             <td><?=$i['name']?></td>
             <td><?=$i['first_name']." ".$i['last_name']?></td>
