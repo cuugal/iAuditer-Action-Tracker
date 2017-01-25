@@ -200,5 +200,5 @@
         border-width: 2px;
         */
     }
-    </script>
+    </style>
 
