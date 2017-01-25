@@ -14,7 +14,7 @@
         <th>Issue</th>
         <th>Due Date</th>
         <th>Days Overdue</th>
-        <th>Residual Risk</th>
+        <th>Priority</th>
         <th>Action Status</th>
     </tr>
     </thead>
@@ -58,7 +58,7 @@
         <th>Issue</th>
         <th>Due Date</th>
         <th>Days Overdue</th>
-        <th>Residual Risk</th>
+        <th>Priority</th>
         <th>Action Status</th>
     </tr>
     </tfoot>
@@ -79,7 +79,7 @@
         <th>Issue</th>
         <th>Due Date</th>
         <th>Days Overdue</th>
-        <th>Residual Risk</th>
+        <th>Priority</th>
         <th>Action Status</th>
     </tr>
     </thead>
@@ -123,7 +123,7 @@
         <th>Issue</th>
         <th>Due Date</th>
         <th>Days Overdue</th>
-        <th>Residual Risk</th>
+        <th>Priority</th>
         <th>Action Status</th>
     </tr>
     </tfoot>
