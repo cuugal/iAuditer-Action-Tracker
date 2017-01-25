@@ -88,7 +88,7 @@
         return '<table class="table table-bordered" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
             '<tr>'+
             '<td class="text-right strong">Date:</td>'+
-            '<td class="text-left">'+d.created_at+'</td>'+
+            '<td class="text-left">'+ moment( d.created_at).format('DD/MM/YYYY')+'</td>'+
             '</tr>'+
             '<tr>'+
             '<td class="text-right strong">Source:</td>'+
@@ -104,7 +104,7 @@
             '</tr>'+
             '<tr>'+
             '<td class="text-right strong">Issue:</td>'+
-            '<td class="text-left">'+d.issue+'</td>'+
+            '<td class="text-left">'+d.issue+'<b> - No</b></td>'+
             '</tr>'+
             '<tr>'+
             '<td class="text-right strong">Proposed Action:</td>'+
