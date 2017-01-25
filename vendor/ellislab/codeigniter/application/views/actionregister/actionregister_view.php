@@ -71,8 +71,9 @@ echo $this->form_builder->build_form_horizontal(
         ),
         array(
             'id' => 'issue',
+            'type'=>'textarea',
             'label' => 'Issue',
-            'value' => $dataSet['issue'],
+            'value' => $dataSet['issue'].' - NO',
             'readonly' => 'readonly',
         ),
         array(
@@ -215,9 +216,10 @@ echo $this->form_builder->close_form();
                 ),
                 array(/* RADIO */
                     'id' => 'residual_risk',
-                    'label' => 'Priority',
+                    'label' => 'Residual Risk',
                     'type' => 'radio',
                     'req'=>true,
+
                     'options' => array(
                         array(
                             'id' => 'radio_button_high',
@@ -239,6 +241,7 @@ echo $this->form_builder->close_form();
                             'label' => 'Low',
                             'checked' => $dataSet['residual_risk'] == 'Low' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
+                            'class'=>'priority',
                         ),
 
                     )
@@ -275,7 +278,7 @@ echo $this->form_builder->close_form();
                 ),
                 array(
                     'id' => 'completion_date',
-                    'label' => 'Completion Date',
+                    'label' => 'Completion Due Date',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
                     'value' => (isset($dataSet['completion_date']) ? date("d/m/Y", strtotime($dataSet['completion_date'])) : date("d/m/Y")) ,
@@ -325,6 +328,9 @@ echo $this->form_builder->close_form();
             else{
                 $('#reviewed_action').prop('readonly', true);
             }
+
+            //insert hep text as the 'help' doesn't work with Radios
+            $( "<span class='help-block' style='clear:both'>Residual risk is risk level after the issue has been fixed.</span>" ).insertAfter($(".priority").closest(".radio-inline") );
         });
     </script>
 
