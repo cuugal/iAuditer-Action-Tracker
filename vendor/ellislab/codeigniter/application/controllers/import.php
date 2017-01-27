@@ -30,7 +30,7 @@ class Import extends Auth_Controller
         $url = 'https://api.safetyculture.io/templates/search?field=template_id&field=name';
         $client = new Guzzle\Http\Client();
         $client->setDefaultOption('headers', array(
-            'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
+            'Authorization' => $this->config->item('authorisation'),
         ));
         $request = $client->get($url);
         $res = $request->send();

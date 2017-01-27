@@ -41,10 +41,10 @@ class Inspection extends CI_Controller {
         //If here, it means we've not yet done the initial load
         else if(!$mostRecent){
             // Get templates
-            $url = 'https://api.safetyculture.io/templates/search?field=template_id&field=name';
+            $url = $this->config->item('template_url');
             $client = new Guzzle\Http\Client();
             $client->setDefaultOption('headers', array(
-                'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
+                'Authorization' => $this->config->item('authorisation'),
             ));
             $request = $client->get($url);
             $res = $request->send();
@@ -82,7 +82,7 @@ class Inspection extends CI_Controller {
             $url = 'https://api.safetyculture.io/audits/' . $audit_id . '/export?format=pdf&timezone=Australia/Sydney';
             $client = new Guzzle\Http\Client();
             $client->setDefaultOption('headers', array(
-                'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
+                'Authorization' => $this->config->item('authorisation'),
             ));
             $request = $client->post($url);
             $res = $request->send();
@@ -98,7 +98,7 @@ class Inspection extends CI_Controller {
             $url = 'https://api.safetyculture.io/audits/'.$audit_id.'/exports/'.$request_id;
             $client = new Guzzle\Http\Client();
             $client->setDefaultOption('headers', array(
-                'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
+                'Authorization' => $this->config->item('authorisation'),
             ));
             $request = $client->get($url);
             $res = $request->send();
@@ -124,7 +124,7 @@ class Inspection extends CI_Controller {
 
                 $client = new Guzzle\Http\Client();
                 $client->setDefaultOption('headers', array(
-                    'Authorization' => 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5',
+                    'Authorization' => $this->config->item('authorisation'),
                 ));
                 $request = $client->get($url);
 
