@@ -1,7 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 <br/>
-
+<span style="float:right">
+<strong style="display:inline-block">Filter:</strong>
+<select id="multi-table-filter">
+    <option>All</option>
+    <option>Open/In Progress Only</option>
+</select>
+    </span>
 <?php foreach ($dataSet as $data): ?>
 
 
@@ -82,7 +88,6 @@
 
 <script type="text/javascript">
 
-    /* Formatting function for row details - modify as you need */
     function format ( d ) {
         // `d` is the original data object for the row
         return '<table class="table table-bordered" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
@@ -118,10 +123,10 @@
 
      $(document).ready(function() {
 
-            $('.table').DataTable({
+             var api = $('.action_register').DataTable({
                 "order": [[1, "desc"]],
                 "paging":   false,
-                "searching": false,
+
                 columnDefs: [ {
                     targets: [3,4],
                     render: $.fn.dataTable.render.ellipsis( 90, true )
@@ -137,9 +142,40 @@
                         $(row).addClass('low');
                     }
                 },
-            });
 
-        });
+
+            });
+         yadcf.init(api, [{
+             column_number: [7],
+             filter_type: "select",
+             select_type: 'chosen'
+         }]);
+
+
+
+         $("#multi-table-filter").chosen({
+             "disable_search": true
+         });
+
+         $('#multi-table-filter').on('change', function(event, params) {
+             //console.log(this.value);
+             if(this.value == 'All') {
+                 //console.log("supposedly unfiltering");
+                 $.fn.dataTable.tables({api: true}).columns(7).search('').draw();
+             }
+             else{
+                 //console.log("supposedly filtering");
+                 //api.column(7).search('Open').draw();
+                 $.fn.dataTable.tables( { api: true } ).columns(7).search('\\b'+'(Open|In Progress)'+'\\b',true,false,false).draw();
+             }
+         });
+
+     });
+
+
+
+
+
 
 
     // Add event listener for opening and closing details
@@ -177,28 +213,15 @@
 <style type="text/css">
     .action_register > tbody > tr.high td.priority{
         background-color: #ff9000;
-        /*
-    border-style: solid;
-        border-color: #ff9000;
-        border-width: 2px;
-        */
     }
     .action_register > tbody > tr.medium td.priority{
-
         background-color: #f5d328;
-        /*
-        border-style: solid;
-        border-color: #f5d328;
-        border-width: 2px;
-        */
     }
     .action_register > tbody > tr.low td.priority{
         background-color: #70bf41;
-
-        /*border-style: solid;
-        border-color: #70bf41;
-        border-width: 2px;
-        */
+    }
+    .dataTables_filter{
+        display:none;
     }
     </style>
 

@@ -70,6 +70,7 @@
 
 
         } );
+        //console.log(table.table());
         yadcf.init(table, [{
             column_number: 3,
             filter_type: "multi_select",

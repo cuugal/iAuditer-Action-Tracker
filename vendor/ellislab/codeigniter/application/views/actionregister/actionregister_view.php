@@ -216,7 +216,7 @@ echo $this->form_builder->close_form();
                 ),
                 array(/* RADIO */
                     'id' => 'residual_risk',
-                    'label' => 'Residual Risk',
+                    'label' => 'Priority',
                     'type' => 'radio',
                     'req'=>true,
 
@@ -330,7 +330,7 @@ echo $this->form_builder->close_form();
             }
 
             //insert hep text as the 'help' doesn't work with Radios
-            $( "<span class='help-block' style='clear:both'>Residual risk is risk level after the issue has been fixed.</span>" ).insertAfter($(".priority").closest(".radio-inline") );
+            $( "<span class='help-block' style='clear:both'>Priority is risk level after the issue has been fixed.</span>" ).insertAfter($(".priority").closest(".radio-inline") );
         });
     </script>
 
