@@ -145,11 +145,7 @@
 
 
             });
-         yadcf.init(api, [{
-             column_number: [7],
-             filter_type: "select",
-             select_type: 'chosen'
-         }]);
+       
 
 
 
