@@ -115,8 +115,8 @@ echo $this->form_builder->close_form();
         <?php
         $firstRun = true;
         foreach($media as $m): ?>
-        <div class="item <?=($firstRun)?'active':'';?>">
-            <img src="<?=base_url();?>tmp/<?=$m;?>" alt="<?=$m;?>">
+        <div class="item myCarouselImg <?=($firstRun)?'active':'';?>">
+            <img class="myCarouselImg" src="<?=base_url();?>tmp/<?=$m;?>" alt="<?=$m;?>">
         </div>
             <?php $firstRun = false; ?>
         <?php endforeach;?>
@@ -214,6 +214,14 @@ echo $this->form_builder->close_form();
                     ($isOpen) ? '':  'disabled'=>'disabled',
 
                 ),
+                array(
+                    'id' => 'justification',
+                    'label' => 'Justification',
+                    'value' => $dataSet['justification'],
+                    'req'=>true,
+                    ($isOpen) ? '':  'disabled'=>'disabled',
+
+                ),
                 array(/* RADIO */
                     'id' => 'residual_risk',
                     'label' => 'Priority',
@@ -222,26 +230,36 @@ echo $this->form_builder->close_form();
 
                     'options' => array(
                         array(
-                            'id' => 'radio_button_high',
+
+                            'class'=>'residual_risk riskhigh',
                             'value' => 'High',
                             'label' => 'High',
                             'checked' => $dataSet['residual_risk'] == 'High' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
                         array(
-                            'id' => 'radio_button_medium',
+
+                            'class'=>'residual_risk riskmed',
                             'value' => 'Medium',
                             'label' => 'Medium',
                             'checked' => $dataSet['residual_risk'] == 'Medium' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
                         array(
-                            'id' => 'radio_button_low',
+
+                            'class'=>'residual_risk risklow',
                             'value' => 'Low',
                             'label' => 'Low',
                             'checked' => $dataSet['residual_risk'] == 'Low' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
-                            'class'=>'priority',
+                        ),
+                        array(
+
+                            'class'=>'residual_risk priority riskna',
+                            'value' => 'N/A',
+                            'label' => 'N/A',
+                            'checked' => $dataSet['residual_risk'] == 'N/A' ? true: false,
+                            ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
 
                     )
@@ -253,21 +271,21 @@ echo $this->form_builder->close_form();
                     (!$isAccountable) ? '':'req'=>true,
                     'options' => array(
                         array(
-                            'id' => 'radio_button_open',
+                            'class' => 'statusopen',
                             'value' => 'Open',
                             'label' => 'Open',
                             'checked' => $dataSet['action_status'] == 'Open' ? true: false,
                             ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
                         array(
-                            'id' => 'radio_button_progress',
+                            'class' => 'statusprog',
                             'value' => 'In Progress',
                             'label' => 'In Progress',
                             'checked' => $dataSet['action_status'] == 'In Progress' ? true: false,
                             ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
                         array(
-                            'id' => 'radio_button_closed',
+                            'class' => 'statusclosed',
                             'value' => 'Closed',
                             'label' => 'Closed',
                             'checked' => $dataSet['action_status'] == 'Closed' ? true: false,
@@ -281,7 +299,7 @@ echo $this->form_builder->close_form();
                     'label' => 'Completion Due Date',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
-                    'value' => (isset($dataSet['completion_date']) ? date("d/m/Y", strtotime($dataSet['completion_date'])) : date("d/m/Y")) ,
+                    //'value' => (isset($dataSet['completion_date']) ? date("d/m/Y", strtotime($dataSet['completion_date'])) : date("d/m/Y")) ,
                     ($isAccountable && $isOpen) ? '' :  'disabled'=>'disabled',
                 ),
                 array(
@@ -306,31 +324,129 @@ echo $this->form_builder->close_form();
         ?>
     </div>
     <script type="text/javascript">
+
+
+        //Sets the default date to the correct timestamp
+        $('.residual_risk').click(function() {
+            //console.log(this.value);
+            var today = new Date();
+
+
+            if (this.value == 'High'){
+                var new_date = moment(today).add(1, 'days').format('DD/MM/YYYY');
+                $('#completion_date').val(new_date);
+            }
+            else if(this.value == 'Medium'){
+                var new_date = moment(today).add(1, 'week').format('DD/MM/YYYY');
+                $('#completion_date').val(new_date);
+            }
+            else if(this.value == 'Low'){
+                var new_date = moment(today).add(1, 'month').format('DD/MM/YYYY');
+                $('#completion_date').val(new_date);
+            }
+            else{
+                $('#completion_date').val('');
+            }
+        });
+
+
+        //add disabled attribute to readonly radio fields (cant be done with form builder)
         $(':radio[readonly]:not(:checked)').attr('disabled', true);
 
 
-            $('.action_required').click(function() {
-                if (this.value == 'Yes'){
-                    $('#reviewed_action').prop('readonly', false);
-                }
-                else{
-                    $('#reviewed_action').prop('readonly', true);
-                }
-            });
+        //if action is required, then make reviewed action editable
+        //alter presentation of 'justification' field
 
-        $( document ).ready(function() {
-
-
-            if ($('[name="action_required"]:checked').val() == 'Yes'){
-
+        $('.action_required').click(function() {
+            if (this.value == 'Yes'){
                 $('#reviewed_action').prop('readonly', false);
+                $('#justification').prop('readonly', true);
+                // Priority
+                $('.riskna').prop('disabled', true);
+                $('.risklow').prop('disabled', false);
+                $('.riskmed').prop('disabled', false);
+                $('.riskhigh').prop('disabled', false);
+                //set the value so it makes sense
+                $("input[name=residual_risk][value='High']").prop('checked', true);
+
+                //Status
+                $('.statusopen').prop('disabled', false);
+                $('.statusprog').prop('disabled', false);
+                //set the value so it makes sense
+                $("input[name=action_status][value='Open']").prop('checked', true);
+
+                //completion date as per spec
+                $('#completion_date').prop('readonly', false);
             }
             else{
                 $('#reviewed_action').prop('readonly', true);
+                $('#justification').prop('readonly', false);
+
+                //Priority
+                $('.riskna').prop('disabled', false);
+                $('.risklow').prop('disabled', true);
+                $('.riskmed').prop('disabled', true);
+                $('.riskhigh').prop('disabled', true);
+                //set the value so it makes sense
+                $("input[name=residual_risk][value='N/A']").prop('checked', true);
+
+
+                //Status
+                $('.statusopen').prop('disabled', true);
+                $('.statusprog').prop('disabled', true);
+                //set the value so it makes sense
+                $("input[name=action_status][value='Closed']").prop('checked', true);
+
+                //Don't need completion date as per spec
+                $('#completion_date').prop('readonly', true);
+            }
+        });
+
+
+        $( document ).ready(function() {
+
+            //if action is requied on form load, update values accordingly
+            if ($('[name="action_required"]:checked').val() == 'Yes'){
+
+                $('#reviewed_action').prop('readonly', false);
+                $('#justification').prop('readonly', true);
+                // Priority
+                $('.riskna').prop('disabled', true);
+                $('.risklow').prop('disabled', false);
+                $('.riskmed').prop('disabled', false);
+                $('.riskhigh').prop('disabled', false);
+
+
+                //Status
+                $('.statusopen').prop('disabled', false);
+                $('.statusprog').prop('disabled', false);
+
+                //completion date as per spec
+                $('#completion_date').prop('readonly', false);
+            }
+            else{
+                $('#reviewed_action').prop('readonly', true);
+                $('#justification').prop('readonly', false);
+                // Priority
+                $('.riskna').prop('disabled', false);
+                $('.risklow').prop('disabled', true);
+                $('.riskmed').prop('disabled', true);
+                $('.riskhigh').prop('disabled', true);
+
+
+                //Status
+                $('.statusopen').prop('disabled', true);
+                $('.statusprog').prop('disabled', true);
+                
+                //Dont' need completion date as per spec
+                $('#completion_date').prop('readonly', true);
             }
 
-            //insert hep text as the 'help' doesn't work with Radios
+            //insert help text as the 'help' doesn't work with Radios
             $( "<span class='help-block' style='clear:both'>Priority is risk level after the issue has been fixed.</span>" ).insertAfter($(".priority").closest(".radio-inline") );
+
+
+
         });
     </script>
 
@@ -339,5 +455,11 @@ echo $this->form_builder->close_form();
 <style type="text/css">
     .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
         display: inline !important;
+    }
+    .myCarouselImg img {
+        width: auto !important;
+        height: 325px !important;
+        max-height: 325px !important;
+    }
 </style>
 

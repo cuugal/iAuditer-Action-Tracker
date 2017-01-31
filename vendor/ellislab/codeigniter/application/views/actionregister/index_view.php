@@ -141,11 +141,14 @@
                     else if (data[6] == 'Low') {
                         $(row).addClass('low');
                     }
+                    else if (data[6] == 'N/A') {
+                        $(row).addClass('na');
+                    }
                 },
 
 
             });
-       
+
 
 
 
@@ -154,14 +157,10 @@
          });
 
          $('#multi-table-filter').on('change', function(event, params) {
-             //console.log(this.value);
-             if(this.value == 'All') {
-                 //console.log("supposedly unfiltering");
+              if(this.value == 'All') {
                  $.fn.dataTable.tables({api: true}).columns(7).search('').draw();
              }
              else{
-                 //console.log("supposedly filtering");
-                 //api.column(7).search('Open').draw();
                  $.fn.dataTable.tables( { api: true } ).columns(7).search('\\b'+'(Open|In Progress)'+'\\b',true,false,false).draw();
              }
          });
@@ -215,6 +214,9 @@
     }
     .action_register > tbody > tr.low td.priority{
         background-color: #70bf41;
+    }
+    .action_register > tbody > tr.na td.priority {
+        background-color: #2A86B0
     }
     .dataTables_filter{
         display:none;

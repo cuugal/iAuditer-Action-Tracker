@@ -49,11 +49,16 @@ class ActionRegister extends Auth_Controller
             {
                 $this->form_validation->set_rules('reviewed_action', 'Reviewed Action', 'trim|required');
             }
+            else{
+                $this->form_validation->set_rules('justification', 'Justification', 'trim|required');
+            }
 
             $this->form_validation->set_rules('residual_risk', 'Priority', 'trim|required');
             if ($isAccountable) {
                 $this->form_validation->set_rules('action_status', 'Action Status', 'trim|required');
-                $this->form_validation->set_rules('completion_date', 'Completion Date', 'trim|required');
+                if($this->input->post('action_required') == 'Yes') {
+                    $this->form_validation->set_rules('completion_date', 'Completion Date', 'trim|required');
+                }
             }
         }
         else{

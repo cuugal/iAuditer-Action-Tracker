@@ -157,6 +157,9 @@
                 else if (data[6] == 'Low') {
                     $(row).addClass('low');
                 }
+                else if (data[6] == 'N/A') {
+                    $(row).addClass('na');
+                }
             }
 
         });
@@ -179,28 +182,19 @@
     }
     .dashboard > tbody > tr.high td.priority{
         background-color: #ff9000;
-        /*
-    border-style: solid;
-        border-color: #ff9000;
-        border-width: 2px;
-        */
+
     }
     .dashboard > tbody > tr.medium td.priority{
 
         background-color: #f5d328;
-        /*
-        border-style: solid;
-        border-color: #f5d328;
-        border-width: 2px;
-        */
+
     }
     .dashboard > tbody > tr.low td.priority{
         background-color: #70bf41;
 
-        /*border-style: solid;
-        border-color: #70bf41;
-        border-width: 2px;
-        */
+    }
+    .action_register > tbody > tr.na td.priority {
+        background-color: #2A86B0
     }
 </style>
 

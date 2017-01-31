@@ -171,7 +171,7 @@ class Actionregister_model extends CI_Model
     public function update($record){
 
         if(isset($record['completion_date'])){
-            //Have to remove the slashes, otherwise PHP thinks its an american date.  Thanks, Trump.
+            //Have to remove the slashes, otherwise PHP thinks its an american date.
             $record['completion_date'] = str_replace('/', '-', $record['completion_date']);
             $record['completion_date'] = date("Y-m-d", strtotime($record['completion_date']));
         }
@@ -186,6 +186,11 @@ class Actionregister_model extends CI_Model
         }
 
         if($record['action_status'] != 'Closed' && isset($record['completion_date'])){
+            //set the date
+            //If priority = high, then closed date is now + 1 day
+            //if priority = medium, now + 1 week
+            //if priority = low, now + 1 month
+
             $record['action_closed_date'] = $record['completion_date'];
         }
         else{
