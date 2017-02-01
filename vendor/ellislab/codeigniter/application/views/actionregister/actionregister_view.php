@@ -1,7 +1,17 @@
 <div class="row">
     <div class="">
     <h2>Details</h2>
+        <?php
+        function set_value_AA($field, $data) {
+            if (isset($_POST[$field]))
+            {
+                return $_POST[$field];
+            }
+            return $data[$field];
 
+        }
+
+        ?>
 
 <?= $this->form_builder->open_form(array('action' => ''));
 echo $this->form_builder->build_form_horizontal(
@@ -166,7 +176,7 @@ echo $this->form_builder->close_form();
                     'id' => 'proposed_action',
                     'label' => 'Proposed Action',
                     'class' => 'required',
-                    'value' => $dataSet['proposed_action'],
+                    'value' => set_value_AA('proposed_action',$dataSet),
                     'readonly' => 'readonly',
 
                 ),
@@ -183,7 +193,7 @@ echo $this->form_builder->close_form();
                             'class'=>'action_required',
                             'value' => 'Yes',
                             'label' => 'Yes',
-                            'checked' => ($dataSet['action_required'] == 'Yes'|| !isset($dataSet['action_required'])) ? true: false,
+                            'checked' => (set_value_AA('action_required',$dataSet) == 'Yes'|| !isset($dataSet['action_required'])) ? true: false,
                             ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
                         array(
@@ -191,7 +201,7 @@ echo $this->form_builder->close_form();
                             'class'=>'action_required',
                             'value' => 'No',
                             'label' => 'No',
-                            'checked' => $dataSet['action_required'] == 'No' ? true: false,
+                            'checked' => set_value_AA('action_required',$dataSet) == 'No' ? true: false,
                             ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
                         array(
@@ -199,7 +209,7 @@ echo $this->form_builder->close_form();
                             'class'=>'action_required',
                             'value' => 'Outside Supervisor\'s Control',
                             'label' => 'Outside Supervisor\'s Control',
-                            'checked' => $dataSet['action_required'] == 'Outside Supervisor\'s Control' ? true: false,
+                            'checked' => set_value_AA('action_required',$dataSet) == 'Outside Supervisor\'s Control' ? true: false,
                             ($isOpen) ? '':  'disabled'=>'disabled',
                         ),
 
@@ -208,7 +218,7 @@ echo $this->form_builder->close_form();
                 array(
                     'id' => 'reviewed_action',
                     'label' => 'Reviewed Action',
-                    'value' => $dataSet['reviewed_action'],
+                    'value' => set_value_AA('reviewed_action',$dataSet),
                     'req'=>true,
                     'help' => "Action Status will update to 'In Progress' once a Reviewed Action is proposed.",
                     ($isOpen) ? '':  'disabled'=>'disabled',
@@ -217,7 +227,7 @@ echo $this->form_builder->close_form();
                 array(
                     'id' => 'justification',
                     'label' => 'Justification',
-                    'value' => $dataSet['justification'],
+                    'value' => set_value_AA('justification',$dataSet),
                     'req'=>true,
                     ($isOpen) ? '':  'disabled'=>'disabled',
 
@@ -234,7 +244,7 @@ echo $this->form_builder->close_form();
                             'class'=>'residual_risk riskhigh',
                             'value' => 'High',
                             'label' => 'High',
-                            'checked' => $dataSet['residual_risk'] == 'High' ? true: false,
+                            'checked' => set_value_AA('residual_risk',$dataSet) == 'High' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
                         array(
@@ -242,7 +252,7 @@ echo $this->form_builder->close_form();
                             'class'=>'residual_risk riskmed',
                             'value' => 'Medium',
                             'label' => 'Medium',
-                            'checked' => $dataSet['residual_risk'] == 'Medium' ? true: false,
+                            'checked' => set_value_AA('residual_risk',$dataSet) == 'Medium' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
                         array(
@@ -250,7 +260,7 @@ echo $this->form_builder->close_form();
                             'class'=>'residual_risk risklow',
                             'value' => 'Low',
                             'label' => 'Low',
-                            'checked' => $dataSet['residual_risk'] == 'Low' ? true: false,
+                            'checked' => set_value_AA('residual_risk',$dataSet) == 'Low' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
                         array(
@@ -258,7 +268,7 @@ echo $this->form_builder->close_form();
                             'class'=>'residual_risk priority riskna',
                             'value' => 'N/A',
                             'label' => 'N/A',
-                            'checked' => $dataSet['residual_risk'] == 'N/A' ? true: false,
+                            'checked' => set_value_AA('residual_risk',$dataSet) == 'N/A' ? true: false,
                             ($isOpen) ? '':  'readonly' => 'readonly',
                         ),
 
@@ -274,21 +284,21 @@ echo $this->form_builder->close_form();
                             'class' => 'statusopen',
                             'value' => 'Open',
                             'label' => 'Open',
-                            'checked' => $dataSet['action_status'] == 'Open' ? true: false,
+                            'checked' => set_value_AA('action_status', $dataSet) == 'Open' ? true: false,
                             ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
                         array(
                             'class' => 'statusprog',
                             'value' => 'In Progress',
                             'label' => 'In Progress',
-                            'checked' => $dataSet['action_status'] == 'In Progress' ? true: false,
+                            'checked' => set_value_AA('action_status', $dataSet) == 'In Progress' ? true: false,
                             ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
                         array(
                             'class' => 'statusclosed',
                             'value' => 'Closed',
                             'label' => 'Closed',
-                            'checked' => $dataSet['action_status'] == 'Closed' ? true: false,
+                            'checked' => set_value_AA('action_status', $dataSet) == 'Closed' ? true: false,
                             ($isAccountable) ? '':  'readonly' => 'readonly',
                         ),
 
@@ -300,7 +310,7 @@ echo $this->form_builder->close_form();
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
 
-                    'value' => (isset($dataSet['completion_date']) &&  $dataSet['completion_date'] != '' ? date("d/m/Y", strtotime($dataSet['completion_date'])) : date("d/m/Y")) ,
+                    'value' => ((set_value_AA('completion_date', $dataSet)) != '' ? date("d/m/Y", strtotime(set_value_AA('completion_date', $dataSet))) : date("d/m/Y")) ,
                     ($isAccountable && $isOpen) ? '' :  'disabled'=>'disabled',
                 ),
                 array(
