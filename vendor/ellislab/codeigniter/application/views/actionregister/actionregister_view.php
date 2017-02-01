@@ -299,7 +299,8 @@ echo $this->form_builder->close_form();
                     'label' => 'Completion Due Date',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
-                    //'value' => (isset($dataSet['completion_date']) ? date("d/m/Y", strtotime($dataSet['completion_date'])) : date("d/m/Y")) ,
+
+                    'value' => (isset($dataSet['completion_date']) &&  $dataSet['completion_date'] != '' ? date("d/m/Y", strtotime($dataSet['completion_date'])) : date("d/m/Y")) ,
                     ($isAccountable && $isOpen) ? '' :  'disabled'=>'disabled',
                 ),
                 array(
@@ -307,9 +308,10 @@ echo $this->form_builder->close_form();
                     'label' => 'Action Closed On',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
-                    'value' => (isset($dataSet['action_closed_date']) ? date("d/m/Y", strtotime($dataSet['action_closed_date'])): date("d/m/Y")) ,
+                    //'value' => (isset($dataSet['action_closed_date']) ? date("d/m/Y", strtotime($dataSet['action_closed_date'])): date("d/m/Y")) ,
+                    'value' => (isset($dataSet['action_closed_date']) && $dataSet['action_closed_date'] != '' ? date("d/m/Y", strtotime($dataSet['action_closed_date'])): '') ,
                     'disabled'=>true,
-                    'help' => 'Action Closed date defaults to the completion date if the status is in progress, and the date closed if the status is closed.',
+                    //'help' => 'Action Closed date defaults to the completion date if the status is in progress, and the date closed if the status is closed.',
                 ),
                 array(/* SUBMIT */
                     'id' => 'submit',
@@ -361,25 +363,27 @@ echo $this->form_builder->close_form();
             if (this.value == 'Yes'){
                 $('#reviewed_action').prop('readonly', false);
                 $('#justification').prop('readonly', true);
+                $('#justification').val('');
                 // Priority
                 $('.riskna').prop('disabled', true);
                 $('.risklow').prop('disabled', false);
                 $('.riskmed').prop('disabled', false);
                 $('.riskhigh').prop('disabled', false);
                 //set the value so it makes sense
-                $("input[name=residual_risk][value='High']").prop('checked', true);
+                $("input[name=residual_risk][value='N/A']").prop('checked', false);
 
                 //Status
                 $('.statusopen').prop('disabled', false);
                 $('.statusprog').prop('disabled', false);
                 //set the value so it makes sense
-                $("input[name=action_status][value='Open']").prop('checked', true);
+                $("input[name=action_status][value='Closed']").prop('checked', false);
 
                 //completion date as per spec
                 $('#completion_date').prop('readonly', false);
             }
             else{
                 $('#reviewed_action').prop('readonly', true);
+                $('#reviewed_action').val('');
                 $('#justification').prop('readonly', false);
 
                 //Priority
@@ -437,7 +441,7 @@ echo $this->form_builder->close_form();
                 //Status
                 $('.statusopen').prop('disabled', true);
                 $('.statusprog').prop('disabled', true);
-                
+
                 //Dont' need completion date as per spec
                 $('#completion_date').prop('readonly', true);
             }

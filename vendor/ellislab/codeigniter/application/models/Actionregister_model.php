@@ -185,16 +185,12 @@ class Actionregister_model extends CI_Model
 
         }
 
-        if($record['action_status'] != 'Closed' && isset($record['completion_date'])){
+        if($record['action_status'] == 'Closed' && isset($record['completion_date'])){
             //set the date
-            //If priority = high, then closed date is now + 1 day
-            //if priority = medium, now + 1 week
-            //if priority = low, now + 1 month
-
-            $record['action_closed_date'] = $record['completion_date'];
-        }
-        else{
+            //$record['action_closed_date'] = $record['completion_date'];
             $record['action_closed_date'] = date("Y-m-d");
+
+            //$record['action_closed_date'] = date("Y-m-d");
             //close tasks
             $this->load->model('task_model');
             $this->task_model->closeTasks($record['id']);
