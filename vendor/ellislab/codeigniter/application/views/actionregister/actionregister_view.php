@@ -383,8 +383,8 @@ echo $this->form_builder->close_form();
                 $("input[name=residual_risk][value='N/A']").prop('checked', false);
 
                 //Status
-                $('.statusopen').prop('disabled', false);
-                $('.statusprog').prop('disabled', false);
+                //$('.statusopen').prop('disabled', false);
+                //$('.statusprog').prop('disabled', false);
                 //set the value so it makes sense
                 $("input[name=action_status][value='Closed']").prop('checked', false);
 
@@ -406,8 +406,8 @@ echo $this->form_builder->close_form();
 
 
                 //Status
-                $('.statusopen').prop('disabled', true);
-                $('.statusprog').prop('disabled', true);
+                //$('.statusopen').prop('disabled', true);
+                //$('.statusprog').prop('disabled', true);
                 //set the value so it makes sense
                 $("input[name=action_status][value='Closed']").prop('checked', true);
 
@@ -432,8 +432,8 @@ echo $this->form_builder->close_form();
 
 
                 //Status
-                $('.statusopen').prop('disabled', false);
-                $('.statusprog').prop('disabled', false);
+                //$('.statusopen').prop('disabled', false);
+                //$('.statusprog').prop('disabled', false);
 
                 //completion date as per spec
                 $('#completion_date').prop('readonly', false);
@@ -449,15 +449,15 @@ echo $this->form_builder->close_form();
 
 
                 //Status
-                $('.statusopen').prop('disabled', true);
-                $('.statusprog').prop('disabled', true);
+                //$('.statusopen').prop('disabled', true);
+                //$('.statusprog').prop('disabled', true);
 
                 //Dont' need completion date as per spec
                 $('#completion_date').prop('readonly', true);
             }
 
             //insert help text as the 'help' doesn't work with Radios
-            $( "<span class='help-block' style='clear:both'>Priority is risk level after the issue has been fixed.</span>" ).insertAfter($(".priority").closest(".radio-inline") );
+            $("<span class='help-block' style='clear:both'>Priority is risk level after the issue has been fixed.</span>" ).insertAfter($(".priority").closest(".radio-inline") );
 
 
 
