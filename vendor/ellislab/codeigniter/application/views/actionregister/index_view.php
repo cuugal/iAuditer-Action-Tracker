@@ -42,7 +42,8 @@
     <?php foreach($data as $i):?>
         <tr>
             <td width="130px">
-                <input type="hidden" class="data" id="data<?=$i['au_id']?>-<?=$i['ar_id']?>" value='<?=json_encode($i);?>'/>
+                <input type="hidden" class="data" id="data<?=$i['au_id']?>-<?=$i['ar_id']?>" value='<?=json_encode($i,JSON_HEX_APOS);?>'/>
+                <div style="display:none"><?=json_encode($i, JSON_HEX_APOS);?></div>
                 <a class="btn btn-primary" href="ActionRegister/request/<?=$i['key']?>">Edit</a>
                 <a class="btn btn-primary moretoggle" id="btn<?=$i['au_id']?>-<?=$i['ar_id']?>" >More</a>
             </td>
