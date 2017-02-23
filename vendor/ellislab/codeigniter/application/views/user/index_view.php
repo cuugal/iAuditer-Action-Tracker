@@ -21,32 +21,34 @@
         </tr>
         </thead>
         <tbody>
-<?php foreach ($dataSet as $i): ?>
 
-<tr>
-    <td style="width:130px"><a class="btn btn-primary" style="float:left" href="User/edit/<?=$i['user_id']?>">Edit</a>
+<?php foreach($dataSet as $i): ?>
+
+    <tr>
+        <td style="width:130px"><a class="btn btn-primary" style="float:left" href="User/edit/<?=$i['user_id']?>">Edit</a>
 
 
-        <a
-            class="btn btn-primary <?php if($i['user_id'] == $this->ion_auth->get_user_id()):?>disabled<? endif;?>"
-            data-toggle="confirmation"
-            data-btn-ok-label="Delete" data-btn-ok-icon="glyphicon glyphicon-share-alt"
-            data-btn-ok-class="btn-success"
-            data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-            data-btn-cancel-class="btn-danger"
-            data-title="Warning" data-content="This will delete this User"
-            href="User/delete_user/<?=$i['user_id']?>">Delete</a></td>
+            <a
+                class="btn btn-primary <?php if($i['user_id'] == $this->ion_auth->get_user_id()): ?>disabled <?php endif;?>"
+                data-toggle="confirmation"
+                data-btn-ok-label="Delete" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                data-btn-ok-class="btn-success"
+                data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                data-btn-cancel-class="btn-danger"
+                data-title="Warning" data-content="This will delete this User"
+                href="User/delete_user/<?=$i['user_id']?>">Delete</a></td>
 
-    </td>
-    <td><?=$i['first_name']?></td>
-    <td><?=$i['last_name']?></td>
-    <td><?=$i['email']?></td>
-    <td><?=isset($i['last_login']) ? date("Y-m-d H:i:s", $i['last_login']) : '';?></td>
-    <td><?=$i['aoa']?></td>
-    <td><?=$i['rp']?></td>
-    <td><?=$i['iAuditor_Name']?></td>
-    <td><?=$i['description']?></td>
-</tr>
+        </td>
+
+        <td><?=$i['first_name']?></td>
+        <td><?=$i['last_name']?></td>
+        <td><?=$i['email']?></td>
+        <td><?= isset($i['last_login']) ? date("Y-m-d H:i:s", $i['last_login']) : ''; ?></td>
+        <td><?=$i['aoa']?></td>
+        <td><?=$i['rp']?></td>
+        <td><?=$i['iAuditor_Name']?></td>
+        <td><?=$i['description']?></td>
+    </tr>
     <?php endforeach; ?>
         </tbody>
         <tfoot>

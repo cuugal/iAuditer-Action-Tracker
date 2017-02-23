@@ -282,8 +282,8 @@ class Actionregister_model extends CI_Model
                $info['ap_mail'][] = $this->Mail_model->item_assigned($ap, $res);
             }
             $inspector = $this->Areaofaccountability_model->getInspector($res['inspector_name']);
-            if($inspector) {
-                $info['inspector_mail'] = $this->Mail_model->item_assigned($inspector, $res);
+            if($inspector && $inspector != $ap) {
+                $info['inspector_mail'][] = $this->Mail_model->item_assigned($inspector, $res);
             }
             if($inspector || $ap){
                 $update['key'] = $res['key'];

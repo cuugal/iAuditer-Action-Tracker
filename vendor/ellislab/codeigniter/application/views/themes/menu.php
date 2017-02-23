@@ -49,13 +49,7 @@
                                   </li>
                                   <li class="divider"></li>
 
-                                 <?/*
-                                  <li>
-                                      <a class="page-scroll" href="<?php echo site_url('Location'); ?>">Location</a>
-                                  </li>
 
-                                  <li class="divider"></li>
-*/?>
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Aoa_rp'); ?>">Responsible Person/s</a>
                                   </li>

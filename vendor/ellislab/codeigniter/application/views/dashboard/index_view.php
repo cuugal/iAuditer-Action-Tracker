@@ -10,6 +10,7 @@
     <tr>
         <th>&nbsp;</th>
         <th>Inspection ID <br/>- Hazard ID</th>
+        <th>AoA</th>
         <th>Location</th>
         <th>Issue</th>
         <th>Due Date</th>
@@ -26,6 +27,7 @@
                 <a class="btn btn-primary" href="ActionRegister/request/<?=$i['item_id'].$i['audit']?>">Open</a>
             </td>
             <td width="120px"><?=$i['au_id']?> - <?=$i['ar_id']?></td>
+            <td><?=$i['area_of_accountability']?></td>
             <td><?=$i['location']?></td>
             <td><?=$i['issue']?><b> - No</b></td>
 
@@ -54,6 +56,7 @@
     <tr>
         <th>&nbsp;</th>
         <th>Inspection ID <br/>- Hazard ID</th>
+        <th>AoA</th>
         <th>Location</th>
         <th>Issue</th>
         <th>Due Date</th>
@@ -75,6 +78,7 @@
     <tr>
         <th>&nbsp;</th>
         <th>Inspection ID <br/>- Hazard ID</th>
+        <th>AoA</th>
         <th>Location</th>
         <th>Issue</th>
         <th>Due Date</th>
@@ -91,6 +95,7 @@
                 <a class="btn btn-primary" href="ActionRegister/request/<?=$i['item_id'].$i['audit']?>">Open</a>
             </td>
             <td width="120px"><?=$i['au_id']?> - <?=$i['ar_id']?></td>
+            <td><?=$i['area_of_accountability']?></td>
             <td><?=$i['location']?></td>
             <td><?=$i['issue']?><b> - No</b></td>
 
@@ -119,6 +124,7 @@
     <tr>
         <th>&nbsp;</th>
         <th>Inspection ID <br/>- Hazard ID</th>
+        <th>AoA</th>
         <th>Location</th>
         <th>Issue</th>
         <th>Due Date</th>

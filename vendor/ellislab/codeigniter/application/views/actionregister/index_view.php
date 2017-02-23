@@ -130,8 +130,8 @@
 
                 columnDefs: [ {
                     targets: [3,4],
-                    render: $.fn.dataTable.render.ellipsis( 90, true )
-                } ],
+                    render: $.fn.dataTable.render.ellipsis( 90, true ),
+                }],
                 "createdRow": function( row, data, dataIndex ) {
                     if (data[6] == 'High') {
                         $(row).addClass('high');
