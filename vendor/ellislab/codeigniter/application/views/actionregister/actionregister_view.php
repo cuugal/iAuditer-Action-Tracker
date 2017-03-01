@@ -35,9 +35,15 @@ echo $this->form_builder->build_form_horizontal(
             'readonly' => 'readonly',
         ),
         array(
-            'id' => 'source',
-            'label' => 'Source',
-            'value' => $dataSet['source'],
+            'id' => 'name',
+            'label' => 'Name',
+            'value' => $dataSet['name'],
+            'readonly' => 'readonly',
+        ),
+        array(
+            'id' => 'description',
+            'label' => 'Description',
+            'value' => $dataSet['description'],
             'readonly' => 'readonly',
         ),
         array(

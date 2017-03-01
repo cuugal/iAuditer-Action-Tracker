@@ -85,6 +85,8 @@ class Audits_model extends CI_Model {
                 $audit['modified_at'] = $d->format('Y-m-d H:i:s');
 
                 $audit['description'] = $audit_data['template_data']['metadata']['description'];
+                $audit['name'] = $audit_data['template_data']['metadata']['name'];
+
                 //Location
                 foreach ($audit_data['header_items'] as $header_item) {
                     if (strpos($header_item['label'], 'Location') !== false) {
