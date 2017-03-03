@@ -63,7 +63,7 @@
             ],
             columnDefs: [ {
                 targets: [2,6],
-                render:  $.fn.dataTable.render.moment( 'DD/MM/YYYY'),
+                render:  $.fn.dataTable.render.moment('DD/MM/YYYY'),
             } ],
 
             "order": [[ 6, "desc" ]]

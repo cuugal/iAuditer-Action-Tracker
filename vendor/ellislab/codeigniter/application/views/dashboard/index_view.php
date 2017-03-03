@@ -143,27 +143,27 @@
     $(document).ready(function() {
 
         $('.table').DataTable({
-            "order": [[4, "asc"],[5, "desc"]],
+            "order": [[5, "asc"],[6, "desc"]],
             "paging":   false,
             "searching": false,
             columnDefs: [{
-                targets: [4],
+                targets: [5],
                 render:  $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'),
             } ],
             "createdRow": function( row, data, dataIndex ) {
-                if ( data[5] > 7 ) {
+                if ( data[6] > 7 ) {
                     $(row).addClass( 'overdue' );
                 }
-                if (data[6] == 'High') {
+                if (data[7] == 'High') {
                     $(row).addClass('high');
                 }
-                else if (data[6] == 'Medium') {
+                else if (data[7] == 'Medium') {
                     $(row).addClass('medium');
                 }
-                else if (data[6] == 'Low') {
+                else if (data[7] == 'Low') {
                     $(row).addClass('low');
                 }
-                else if (data[6] == 'N/A') {
+                else if (data[7] == 'N/A') {
                     $(row).addClass('na');
                 }
             }

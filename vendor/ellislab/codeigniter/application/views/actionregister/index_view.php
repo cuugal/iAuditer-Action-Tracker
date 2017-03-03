@@ -97,8 +97,8 @@
             '<td class="text-left">'+ moment( d.created_at).format('DD/MM/YYYY')+'</td>'+
             '</tr>'+
             '<tr>'+
-            '<td class="text-right strong">Source:</td>'+
-            '<td class="text-left">'+d.source+'</td>'+
+            '<td class="text-right strong">Name:</td>'+
+            '<td class="text-left">'+d.name+'</td>'+
             '</tr>'+
             '<tr>'+
             '<td class="text-right strong">Inspector:</td>'+
