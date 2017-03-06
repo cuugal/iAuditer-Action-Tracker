@@ -74,16 +74,15 @@ class Mail_model extends CI_Model
 
         //$ar = $this->Actionregister_model->getRequest($key);
         //echo json_encode($ar);
-        $data['TaskDueDate'] = $ar['completion_date'];
-        $data['InspectionID'] = $ar['audit_pk'];
-        $data['HazardID'] = $ar['id'];
-        $data['DateIdentified'] = $ar['created_at'];
-        $data['AoA'] = $ar['area_of_accountability'];
-        $data['InspectorName'] = $ar['inspector_name'];
-        $data['Issue'] = $ar['issue'];
-        $data['ProposedAction'] = $ar['proposed_action'];
-        $data['Location'] = $ar['location'];
+        $data['InspectionType'] = $ar['name'];
+        $data['InspectionID'] = $ar['id'];
 
+        $data['DateIdentified']     = $ar['created_at'];
+        $data['AoA']                = $ar['area_of_accountability'];
+        $data['InspectorName']      = $ar['inspector_name'];
+        $data['Location']           = $ar['location'];
+        $data['Deficiencies']       = $ar['deficiencies'];
+        $data['TotalItems']         = $ar['totalitems'];
         $this->email->clear();
 
         $this->email->set_newline("\r\n");
@@ -102,10 +101,10 @@ class Mail_model extends CI_Model
 
         $sent = $this->email->send();
         if($sent) {
-            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['audit_pk'], 'Hazard' => $ar['id'], 'sent' => $sent);
+            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['id'], 'sent' => $sent);
         }
         else{
-            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['audit_pk'], 'Hazard' => $ar['id'], 'error' =>  $this->email->print_debugger());
+            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['id'], 'error' =>  $this->email->print_debugger());
 
         }
         return $r;

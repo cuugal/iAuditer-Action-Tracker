@@ -15,12 +15,15 @@ class Dashboard extends Auth_Controller
     function loadEmail(){
         $this->output->unset_template();
         $data = array('InspectionID' => '1234',
+            'InspectionType'=>'3456',
             'HazardID'=>'4567',
             'DateIdentified' => '12/12/2015',
             'InspectorName' => 'John Smith',
             'AoA' => 'Area',
             'Issue' => 'Electrical cables need to be inspected and tagged by a qualified technician',
             'Location' => 'Location',
+            'Deficiencies'=>'20',
+            'TotalItems'=>'25'
             );
         $this->load->view('emails/item_assigned', $data);
     }

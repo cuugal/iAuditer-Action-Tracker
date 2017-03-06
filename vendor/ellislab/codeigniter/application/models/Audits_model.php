@@ -519,15 +519,49 @@ class Audits_model extends CI_Model {
     }
 
 
-    public function tester($batch){
-        $auditids = array();
-        foreach($batch as $def) {
-            $auditids[] = $def['audit_id'];
-        }
-        return $auditids;
+    public function sendMailForNew(){
+        $this->db->where('mail_sent', false);
+        $query = $this->db->get('audits');
 
-        //$query = $this->db->get('audits');
-        //return $query->result_array();
+        $results = $query->result_array();
+        $total = $this->actionregister_model->getTotalMap();
+        $outstanding = $this->actionregister_model->getOutstandingMap();
+
+        foreach($results as &$res_lk) {
+            if (isset($outstanding[$res_lk['audit_id']])){
+                $res_lk['deficiencies'] = $outstanding[$res_lk['audit_id']];
+            }
+            else{
+                $res_lk['deficiencies'] = 0;
+            }
+            if (isset($total[$res_lk['audit_id']])){
+                $res_lk['totalitems']   = $total[$res_lk['audit_id']];
+            }
+            else{
+                $res_lk['totalitems'] = 0;
+            }
+
+        }
+
+        $updates = array();
+        $info = array();
+        foreach($results as $res) {
+            $ap = $this->Areaofaccountability_model->getUserforAoa($res['area_of_accountability']);
+            if($ap) {
+                $info['ap_mail'][] = $this->Mail_model->item_assigned($ap, $res);
+            }
+            $inspector = $this->Areaofaccountability_model->getInspector($res['inspector_name']);
+            if($inspector && $inspector != $ap) {
+                $info['inspector_mail'][] = $this->Mail_model->item_assigned($inspector, $res);
+            }
+            if($inspector || $ap){
+                $update['audit_id'] = $res['audit_id'];
+                $update['mail_sent'] = true;
+                $updates[] = $update;
+            }
+        }
+        $info['ar_updates'] = $this->upsertBatch($updates);
+        return $info;
     }
 
 }

@@ -50,12 +50,13 @@
                     A summary of the hazard follows:
 
                 <table class="table">
-                    <tr><td class="text-right strong">Reference number: </td>           <td class="text-left"><mark><?=$InspectionID?>-<?=$HazardID?></mark></td></tr>
-                    <tr><td class="text-right strong">Date the hazard was noticed:</td> <td class="text-left"><mark><?=$DateIdentified?></td></mark></tr>
-                    <tr><td class="text-right strong">Hazard identified by:</td>        <td class="text-left"><mark><?=$InspectorName?></td></mark></tr>
+                    <tr><td class="text-right strong">Reference number: </td>           <td class="text-left"><mark><?=$InspectionID?></mark></td></tr>
+                    <tr><td class="text-right strong">Inspection type:</td>             <td class="text-left"><mark><?=$InspectionType?></td></mark></tr>
+                    <tr><td class="text-right strong">Date of inspection:</td>          <td class="text-left"><mark><?=$DateIdentified?></td></mark></tr>
                     <tr><td class="text-right strong">Area of Accountability:</td>      <td class="text-left"><mark><?=$AoA?></td></mark></tr>
-                    <tr><td class="text-right strong">Description of the hazard:</td>   <td class="text-left"><mark><?=$Issue?> - NO</td></mark></tr>
-                    <tr><td class="text-right strong">Location:</td>                    <td class="text-left"><mark><?=$Location?>.</td></mark></tr>
+                    <tr><td class="text-right strong">Specific Location:</td>           <td class="text-left"><mark><?=$Location?>.</td></mark></tr>
+
+                    <tr><td class="text-right strong">Actions identified:</td>           <td class="text-left"><mark><?=$Deficiencies?>/<?=$TotalItems?></td></mark></tr>
 
                 </table>
 

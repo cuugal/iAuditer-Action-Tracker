@@ -103,19 +103,19 @@ class Task_model extends CI_Model
                 $this->db->insert('tasks', $ins);
                 //Send mail
                 $arkey = $ins['item_id'].$ins['audit'];
-                $mails[$ins['user'].'_'.$arkey] = $this->Mail_model->passed_completion($ins['user'],$arkey);
+
+                //Uncomment this, and the 'mails' comment below, to turn on automatic mail reminders again
+                //$mails[$ins['user'].'_'.$arkey] = $this->Mail_model->passed_completion($ins['user'],$arkey);
             }
             $ret['inserts'] = count($inserts);
-            $ret['mails'] = $mails;
+            //$ret['mails'] = $mails;
         }
         if (count($updates) > 0) {
-            //$ret['updates'] = $this->db->update_batch('action_register', $updates, 'key');
+
             foreach($updates as $upd){
                 $errors[] = $this->db->update('tasks', $upd, array('key' => $upd['key']));
 
             }
-            //echo "ERRORS:".json_encode($errors);
-            //echo json_encode($updates);
             $ret['updates'] = count($updates);
         }
 
