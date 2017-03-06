@@ -104,11 +104,10 @@ class Task_model extends CI_Model
                 //Send mail
                 $arkey = $ins['item_id'].$ins['audit'];
 
-                //Uncomment this, and the 'mails' comment below, to turn on automatic mail reminders again
-                //$mails[$ins['user'].'_'.$arkey] = $this->Mail_model->passed_completion($ins['user'],$arkey);
+                $mails[$ins['user'].'_'.$arkey] = $this->Mail_model->passed_completion($ins['user'],$arkey);
             }
             $ret['inserts'] = count($inserts);
-            //$ret['mails'] = $mails;
+            $ret['mails'] = $mails;
         }
         if (count($updates) > 0) {
 
