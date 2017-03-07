@@ -56,7 +56,7 @@
                     <tr><td class="text-right strong">Area of Accountability:</td>      <td class="text-left"><mark><?=$AoA?></td></mark></tr>
                     <tr><td class="text-right strong">Specific Location:</td>           <td class="text-left"><mark><?=$Location?>.</td></mark></tr>
 
-                    <tr><td class="text-right strong">Actions identified:</td>           <td class="text-left"><mark><?=$Deficiencies?>/<?=$TotalItems?></td></mark></tr>
+                    <tr><td class="text-right strong">Actions identified:</td>           <td class="text-left"><mark><?=$Deficiencies?></td></mark></tr>
 
                 </table>
 
