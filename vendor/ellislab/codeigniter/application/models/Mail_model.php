@@ -70,7 +70,9 @@ class Mail_model extends CI_Model
         return $r;
     }
 
-    public function item_assigned($id, $ar){
+
+
+    public function item_assigned($id, $ar, $type){
 
         //$ar = $this->Actionregister_model->getRequest($key);
         //echo json_encode($ar);
@@ -96,7 +98,12 @@ class Mail_model extends CI_Model
         //$this->email->to('alger.andrew@gmail.com');
         $this->email->subject($this->defaultAssignedSubject); // replace it with relevant subject
 
-        $body = $this->load->view('emails/item_assigned',$data, TRUE);
+        if($type == 'ins') {
+            $body = $this->load->view('emails/item_assigned_ins', $data, TRUE);
+        }
+        else if($type == 'ap'){
+            $body = $this->load->view('emails/item_assigned_ap', $data, TRUE);
+        }
         $this->email->message($body);
 
         $sent = $this->email->send();
