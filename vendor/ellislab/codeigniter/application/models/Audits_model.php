@@ -548,11 +548,11 @@ class Audits_model extends CI_Model {
         foreach($results as $res) {
             $ap = $this->Areaofaccountability_model->getUserforAoa($res['area_of_accountability']);
             if($ap) {
-                $info['ap_mail'][] = $this->Mail_model->item_assigned($ap, $res);
+                $info['ap_mail'][] = $this->Mail_model->item_assigned($ap, $res, 'ap');
             }
             $inspector = $this->Areaofaccountability_model->getInspector($res['inspector_name']);
             if($inspector && $inspector != $ap) {
-                $info['inspector_mail'][] = $this->Mail_model->item_assigned($inspector, $res);
+                $info['inspector_mail'][] = $this->Mail_model->item_assigned($inspector, $res, 'ins');
             }
             if($inspector || $ap){
                 $update['audit_id'] = $res['audit_id'];

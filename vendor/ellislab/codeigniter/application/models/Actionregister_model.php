@@ -279,7 +279,7 @@ class Actionregister_model extends CI_Model
         foreach($results as $res) {
             $ap = $this->Areaofaccountability_model->getUserforAoa($res['area_of_accountability']);
             if($ap) {
-               $info['ap_mail'][] = $this->Mail_model->item_assigned_ap($ap, $res, 'ap');
+               $info['ap_mail'][] = $this->Mail_model->item_assigned($ap, $res, 'ap');
             }
             $inspector = $this->Areaofaccountability_model->getInspector($res['inspector_name']);
             if($inspector && $inspector != $ap) {
