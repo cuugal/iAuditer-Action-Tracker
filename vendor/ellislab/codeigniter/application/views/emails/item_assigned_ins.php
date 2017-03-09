@@ -46,16 +46,16 @@
             <div class="col-md-12 col-lg-8">
 				<p>&nbsp</p>
                 <p class="lead">This is to acknowledge receipt of your inspection report using iAuditor.</p>
-                <p><strong>A summary of the hazard follows:</strong></p>
+                <p><strong>A summary of the inspection follows:</strong></p>
 
                 <!--table class="table"-->
 
 				<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=2 style='border-collapse:collapse;border:none'>
                     <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Reference number: </td>		<td>&nbsp<mark><?=$InspectionID?></mark>&nbsp</td></tr>
-                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Inspection type:</td>          <td>&nbsp<mark><?=$InspectionType?></td>&</mark>&nbsp</tr>
-                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Date of inspection:</td>       <td>&nbsp<mark><?=$DateIdentified?></td>&</mark>&nbsp</tr>
-                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Area of Accountability:</td>   <td>&nbsp<mark><?=$AoA?></td></mark>&nbsp</tr>
-                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Specific Location:</td>        <td>&nbsp<mark><?=$Location?></td></mark>&nbsp</tr>
+                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Inspection type:</td>          <td>&nbsp<mark><?=$InspectionType?></td></mark>&nbsp</tr>
+                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Date of inspection:</td>       <td>&nbsp<mark><?=$DateIdentified?></td></mark>&nbsp</tr>
+                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Area of accountability:</td>   <td>&nbsp<mark><?=$AoA?></td></mark>&nbsp</tr>
+                    <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Specific location:</td>        <td>&nbsp<mark><?=$Location?></td></mark>&nbsp</tr>
                     <tr><td width=15 style='border:none'></td><td width=160 valign=top style='border:solid windowtext 1.0pt;padding:2px'>Actions identified:</td>       <td>&nbsp<mark><?=$Deficiencies?></td></mark>&nbsp</tr>
                 </table>
 				<p>&nbsp</p>
@@ -68,7 +68,7 @@
 				You can view the Inspection Report by logging into <a href="<?php echo base_url(); ?>">iAuditor Action Tracker</a> using your UTS email and Action Tracker password (not your UTS password).
 				</p>
                 
-                <p>Note: Please do not reply to this message. Replies to this message are routed to an unmonitored mailbox. If you have questions please email <a href="mailto:safetyandwellbeing@uts.edu.au?subject=Action Tracker">safetyandwellbeing@uts.edu.au</a> or call us on <strong>(02) 9514 1342</strong>.</p>
+                <p>Note: Please do not reply to this message. Replies to this message are routed to an unmonitored mailbox. If you have questions please email <a href="mailto:safetyandwellbeing@uts.edu.au?subject=Action Tracker">safetyandwellbeing@uts.edu.au</a>.</p>
                 
             </div>
 
