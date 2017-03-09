@@ -6,6 +6,8 @@ class Mail_model extends CI_Model
     private $defaultFromName = 'iAuditor Action Tracker';
     private $defaultCompletionSubject = 'iAuditor Action Tracker - Past Completion Date';
     private $defaultAssignedSubject = 'iAuditor Action Tracker - Assigned Item';
+	private $defaultNotifySubject = 'iAuditor Action Tracker - Inspection Receipt';
+
 
     function __construct() {
         parent::__construct();
@@ -13,6 +15,19 @@ class Mail_model extends CI_Model
         $this->load->model('Ion_auth_model');
 
         $this->load->library('email');
+
+				$config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'postoffice.uts.edu.au',
+        'smtp_port' => 25,
+        'smtp_user' => '',
+        'smtp_pass' => '',
+        'mailtype' => 'html',
+        'charset' => 'iso-8859-1',
+        'wordwrap' => TRUE
+        );
+
+		$this->email->initialize($config);
 
         /* Alternate setup if default mail doesn't work
         $config = Array(
@@ -96,12 +111,14 @@ class Mail_model extends CI_Model
         $to = $user['email'];
         $this->email->to($to);  // replace it with receiver mail id
         //$this->email->to('alger.andrew@gmail.com');
-        $this->email->subject($this->defaultAssignedSubject); // replace it with relevant subject
+        //$this->email->subject($this->defaultAssignedSubject); // replace it with relevant subject
 
         if($type == 'ins') {
+			$this->email->subject($this->defaultNotifySubject); // replace it with relevant subject
             $body = $this->load->view('emails/item_assigned_ins', $data, TRUE);
         }
         else if($type == 'ap'){
+			$this->email->subject($this->defaultAssignedSubject); // replace it with relevant subject
             $body = $this->load->view('emails/item_assigned_ap', $data, TRUE);
         }
         $this->email->message($body);
