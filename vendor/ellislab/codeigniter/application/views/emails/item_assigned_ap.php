@@ -64,7 +64,7 @@
                 </p>
 
                 <ul>
-                    <li>Nominate an appropriate corrective actions to reduce the level of risk presented by any hazards identified</li>
+                    <li>Nominate any appropriate corrective actions to reduce the level of risk presented by any hazards identified</li>
                     <li>Assign a priority</li>
                     <li>Close the actions when actions are completed</li>
                 </ul>
