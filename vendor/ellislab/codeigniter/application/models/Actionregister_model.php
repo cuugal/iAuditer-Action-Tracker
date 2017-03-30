@@ -210,7 +210,17 @@ class Actionregister_model extends CI_Model
             $itemIds[] = $b['key'];
         }
         //check if they are in the db
-        $this->db->where_in('key', $itemIds);
+        //$this->db->where_in('key', $itemIds);
+
+        $this->db->group_start();
+        $item_ids_chunk = array_chunk($itemIds ,25);
+        foreach($item_ids_chunk as $item_ids)
+        {
+            $this->db->or_where_in('key', $item_ids);
+        }
+        $this->db->group_end();
+
+
         $query = $this->db->get('action_register');
         $results = $query->result_array();
 
