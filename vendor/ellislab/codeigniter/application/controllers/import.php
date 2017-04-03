@@ -45,8 +45,8 @@ class Import extends Auth_Controller
         }
 
         // The rest is in the model
-        $result = $this->audits_model->loadAudits($map, null);
-
+        $result2 = $this->audits_model->loadAudits($map, null);
+        $result = array_merge($result, $result2);
 
         #header('Content-Type: application/json');
         echo json_encode($result);

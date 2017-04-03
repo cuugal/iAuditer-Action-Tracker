@@ -47,7 +47,6 @@ class Audits_model extends CI_Model {
             $audit['modified_at'] = '';
             $audit['created_at'] = '';
             $audit['description'] = '';
-            $audit['location'] = '';
             $audit['inspector_name'] = '';
             $audit['area_of_accountability'] = '';
             $audit['OrgUnit'] = '';
