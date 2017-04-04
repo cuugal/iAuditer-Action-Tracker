@@ -38,7 +38,6 @@ class Import extends Auth_Controller
         $data = json_decode($res->getBody(), true);
 
         $result['templates'] = $this->templates_model->upsertBatch($data['templates']);
-
         // create map
         foreach($data['templates'] as $template){
             $map[$template['template_id']] = $template['name'];

@@ -12,6 +12,7 @@ class Audits_model extends CI_Model {
         $this->load->model('media_model');
     }
 
+    
     public function loadAudits($map, $date){
 
 
