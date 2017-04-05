@@ -185,241 +185,244 @@
       <data-type>TINYINT(0,-1)|4</data-type>
       <default-expression>0</default-expression>
     </column>
-    <key id="66" parent="5">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <column id="67" parent="6" name="id">
-      <data-type>INTEGER(0,-1)|4</data-type>
-    </column>
-    <column id="68" parent="6" name="name">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="69" parent="6" name="description">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <key id="70" parent="6">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <column id="71" parent="7" name="id">
-      <data-type>INTEGER(0,-1)|4</data-type>
-    </column>
-    <column id="72" parent="7" name="issue">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="73" parent="7" name="proposed_action">
-      <data-type>INT(0,-1)|4</data-type>
-    </column>
-    <key id="74" parent="7">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <column id="75" parent="8" name="id">
-      <data-type>INTEGER(0,-1)|4</data-type>
-    </column>
-    <column id="76" parent="8" name="area_of_accountability">
-      <mandatory>1</mandatory>
-      <data-type>INT(0,-1)|4</data-type>
-    </column>
-    <column id="77" parent="8" name="name">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <key id="78" parent="8">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <column id="79" parent="9" name="id">
-      <data-type>INTEGER(0,-1)|4</data-type>
-    </column>
-    <column id="80" parent="9" name="ip_address">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="81" parent="9" name="login">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="82" parent="9" name="time">
-      <data-type>INT(0,-1)|4</data-type>
-    </column>
-    <key id="83" parent="9">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <column id="84" parent="10" name="id">
-      <data-type>INTEGER(0,-1)|4</data-type>
-    </column>
-    <column id="85" parent="10" name="ar_id">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="86" parent="10" name="label">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="87" parent="10" name="media_id">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="88" parent="10" name="href">
-      <mandatory>1</mandatory>
-      <data-type>VARCHAR(0,-1)|12</data-type>
-    </column>
-    <column id="89" parent="10" name="key">
+    <column id="66" parent="5" name="email">
       <data-type>TEXT(0,-1)|12</data-type>
     </column>
-    <key id="90" parent="10">
+    <key id="67" parent="5">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="91" parent="11" name="version">
+    <column id="68" parent="6" name="id">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="69" parent="6" name="name">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="70" parent="6" name="description">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <key id="71" parent="6">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="72" parent="7" name="id">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="73" parent="7" name="issue">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="74" parent="7" name="proposed_action">
+      <data-type>INT(0,-1)|4</data-type>
+    </column>
+    <key id="75" parent="7">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="76" parent="8" name="id">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="77" parent="8" name="area_of_accountability">
+      <mandatory>1</mandatory>
+      <data-type>INT(0,-1)|4</data-type>
+    </column>
+    <column id="78" parent="8" name="name">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <key id="79" parent="8">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="80" parent="9" name="id">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="81" parent="9" name="ip_address">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="82" parent="9" name="login">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="83" parent="9" name="time">
+      <data-type>INT(0,-1)|4</data-type>
+    </column>
+    <key id="84" parent="9">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="85" parent="10" name="id">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="86" parent="10" name="ar_id">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="87" parent="10" name="label">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="88" parent="10" name="media_id">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="89" parent="10" name="href">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="90" parent="10" name="key">
+      <data-type>TEXT(0,-1)|12</data-type>
+    </column>
+    <key id="91" parent="10">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="92" parent="11" name="version">
       <mandatory>1</mandatory>
       <data-type>BIGINT(0,-1)|4</data-type>
     </column>
-    <column id="92" parent="12" name="id">
+    <column id="93" parent="12" name="id">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="93" parent="12" name="proposed_action">
+    <column id="94" parent="12" name="proposed_action">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <key id="94" parent="12">
+    <key id="95" parent="12">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="95" parent="13" name="name">
+    <column id="96" parent="13" name="name">
       <data-type>(0,-1)|12</data-type>
     </column>
-    <column id="96" parent="13" name="seq">
+    <column id="97" parent="13" name="seq">
       <data-type>(0,-1)|12</data-type>
     </column>
-    <column id="97" parent="14" name="task_id">
+    <column id="98" parent="14" name="task_id">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="98" parent="14" name="user">
+    <column id="99" parent="14" name="user">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="99" parent="14" name="status">
+    <column id="100" parent="14" name="status">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="100" parent="14" name="action_register">
+    <column id="101" parent="14" name="action_register">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="101" parent="14" name="audit">
+    <column id="102" parent="14" name="audit">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="102" parent="14" name="key">
+    <column id="103" parent="14" name="key">
       <data-type>TEXT(0,-1)|12</data-type>
     </column>
-    <column id="103" parent="14" name="completion_date">
+    <column id="104" parent="14" name="completion_date">
       <data-type>DATETIME(0,-1)|12</data-type>
     </column>
-    <column id="104" parent="14" name="item_id">
+    <column id="105" parent="14" name="item_id">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="105" parent="14" name="task_created">
+    <column id="106" parent="14" name="task_created">
       <data-type>DATE(0,-1)|12</data-type>
     </column>
-    <key id="106" parent="14">
+    <key id="107" parent="14">
       <columns>task_id</columns>
       <primary>1</primary>
     </key>
-    <column id="107" parent="15" name="template_id">
+    <column id="108" parent="15" name="template_id">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="108" parent="15" name="name">
+    <column id="109" parent="15" name="name">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <key id="109" parent="15">
+    <key id="110" parent="15">
       <columns>template_id</columns>
       <primary>1</primary>
     </key>
-    <column id="110" parent="16" name="id">
+    <column id="111" parent="16" name="id">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="111" parent="16" name="ip_address">
+    <column id="112" parent="16" name="ip_address">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="112" parent="16" name="username">
+    <column id="113" parent="16" name="username">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="113" parent="16" name="password">
+    <column id="114" parent="16" name="password">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="114" parent="16" name="salt">
+    <column id="115" parent="16" name="salt">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="115" parent="16" name="email">
+    <column id="116" parent="16" name="email">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="116" parent="16" name="activation_code">
+    <column id="117" parent="16" name="activation_code">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="117" parent="16" name="forgotten_password_code">
+    <column id="118" parent="16" name="forgotten_password_code">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="118" parent="16" name="forgotten_password_time">
+    <column id="119" parent="16" name="forgotten_password_time">
       <data-type>INT(0,-1)|4</data-type>
     </column>
-    <column id="119" parent="16" name="remember_code">
+    <column id="120" parent="16" name="remember_code">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="120" parent="16" name="created_on">
+    <column id="121" parent="16" name="created_on">
       <mandatory>1</mandatory>
       <data-type>INT(0,-1)|4</data-type>
     </column>
-    <column id="121" parent="16" name="last_login">
+    <column id="122" parent="16" name="last_login">
       <data-type>INT(0,-1)|4</data-type>
     </column>
-    <column id="122" parent="16" name="active">
+    <column id="123" parent="16" name="active">
       <data-type>TINYINT(0,-1)|4</data-type>
     </column>
-    <column id="123" parent="16" name="first_name">
+    <column id="124" parent="16" name="first_name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="124" parent="16" name="last_name">
+    <column id="125" parent="16" name="last_name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="125" parent="16" name="company">
+    <column id="126" parent="16" name="company">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="126" parent="16" name="phone">
+    <column id="127" parent="16" name="phone">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="127" parent="16" name="faculty_unit">
+    <column id="128" parent="16" name="faculty_unit">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="128" parent="16" name="iAuditor_Name">
+    <column id="129" parent="16" name="iAuditor_Name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <key id="129" parent="16">
+    <key id="130" parent="16">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="130" parent="17" name="id">
+    <column id="131" parent="17" name="id">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="131" parent="17" name="user_id">
+    <column id="132" parent="17" name="user_id">
       <mandatory>1</mandatory>
       <data-type>MEDIUMINT(0,-1)|4</data-type>
     </column>
-    <column id="132" parent="17" name="group_id">
+    <column id="133" parent="17" name="group_id">
       <mandatory>1</mandatory>
       <data-type>MEDIUMINT(0,-1)|4</data-type>
     </column>
-    <key id="133" parent="17">
+    <key id="134" parent="17">
       <columns>id</columns>
       <primary>1</primary>
     </key>

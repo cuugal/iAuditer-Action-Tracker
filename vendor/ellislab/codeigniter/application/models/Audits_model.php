@@ -38,9 +38,9 @@ class Audits_model extends CI_Model {
 
         foreach($data['audits'] as &$audit){
 
-            //if($audit['audit_id'] != 'audit_9ae9c9fc6b714eec9a160e998bdccff2'){
-            //    continue;
-            //}
+//            if($audit['audit_id'] != 'audit_0be59d80f91349b88fa3669b6cc32b02'){
+//                continue;
+//            }
 
             //initialise values because insert_batch hates it when you don't initialise values.
             $audit['inspection_type'] = '';
@@ -52,6 +52,7 @@ class Audits_model extends CI_Model {
             $audit['area_of_accountability'] = '';
             $audit['OrgUnit'] = '';
             $audit['last_fetched_api'] =  time();
+            $audit['email'] = '';
 
             if(isset($map[$audit['template_id']])) {
                 $audit['inspection_type'] = $map[$audit['template_id']];
@@ -65,6 +66,8 @@ class Audits_model extends CI_Model {
             //backfill with data from individual calls, as required
             // (at this stage, only where the template isn't archived
             if(isset($map[$audit['template_id']])) {
+
+
                 $url = $this->config->item('audit_url') . $audit['audit_id'];
                 $client = new Guzzle\Http\Client();
                 $client->setDefaultOption('headers', array(
@@ -76,9 +79,16 @@ class Audits_model extends CI_Model {
                 //created at
                 $audit_data = json_decode($res->getBody(), true);
 
+
+                //Inspector
+                if (isset($audit_data['audit_data']['authorship']['author'])) {
+                    $audit['inspector_name'] = trim($audit_data['audit_data']['authorship']['author']);
+                }
+
+
                 //Get rid of this blasted ISO8601 format
                 //$d = new DateTime($audit_data['created_at']);
-                $d = new DateTime($audit_data['audit_data']['date_started']);
+                $d = new DateTime($audit_data['created_at']);
                 $audit['created_at'] = $d->format('Y-m-d H:i:s');
 
                 $d = new DateTime($audit_data['modified_at']);
@@ -108,8 +118,23 @@ class Audits_model extends CI_Model {
                         $audit['OrgUnit'] = $tmp[0];
                     }
 
+                    if(isset($header_item['label'])){
+                        if (strpos($header_item['label'], 'Name of person completing the checklist') !== false) {
+                            if(isset($header_item['responses']['text'])) {
+                                $audit['inspector_name'] = trim($header_item['responses']['text']);
+                            }
+                        }
+                        if (strpos($header_item['label'], 'Email of person submitting checklist') !== false) {
+                            if(isset($header_item['responses']['text'])) {
+                                $audit['email'] = trim($header_item['responses']['text']);
+                            }
+                        }
+                    }
+
 
                 }
+
+
                 //SMartfieldmap
                 unset($smartfield_map);
 
@@ -301,10 +326,7 @@ class Audits_model extends CI_Model {
 
                 }
 
-                //Inspector
-                if (isset($audit_data['audit_data']['authorship']['author'])) {
-                    $audit['inspector_name'] = trim($audit_data['audit_data']['authorship']['author']);
-                }
+
 
 
             }
@@ -546,6 +568,11 @@ class Audits_model extends CI_Model {
         $updates = array();
         $info = array();
         foreach($results as $res) {
+            //send email to creator first
+            if(isset($res['email'])){
+                $info['audit_detail_mail'][] = $this->Mail_model->item_assigned(null, $res, 'ins',$res['email'] );
+            }
+
             $ap = $this->Areaofaccountability_model->getUserforAoa($res['area_of_accountability']);
             if($ap) {
                 $info['ap_mail'][] = $this->Mail_model->item_assigned($ap, $res, 'ap');

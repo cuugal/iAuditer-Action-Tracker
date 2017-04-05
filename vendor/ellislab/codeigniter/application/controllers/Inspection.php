@@ -23,8 +23,7 @@ class Inspection extends CI_Controller {
         //$this->load->section('sidebar', 'ci_simplicity/sidebar');
         // Load new edits since the previous last modified date
         $mostRecent = $this->audits_model->getMostRecentTime();
-        //print "MOST RECENT".$mostRecent;
-        //print "MOST RECENT".$mostRecent."fiftenn".strtotime("-15 minutes");
+
         if($mostRecent && $mostRecent < strtotime("-15 minutes")) {
             print "RELOADING";
             //get templates to build map
@@ -36,7 +35,7 @@ class Inspection extends CI_Controller {
             }
             $mostRecentISODate = $this->audits_model->getMostRecentDate();
             $this->audits_model->loadAudits($map, $mostRecentISODate);
-            //$this->audits_model->loadAudits($map, $mostRecent);
+
         }
         //If here, it means we've not yet done the initial load
         else if(!$mostRecent){

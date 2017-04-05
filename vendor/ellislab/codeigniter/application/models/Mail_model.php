@@ -87,7 +87,7 @@ class Mail_model extends CI_Model
 
 
 
-    public function item_assigned($id, $ar, $type){
+    public function item_assigned($id, $ar, $type, $email=null){
 
         //$ar = $this->Actionregister_model->getRequest($key);
         //echo json_encode($ar);
@@ -106,12 +106,16 @@ class Mail_model extends CI_Model
         $this->email->set_mailtype("html");
         $this->email->from($this->defaultFromMail, $this->defaultFromName);
 
-        $user = $this->ion_auth_model->getUser($id);
+        if(isset($id)) {
+            $user = $this->ion_auth_model->getUser($id);
 
-        $to = $user['email'];
+            $to = $user['email'];
+        }
+        else{
+            $to = $email;
+        }
+
         $this->email->to($to);  // replace it with receiver mail id
-        //$this->email->to('alger.andrew@gmail.com');
-        //$this->email->subject($this->defaultAssignedSubject); // replace it with relevant subject
 
         if($type == 'ins') {
 			$this->email->subject($this->defaultNotifySubject); // replace it with relevant subject
@@ -125,10 +129,10 @@ class Mail_model extends CI_Model
 
         $sent = $this->email->send();
         if($sent) {
-            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['id'], 'sent' => $sent);
+            $r = array('to' => $to, 'inspection' => $ar['id'], 'sent' => $sent);
         }
         else{
-            $r = array('id' => $id, 'to' => $to, 'inspection' => $ar['id'], 'error' =>  $this->email->print_debugger());
+            $r = array('to' => $to, 'inspection' => $ar['id'], 'error' =>  $this->email->print_debugger());
 
         }
         return $r;

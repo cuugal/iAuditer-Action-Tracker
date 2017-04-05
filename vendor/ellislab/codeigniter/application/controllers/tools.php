@@ -31,6 +31,11 @@ class Tools extends CI_Controller {
         echo "Hello {$to}!" . PHP_EOL;
     }
 
+    public function dateTester(){
+        $dt = new DateTime("2017-04-02T23:48:55.371Z");
+        echo $dt->format('Y-m-d H:i:s');
+    }
+
     public function help() {
         $result = "The following are the available command line interface commands\n\n";
         $result .= "php index.php tools migration \"file_name\"         Create new migration file\n";
