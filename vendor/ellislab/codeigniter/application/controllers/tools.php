@@ -32,8 +32,11 @@ class Tools extends CI_Controller {
     }
 
     public function dateTester(){
+        date_default_timezone_set('Australia/Sydney');
         $dt = new DateTime("2017-04-02T23:48:55.371Z");
         echo $dt->format('Y-m-d H:i:s');
+        $dt = strtotime('2017-04-02T23:48:55.371Z');
+        echo date("Y-m-d H:i:s", $dt);
     }
 
     public function help() {

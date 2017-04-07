@@ -88,11 +88,15 @@ class Audits_model extends CI_Model {
 
                 //Get rid of this blasted ISO8601 format
                 //$d = new DateTime($audit_data['created_at']);
-                $d = new DateTime($audit_data['created_at']);
-                $audit['created_at'] = $d->format('Y-m-d H:i:s');
+                //$d = new DateTime($audit_data['created_at']);
+                //$audit['created_at'] = $d->format('Y-m-d H:i:s');
 
-                $d = new DateTime($audit_data['modified_at']);
-                $audit['modified_at'] = $d->format('Y-m-d H:i:s');
+                //$d = new DateTime($audit_data['modified_at']);
+                //$audit['modified_at'] = $d->format('Y-m-d H:i:s');
+                $dt = strtotime($audit_data['created_at']);
+                $audit['created_at'] = date("Y-m-d H:i:s", $dt);
+                $dt = strtotime($audit_data['modified_at']);
+                $audit['modified_at'] = date("Y-m-d H:i:s", $dt);
 
                 $audit['description'] = $audit_data['template_data']['metadata']['description'];
                 $audit['name'] = $audit_data['template_data']['metadata']['name'];
@@ -299,7 +303,7 @@ class Audits_model extends CI_Model {
                                     $media['ar_id'] = $action_register['item_id'] . $action_register['audit_id'];
                                     //media ID looks to be unique against audit, hence cn use item id/media ID as key
                                     $media['key'] = $action_register['item_id'] . $m['media_id'];
-                                    $media['label'] = $m['label'];
+                                    $media['label'] = $m['media_id'].'.'.$m['file_ext'];
                                     $media['media_id'] = $m['media_id'];
                                     $media['href'] = $m['href'];
                                     $media_items[] = $media;
