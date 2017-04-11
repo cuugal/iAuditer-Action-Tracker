@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <h1>Edit Area of Accountability</h1>
+        <h1>Assign Area of Accountability</h1>
 
         <?php if (isset($_SESSION['aa_message'])) : ?>
             <div class="alert alert-success"><?=$_SESSION['aa_message'];?>
