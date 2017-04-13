@@ -109,7 +109,7 @@ class Audits_model extends CI_Model {
                         }
                     }
 
-                    if (strpos($header_item['label'], 'Area to be Inspected') !== false) {
+                    if (strpos(strtolower($header_item['label']), strtolower('Area to be Inspected')) !== false) {
                         $area = '';
                         if (isset($header_item['responses']['selected'])) {
                             foreach ($header_item['responses']['selected'] as $item) {
@@ -123,12 +123,12 @@ class Audits_model extends CI_Model {
                     }
 
                     if(isset($header_item['label'])){
-                        if (strpos($header_item['label'], 'Name of person completing the checklist') !== false) {
+                        if (strpos(strtolower($header_item['label']), strtolower('Name of person completing the checklist')) !== false) {
                             if(isset($header_item['responses']['text'])) {
                                 $audit['inspector_name'] = trim($header_item['responses']['text']);
                             }
                         }
-                        if (strpos($header_item['label'], 'Email of person submitting checklist') !== false) {
+                        if (strpos(strtolower($header_item['label']), strtolower('Email of person submitting checklist')) !== false) {
                             if(isset($header_item['responses']['text'])) {
                                 $audit['email'] = trim($header_item['responses']['text']);
                             }
