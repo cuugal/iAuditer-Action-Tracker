@@ -103,7 +103,7 @@ class Audits_model extends CI_Model {
 
                 //Location
                 foreach ($audit_data['header_items'] as $header_item) {
-                    if (strpos($header_item['label'], 'Location') !== false) {
+                    if (strpos(strtolower($header_item['label']), strtolower('Specific location')) !== false) {
                         if (isset($header_item['responses']['text'])) {
                             $audit['location'] = trim($header_item['responses']['text']);
                         }
