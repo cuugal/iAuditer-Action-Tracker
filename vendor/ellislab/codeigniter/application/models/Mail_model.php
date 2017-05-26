@@ -1,8 +1,12 @@
 <?php
 
 class Mail_model extends CI_Model
+
+
+		/*  edit defaultFromMail with default email address e.g. void@uts.edu.au */ 
+
 {
-    private $defaultFromMail = 'safetyandwellbeing@uts.edu.au';
+    private $defaultFromMail = '';
     private $defaultFromName = 'iAuditor Action Tracker';
     private $defaultCompletionSubject = 'iAuditor Action Tracker - Past Completion Date';
     private $defaultAssignedSubject = 'iAuditor Action Tracker - Assigned Item';
@@ -16,9 +20,12 @@ class Mail_model extends CI_Model
 
         $this->load->library('email');
 
+
+		/*  edit smtp_host with your mailserver details e.g. postoffice.uts.edu.au */ 
+
 				$config = Array(
         'protocol' => 'smtp',
-        'smtp_host' => 'postoffice.uts.edu.au',
+        'smtp_host' => '',
         'smtp_port' => 25,
         'smtp_user' => '',
         'smtp_pass' => '',

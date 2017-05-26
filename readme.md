@@ -22,6 +22,9 @@ Sign in with the admin account, and then navigate to the administrator menu func
 
 This will trigger a reload of all template and audit data from the iAuditor system (may take 2-3 minutes).
 
+Edit \vendor\ellislab\codeigniter\application\models\Mail_model.php to configure mail server and default email address.
+Edit the three files in \vendor\ellislab\codeigniter\application\views\emails to change wording and logo from UTS to suit your organisation.
+Logo is stored in \vendor\ellislab\codeigniter\assets\images
 
 
 Libraries used:
