@@ -77,7 +77,7 @@ class Ion_auth
 
 		if ($this->config->item('use_ci_email', 'ion_auth') && isset($email_config) && is_array($email_config))
 		{
-			$this->email->initialize($email_config);
+			//$this->email->initialize($email_config);
 		}
 
 		$this->ion_auth_model->trigger_events('library_constructor');
@@ -367,12 +367,18 @@ class Ion_auth
 				$this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_activation_subject'));
 				$this->email->message($message);
 
+                //no idea why its not html at this point!
+                $this->email->set_mailtype("html");
+
 				if ($this->email->send() == TRUE)
 				{
 					$this->ion_auth_model->trigger_events(array('post_account_creation', 'post_account_creation_successful', 'activation_email_successful'));
 					$this->set_message('activation_email_successful');
 					return $id;
 				}
+				else{
+                    log_message('error', 'Email could not send:'.$this->email->print_debugger());
+                }
 
 			}
 

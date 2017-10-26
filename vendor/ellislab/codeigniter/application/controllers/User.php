@@ -88,7 +88,7 @@ class User extends CI_Controller  {
 
     public function edit($userid)
     {
-        if($this->ion_auth->is_admin()===FALSE)
+        if($userid != $this->ion_auth->user()->row()->id && $this->ion_auth->is_admin()===FALSE)
         {
             redirect('/');
         }
@@ -158,10 +158,7 @@ class User extends CI_Controller  {
 
     public function register()
     {
-        if($this->ion_auth->is_admin()===FALSE)
-        {
-            redirect('/');
-        }
+
         $this->load->library('form_builder');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');

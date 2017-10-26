@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="row">
-    <div class="col-md-12 col-lg-8">
+    <div class="col-md-12">
         <h1>Log In</h1>
         <?php
         echo isset($_SESSION['auth_message']) ? $_SESSION['auth_message'] : FALSE;
@@ -35,6 +35,12 @@
 
             ));
 ?>
+        <div class="form-group">
 
+            <div class="col-sm-12">
+                <a style="text-decoration: underline !important" href="<?php echo site_url('auth/forgot_password'); ?>">Forgot your password?</a><br/>
+                <a style="text-decoration: underline !important" href="<?php echo site_url('User/register'); ?>">Create an account</a>
+            </div>
+        </div>
 </div>
     </div>
