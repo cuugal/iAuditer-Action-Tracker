@@ -125,7 +125,7 @@ class User extends CI_Controller  {
             $dataSet['first_name'] = $this->input->post('first_name');
             $dataSet['last_name'] = $this->input->post('last_name');
             $dataSet['iAuditor_Name'] = $this->input->post('iAuditor_Name');
-            $dataSet['email'] = $this->input->post('email');
+            $dataSet['email'] = strtolower($this->input->post('email'));
             $dataSet['group'] = $this->input->post('group');
 
             $this->load->library('ion_auth');
@@ -189,7 +189,7 @@ class User extends CI_Controller  {
             $first_name = $this->input->post('first_name');
             $last_name = $this->input->post('last_name');
             $iAuditor_Name = $this->input->post('iAuditor_Name');
-            $email = $this->input->post('email');
+            $email = strtolower($this->input->post('email'));
             $password = $this->input->post('password');
 
             $additional_data = array(
@@ -240,7 +240,7 @@ class User extends CI_Controller  {
         else
         {
             $remember = (bool) $this->input->post('remember');
-            if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password'), $remember))
+            if ($this->ion_auth->login(strtolower($this->input->post('email')), $this->input->post('password'), $remember))
             {
                 redirect('dashboard');
             }
