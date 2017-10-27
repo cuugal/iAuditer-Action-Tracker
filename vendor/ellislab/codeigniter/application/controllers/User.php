@@ -93,6 +93,8 @@ class User extends CI_Controller  {
             redirect('/');
         }
 
+
+
         $this->load->library('form_builder');
         $this->load->library('form_validation');
 
@@ -108,6 +110,11 @@ class User extends CI_Controller  {
             $this->load->helper('form');
             $data = array('dataSet'=>$this->ion_auth->getUser($userid),
                 'groups'=>$this->ion_auth->listGroups());
+
+            if ( $this->ion_auth->is_admin()===FALSE) {
+                $data['aoa'] = $this->areaofaccountability_model->getAOAforUser($this->ion_auth->get_user_id());
+                $data['rp'] = $this->aoa_rp_model->getRPforUser($this->ion_auth->get_user_id());
+            }
             $this->load->view('user/edit_view', $data);
         }
         else
@@ -142,6 +149,10 @@ class User extends CI_Controller  {
             $dataSet['user_id'] = $id;
             $data = array('dataSet'=>$this->ion_auth->getUser($userid),
                 'groups'=>$groups);
+            if ( $this->ion_auth->is_admin()===FALSE) {
+                $data['aoa'] = $this->areaofaccountability_model->getAOAforUser($this->ion_auth->get_user_id());
+                $data['rp'] = $this->aoa_rp_model->getRPforUser($this->ion_auth->get_user_id());
+            }
             $this->load->view('user/edit_view', $data);
         }
 
