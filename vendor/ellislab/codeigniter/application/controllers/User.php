@@ -42,7 +42,7 @@ class User extends CI_Controller  {
     }
 
     public function changepassword($userid){
-        if($this->ion_auth->is_admin()===FALSE)
+        if($userid != $this->ion_auth->user()->row()->id && $this->ion_auth->is_admin()===FALSE)
         {
             redirect('/');
         }
@@ -58,6 +58,10 @@ class User extends CI_Controller  {
             $groups = $this->ion_auth->listGroups();
             $data = array('dataSet'=>$this->ion_auth->getUser($userid),
                 'groups'=>$groups);
+            if ( $this->ion_auth->is_admin()===FALSE) {
+                $data['aoa'] = $this->areaofaccountability_model->getAOAforUser($this->ion_auth->get_user_id());
+                $data['rp'] = $this->aoa_rp_model->getRPforUser($this->ion_auth->get_user_id());
+            }
             $this->load->view('user/edit_view', $data);
         }
         else
@@ -82,9 +86,14 @@ class User extends CI_Controller  {
             $dataSet['user_id'] = $id;
             $data = array('dataSet'=>$this->ion_auth->getUser($id),
                 'groups'=>$groups);
+            if ( $this->ion_auth->is_admin()===FALSE) {
+                $data['aoa'] = $this->areaofaccountability_model->getAOAforUser($this->ion_auth->get_user_id());
+                $data['rp'] = $this->aoa_rp_model->getRPforUser($this->ion_auth->get_user_id());
+            }
             $this->load->view('user/edit_view', $data);
         }
     }
+
 
     public function edit($userid)
     {
@@ -101,7 +110,7 @@ class User extends CI_Controller  {
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
         $this->form_validation->set_rules('iAuditor_Name','iAuditor Name','trim|required');
-        $this->form_validation->set_rules('email','Email','trim|valid_email|required');
+        $this->form_validation->set_rules('email','Email', array('trim','valid_email','required','callback_email_check'));
         $this->form_validation->set_rules('group', 'Group','trim|required');
 
         if($this->form_validation->run()===FALSE)
@@ -167,6 +176,19 @@ class User extends CI_Controller  {
 
     }
 
+    function email_check($str)
+    {
+        $parts = explode('@',$str);
+
+        if(isset($parts[1]) && $parts[1] == 'uts.edu.au') return true;
+
+        //if (stristr($str,'@uts.edu.au') !== false) return true;
+
+
+        $this->form_validation->set_message('email_check', 'Email must have a @uts.edu.au suffix');
+        return FALSE;
+    }
+
     public function register()
     {
 
@@ -175,7 +197,7 @@ class User extends CI_Controller  {
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
         $this->form_validation->set_rules('iAuditor_Name','iAuditor Name','trim|required');
-        $this->form_validation->set_rules('email','Email','trim|valid_email|required|is_unique[users.email]');
+        $this->form_validation->set_rules('email','Email', array('trim','valid_email','required','callback_email_check'));
         $this->form_validation->set_rules('password','Password','trim|min_length[8]|max_length[20]|required');
         $this->form_validation->set_rules('confirm_password','Confirm password','trim|matches[password]|required');
 

@@ -46,8 +46,8 @@
         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
         <?= $this->form_builder->open_form(array('action' => '/User/edit/'.$dataSet['user_id']));
-        echo $this->form_builder->build_form_horizontal(
-            array(
+
+         $form_items = array(
                 array(
                     'id' => 'id',
                     'value' => $dataSet['user_id'],
@@ -72,8 +72,6 @@
                     'id' => 'email',
                     'value' => $dataSet['email'],
                 ),
-
-            )
         );
         if ($this->ion_auth->is_admin()) {
             $form_items[] = array(
@@ -96,7 +94,7 @@
             'label' => 'Save'
 
         );
-
+        echo $this->form_builder->build_form_horizontal($form_items);
         echo $this->form_builder->close_form();
         ?>
     </div>
