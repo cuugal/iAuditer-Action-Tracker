@@ -228,7 +228,7 @@ class User extends CI_Controller  {
             {
 
 
-                $_SESSION['register_message'] = 'The user: '.$first_name.' '.$last_name .' has been created.';
+                $_SESSION['register_message'] = 'The user: '.$first_name.' '.$last_name .' has been created. Activation Email sent - please check your inbox or spam.';
                 $this->session->mark_as_flash('register_message');
 
                 //redirect('user/edit/'.$userid);

@@ -4,6 +4,8 @@
     <div class="col-md-12 col-lg-8">
     <h1>Register</h1>
 
+	<p>When you submit this form with a valid UTS email you will be sent an Activation Email. </br>Click on the link in this email to activate your account.</p>
+
         <?php if (isset($_SESSION['register_message'])) : ?>
             <div class="alert alert-success"><?=$_SESSION['register_message'];?>
             </div>

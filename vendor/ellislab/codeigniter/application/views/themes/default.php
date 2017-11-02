@@ -97,9 +97,11 @@
 
       <footer>
       	<div class="row">
-	        <div class="span6 b10">
-				Copyright &copy; <a target="_blank" href="http://www.uts.edu.au">uts.edu.au</a>
-	        </div>
+	        <!--div class="span6 b10"-->
+			<p style="text-align:center">
+				Copyright &copy; 2017 <a target="_blank" href="http://www.uts.edu.au">uts.edu.au</a> &nbsp; | &nbsp; email <a href = "mailto:safetyandwellbeing@uts.edu.au">safetyandwellbeing@uts.edu.au</a> for support
+			</p>
+	        <!--/div-->
         </div>
           <script type="text/javascript">
             //Auto scroll to any error messages
