@@ -28,7 +28,8 @@
     </tr>
     <tr>
         <th>&nbsp;</th>
-        <th>Inspection ID <br/>- Hazard ID</th>
+        <!--th>Inspection ID <br/>- Hazard ID</th-->
+		<th>Date (Y/m/d)</th>
         <th>Location</th>
         <th>Issue</th>
         <th>Proposed Action</th>
@@ -47,8 +48,8 @@
                 <a class="btn btn-primary" href="ActionRegister/request/<?=$i['key']?>">Edit</a>
                 <a class="btn btn-primary moretoggle" id="btn<?=$i['au_id']?>-<?=$i['ar_id']?>" >More</a>
             </td>
-            <td width="120px"><?=$i['au_id']?> - <?=$i['ar_id']?></td>
-
+            <!--td width="120px"><?=$i['au_id']?> - <?=$i['ar_id']?></td-->
+			<td><?= date("Y/m/d", strtotime($i['created_at']));?></td>
             <td><?=$i['location']?></td>
             <td><?=$i['issue']?><b> - No</b></td>
             <td><?=$i['proposed_action']?></td>
@@ -72,7 +73,8 @@
     <tfoot>
     <tr>
         <th>&nbsp;</th>
-        <th>Inspection ID <br/>- Hazard ID</th>
+        <!--th>Inspection ID <br/>- Hazard ID</th-->
+		<th>Date (Y/m/d)</th>
         <th>Location</th>
         <th>Issue</th>
         <th>Proposed Action</th>
@@ -92,6 +94,10 @@
     function format ( d ) {
         // `d` is the original data object for the row
         return '<table class="table table-bordered" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+            '<tr>'+
+            '<td class="text-right strong">Inspection ID - Hazard ID:</td>'+
+            '<td class="text-left">'+d.au_id+' - '+d.ar_id+'</td>'+
+            '</tr>'+
             '<tr>'+
             '<td class="text-right strong">Date:</td>'+
             '<td class="text-left">'+ moment( d.created_at).format('DD/MM/YYYY')+'</td>'+
