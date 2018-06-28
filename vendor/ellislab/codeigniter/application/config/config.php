@@ -7,7 +7,7 @@ Change this here if the access keys have expired resulting in authentication err
 iAuditor API
 */
 //$this->config->item('item_name');
-$config['authorisation'] = 'Bearer d00508d44e39a51fcefa604b9540d03f02f9b9fef8a25ca84f782f61956b96f5';
+$config['authorisation'] = 'Bearer 8b8ea571dddb278191d170799eeedd48d8509072cd9ed5ea577ccd353d6321ca';
 $config['template_url'] = 'https://api.safetyculture.io/templates/search?field=template_id&field=name';
 $config['audit_url'] = 'https://api.safetyculture.io/audits/';
 

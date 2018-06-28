@@ -17,9 +17,6 @@
               <ul class="nav navbar-nav">
 
 
-		<li>
-            <a id="defaulttab" class="page-scroll" href="<?php echo site_url('user'); ?>">iAuditor Action Tracker</a>
-        </li>
 
                   <?php if($this->ion_auth->logged_in()): ?>
                       <li>

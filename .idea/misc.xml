@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FUSUsageTrigger">
+    <session id="-283396675">
+      <usages-collector id="statistics.php.composer.actions">
+        <counts>
+          <entry key="addDependencyDialog_from_ScopeViewPopup" value="2" />
+          <entry key="init_from_ScopeViewPopup" value="1" />
+          <entry key="install_from_ScopeViewPopup" value="1" />
+          <entry key="status_from_ScopeViewPopup" value="1" />
+          <entry key="updateAll_from_ScopeViewPopup" value="1" />
+          <entry key="updatePackage_from_AddDependencyDialog" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.php.composer.command.options">
+        <counts>
+          <entry key="updatePackage_with_--ansi_--no-interaction_--no-progress.default" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+</project>

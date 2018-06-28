@@ -153,17 +153,37 @@ class Actionregister_model extends CI_Model
     }
 
     public function getRequest($key){
-        $this->db->where('key', $key);
-        $this->db->select('audits.*, action_register.*, audits.id as audit_pk');
+    $this->db->where('key', $key);
+    $this->db->select('audits.*, action_register.*, audits.id as audit_pk');
+    $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
+    $query = $this->db->get('action_register');
+    $results = $query->result_array();
+    $results = $results[0];
+    if (isset($results['area_of_accountability'])) {
+        $tmp = explode('.', $results['area_of_accountability']);
+        $results['OrgUnit'] = $tmp[0];
+    } else {
+        $results['OrgUnit'] = '';
+    }
+    return $results;
+}
+
+    public function getForAudit($audit_id){
+        $this->db->where('action_register.audit_id', $audit_id);
+        $this->db->where('response', 'No');
+        $this->db->select('audits.*, action_register.*, audits.id as au_id, action_register.id as ar_id');
         $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
         $query = $this->db->get('action_register');
         $results = $query->result_array();
-        $results = $results[0];
-        if (isset($results['area_of_accountability'])) {
-            $tmp = explode('.', $results['area_of_accountability']);
-            $results['OrgUnit'] = $tmp[0];
-        } else {
-            $results['OrgUnit'] = '';
+
+        foreach($results as &$res){
+            $res['image'] = '';
+
+            $images = $this->media_model->getForAR($res['key']);
+            if(count($images) > 0){
+                //take first image for report
+                $res['image'] = $images[0];
+            }
         }
         return $results;
     }
@@ -307,9 +327,12 @@ class Actionregister_model extends CI_Model
         return $info;
     }
 
-    public function getTotalMap(){
+    public function getTotalMap($audit_id = null){
         $this->db->select('audit_id as audit_id, COUNT(*) as total');
         $this->db->where('response', 'No');
+        if(isset($audit_id)){
+            $this->db->where('audit_id', $audit_id);
+        }
         $this->db->group_by("audit_id");
         $query = $this->db->get('action_register');
 
@@ -321,10 +344,13 @@ class Actionregister_model extends CI_Model
         return $map;
     }
 
-    public function getOutstandingMap(){
+    public function getOutstandingMap($audit_id = null){
         $this->db->select('audit_id as audit_id, COUNT(*) as total');
         $this->db->where('action_status =', 'Open');
         $this->db->where('response', 'No');
+        if(isset($audit_id)){
+            $this->db->where('audit_id', $audit_id);
+        }
         $this->db->group_by("audit_id");
         $query = $this->db->get('action_register');
 
@@ -339,10 +365,13 @@ class Actionregister_model extends CI_Model
         return $map;
     }
 
-    public function getInProgressMap(){
+    public function getInProgressMap($audit_id = null){
         $this->db->select('audit_id as audit_id, COUNT(*) as total');
         $this->db->where('action_status', 'In Progress');
         $this->db->where('response', 'No');
+        if(isset($audit_id)){
+            $this->db->where('audit_id', $audit_id);
+        }
         $this->db->group_by("audit_id");
         $query = $this->db->get('action_register');
 

@@ -6,6 +6,7 @@
         <thead>
         <tr>
             <th>&nbsp;</th>
+            <th>Inspection ID</th>
             <th>Inspection Type</th>
             <th>Date of Inspection</th>
             <th>Area of Accountability</th>
@@ -23,6 +24,7 @@
         <tfoot>
         <tr>
             <th>&nbsp;</th>
+            <th>Inspection ID</th>
             <th>Inspection Type</th>
             <th>Date of Inspection</th>
             <th>Area of Accountability</th>
@@ -47,9 +49,11 @@
             "columns": [
                 { "data": "audit_id",
                     "render": function ( data, type, full, meta ) {
-                        return '<a class="btn btn-primary" href="inspection/request/'+data+'" >View</a>';
+                        return '<a class="btn btn-primary" href="inspection/request/'+data+'" >View</a>' +
+                            '<br/><a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>';
                     }
                 },
+                { "data": "id"},
                { "data": "inspection_type"},
                 { "data": "created_at"},
                 { "data": "area_of_accountability", "width":"20%"},
@@ -62,22 +66,30 @@
 
             ],
             columnDefs: [ {
-                targets: [2,6],
+                targets: [3,7],
                 render:  $.fn.dataTable.render.moment('DD/MM/YYYY'),
             } ],
 
-            "order": [[ 6, "desc" ]]
+            "order": [[ 7, "desc" ]]
 
 
         } );
         //console.log(table.table());
         yadcf.init(table, [{
-            column_number: 3,
+            column_number: 4,
             filter_type: "multi_select",
             select_type: 'chosen'
         }]);
 
-
+        $('.container').addClass('max');
     } );
 
 </script>
+<style type="text/css">
+    .max{
+        width:100%;
+    }
+    .stacked_btn{
+        margin-top: 8px;
+    }
+</style>

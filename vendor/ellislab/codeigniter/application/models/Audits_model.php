@@ -395,9 +395,8 @@ class Audits_model extends CI_Model {
         return 0;
     }
 
-    //Finish this after lunch
 
-    public function getAudits($userId=false){
+    public function getAudits($userId=false, $audit_id = null){
 
         if($userId){
             $orgunits = array();
@@ -427,12 +426,23 @@ class Audits_model extends CI_Model {
             $this->db->where_in('OrgUnit', $orgunits);
         }
         $this->db->where('template_archived', false);
+        if(isset($audit_id)){
+            $this->db->where('audit_id', $audit_id);
+        }
         $query = $this->db->get('audits');
         $results = $query->result_array();
 
-        $total = $this->actionregister_model->getTotalMap();
-        $outstanding = $this->actionregister_model->getOutstandingMap();
-        $inprogress = $this->actionregister_model->getInProgressMap();
+        if(isset($audit_id)){
+            $total = $this->actionregister_model->getTotalMap($audit_id);
+            $outstanding = $this->actionregister_model->getOutstandingMap($audit_id);
+            $inprogress = $this->actionregister_model->getInProgressMap($audit_id);
+        }
+        else{
+            $total = $this->actionregister_model->getTotalMap();
+            $outstanding = $this->actionregister_model->getOutstandingMap();
+            $inprogress = $this->actionregister_model->getInProgressMap();
+        }
+
 
         foreach ($results as &$r) {
             if (isset($outstanding[$r['audit_id']])){
@@ -459,6 +469,8 @@ class Audits_model extends CI_Model {
 
         return $results;
     }
+
+
 
     public function getRecord($id){
         $this->db->where('audit_id',$id);

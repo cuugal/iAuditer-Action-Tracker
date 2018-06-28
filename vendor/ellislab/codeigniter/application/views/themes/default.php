@@ -7,35 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-	<?php
-	/** -- Copy from here -- */
-	if(!empty($meta))
-	foreach($meta as $name=>$content){
-		echo "\n\t\t";
-		?><meta name="<?php echo $name; ?>" content="<?php echo $content; ?>" /><?php
-			 }
-	echo "\n";
-
-	if(!empty($canonical))
-	{
-		echo "\n\t\t";
-		?><link rel="canonical" href="<?php echo $canonical?>" /><?php
-
-	}
-	echo "\n\t";
-
-	foreach($css as $file){
-	 	echo "\n\t\t";
-		?><link rel="stylesheet" href="<?php echo $file; ?>" type="text/css" /><?php
-	} echo "\n\t";
-
-	foreach($js as $file){
-			echo "\n\t\t";
-			?><script src="<?php echo $file; ?>"></script><?php
-	} echo "\n\t";
-
-	/** -- to here -- */
-?>
 
         <!--- Loaded manually -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap.css" rel="stylesheet">
@@ -45,10 +16,13 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/chosen.bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/themes/default/css/bootstrap-datepicker3.css"/>
 
+
+
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/tether.min.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery-2.2.3.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.dataTables.js"></script>
+
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/datatables.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.foundation.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTables.bootstrap.js"></script>
@@ -118,4 +92,17 @@
 
     </div> <!-- /container -->
       </section>
-</body></html>
+
+ <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+ <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.flash.js"></script>
+
+ <script src="<?php echo base_url(); ?>assets/js/DataTables-2/JSZip-2.5.0/jszip.min.js"></script>
+ <script src="<?php echo base_url(); ?>assets/js/DataTables-2/pdfmake-0.1.32/pdfmake.min.js"></script>
+ <script src="<?php echo base_url(); ?>assets/js/DataTables-2/pdfmake-0.1.32/vfs_fonts.js"></script>
+
+
+ <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.html5.js"></script>
+ <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.print.min.js"></script>
+
+
+  </body></html>

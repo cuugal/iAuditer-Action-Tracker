@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Dompdf\Dompdf;
+
 class Inspection extends CI_Controller {
 
     function __construct()
@@ -71,6 +73,34 @@ class Inspection extends CI_Controller {
 
 
         $this->load->view('inspection/index_view', $data);
+    }
+
+    public function getActionItems($audit_id){
+        ini_set('display_errors',true);
+        $this->output->unset_template();
+        $res = $this->audits_model->getAudits(false, $audit_id);
+        $results['audit'] = $res[0];
+        $results['inspections'] = $this->actionregister_model->getForAudit($audit_id);
+        $this->load->view('inspection/actions_view', $results);
+
+        //return;
+        //$html = $this->load->view('inspection/actions_view', $results, true);
+        $html = $this->output->get_output();
+
+        //return;
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream();
+
     }
 
     public function request($audit_id, $request_id = NULL){

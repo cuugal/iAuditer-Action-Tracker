@@ -8,18 +8,12 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/ellislab" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/ellislab/codeigniter/application/ci_sessions" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/guzzlehttp" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/sabberworm/php-css-parser" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHARS">
-        <CLASSES>
-          <root url="phar://$MODULE_DIR$/composer.phar/" />
-        </CLASSES>
-        <SOURCES>
-          <root url="phar://$MODULE_DIR$/composer.phar/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

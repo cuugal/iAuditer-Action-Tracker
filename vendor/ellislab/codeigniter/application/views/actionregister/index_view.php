@@ -222,5 +222,5 @@
     .dataTables_filter{
         display:none;
     }
-    </style>
+</style>
 
