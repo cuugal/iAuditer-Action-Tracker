@@ -55,25 +55,19 @@
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Aoa_rp'); ?>">Responsible Person/s</a>
                                   </li>
-<!--
-                                  <li class="divider"></li>
 
-                                  <li>
-                                      <a class="page-scroll" href="<?php echo site_url('ProposedAction'); ?>">Proposed Action</a>
-                                  </li>
-                                  <li>
-                                      <a class="page-scroll" href="<?php echo site_url('Issue'); ?>">Issue -> Proposed Action</a>
-                                  </li>
--->
                                   <li class="divider"></li>
                                   <li>
                                       <a class="page-scroll" href="<?php echo site_url('Import/GetData'); ?>">Reload Audits</a>
                                   </li>
+
+                                  <li class="divider"></li>
+                                  <li>
+                                      <a class="page-scroll" href="<?php echo site_url('Reports'); ?>">Management Report</a>
+                                  </li>
                               </ul><!-- end of dropdown menu -->
                           </li>
-<!--
 
-                              -->
                           <?php endif; ?>
                   <?php endif; ?>
                   </ul>
@@ -107,12 +101,14 @@
         var active_link = $('.navbar li a[href~="<?=base_url($this->uri->segment(1))?>"]');
         //console.log(active_link.html());
         //console.log("<?=base_url($this->uri->segment(1));?>");
+        //console.log(active_link.parent());
         if(active_link.size() > 0){
             active_link.addClass('active');
             if(active_link.parent().parent().prop("id") == 'admin') {
                 //active_link.parent().parent().parent().addClass('active');
                 $("#admintab").addClass('active');
             }
+
         }
         else{
             $("#defaulttab").addClass('active');

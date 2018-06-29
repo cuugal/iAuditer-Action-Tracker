@@ -167,7 +167,7 @@
         background-clip: border-box;
         border: 1px solid #ebebeb;
         margin: 0;
-        font-size: 12px;
+
         -webkit-border-radius: 0px;
         -webkit-background-clip: padding-box;
         -moz-border-radius: 0px;
@@ -186,7 +186,7 @@
         border: 1px solid #999;
         border-radius: 2px;
         cursor: pointer;
-        font-size: 0.88em;
+
         color: black;
         white-space: nowrap;
         overflow: hidden;
@@ -239,9 +239,8 @@
     a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
     img{vertical-align:middle;}
     hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee;}
-    h3{font-family:inherit;font-weight:500;line-height:1.1;color:inherit;}
-    h3{margin-top:20px;margin-bottom:10px;}
-    h3{font-size:24px;}
+    h3{font-family:inherit;color:inherit;}
+    h3{margin-top:20px;margin-bottom:10px;margin-left:25px;}
     p{margin:0 0 10px;}
     .text-left{text-align:left;}
     .text-right{text-align:right;}
@@ -261,24 +260,30 @@
         .col-lg-12{float:left;}
         .col-lg-12{width:100%;}
     }
-    table{background-color:transparent;}
+    table{background-color:transparent;font-size:small;}
     th{text-align:left;}
     .table{width:100%;max-width:100%;margin-bottom:20px;}
-    .table > thead > tr > th,.table > tbody > tr > td{padding:8px;line-height:1.42857143;vertical-align:top;border-top:1px solid #ddd;}
+    .table > thead > tr > th,.table > tbody > tr > td{padding:8px;vertical-align:top;border-top:1px solid #ddd;}
     .table > thead > tr > th{vertical-align:bottom;border-bottom:2px solid #ddd;}
     .table > thead:first-child > tr:first-child > th{border-top:0;}
     .table-bordered{border:1px solid #ddd;}
-    .table-bordered > thead > tr > th,.table-bordered > tbody > tr > td{border:1px solid #ddd;}
-    .table-bordered > thead > tr > th{border-bottom-width:2px;}
-    .table-striped > tbody > tr:nth-of-type(odd){background-color:#f9f9f9;}
+    .table-bordered > thead > tr > th,.table-bordered > tbody > tr > td{border:3px solid #fff}
+    .table-bordered > thead > tr > th{border-bottom-width:2px;
+        background-color: rgba(0, 104, 203, 0.59);
+    color:#fff}
+    .table-striped > tbody > tr:nth-of-type(odd){background-color:rgba(191, 211, 244, 0.29);}
     .panel{margin-bottom:20px;background-color:#fff;border:1px solid transparent;border-radius:4px;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, .05);box-shadow:0 1px 1px rgba(0, 0, 0, .05);}
     .panel-body{padding:15px;}
     .container:before,.container:after,.row:before,.row:after,.panel-body:before,.panel-body:after{display:table;content:" ";}
     .container:after,.row:after,.panel-body:after{clear:both;}
     /*! CSS Used from: http://localhost:1024/assets/themes/default/css/additions.css */
-    .table > thead > tr > th,.table > tbody > tr > td{font-size:14px;}
-    .arheader{background-color:rgba(0, 153, 204, 0.41);}
+
+    .arheader{background-color: rgba(191, 211, 244, 0.29);}
     /*! CSS Used from: Embedded */
     .max{width:100%;}
     .quarter{width:25%;}
+    html{
+        font-family: Arial;
+        font-size: small;
+    }
 </style>

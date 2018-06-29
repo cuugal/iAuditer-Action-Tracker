@@ -29,7 +29,7 @@
     <tr>
         <th>&nbsp;</th>
         <!--th>Inspection ID <br/>- Hazard ID</th-->
-		<th>Date (Y/m/d)</th>
+		<th>Date</th>
         <th>Location</th>
         <th>Issue</th>
         <th>Proposed Action</th>
@@ -49,7 +49,7 @@
                 <a class="btn btn-primary moretoggle" id="btn<?=$i['au_id']?>-<?=$i['ar_id']?>" >More</a>
             </td>
             <!--td width="120px"><?=$i['au_id']?> - <?=$i['ar_id']?></td-->
-			<td><?= date("Y/m/d", strtotime($i['created_at']));?></td>
+			<td><?= date("d/m/Y", strtotime($i['created_at']));?></td>
             <td><?=$i['location']?></td>
             <td><?=$i['issue']?><b> - No</b></td>
             <td><?=$i['proposed_action']?></td>
@@ -121,6 +121,10 @@
             '<tr>'+
             '<td class="text-right strong">Proposed Action:</td>'+
             '<td class="text-left">'+d.proposed_action+'</td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td class="text-right strong">Inspection Notes:</td>'+
+            '<td class="text-left">'+d.notes+'</td>'+
             '</tr>'+
 
         '</table>';

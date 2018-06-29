@@ -83,8 +83,15 @@ class Inspection extends CI_Controller {
         $results['inspections'] = $this->actionregister_model->getForAudit($audit_id);
         $this->load->view('inspection/actions_view', $results);
 
+        //Uncomment this return statement if you want to have a look at the
+        //html behind the report (in case you want to change layout etc)
+
         //return;
-        //$html = $this->load->view('inspection/actions_view', $results, true);
+
+
+
+
+
         $html = $this->output->get_output();
 
         //return;
@@ -99,7 +106,7 @@ class Inspection extends CI_Controller {
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream();
+        $dompdf->stream('Action Report.pdf',array('Attachment'=>0));
 
     }
 
