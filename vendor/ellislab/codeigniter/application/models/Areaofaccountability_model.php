@@ -55,6 +55,19 @@ class Areaofaccountability_model extends CI_Model
         return $results;
     }
 
+    public function getAOAPicklist(){
+        $this->db->select("area_of_accountability.*, area_of_accountability.id AS aoa_id");
+        $query = $this->db->get('area_of_accountability');
+        $results = $query->result_array();
+        $ret = array();
+        $ret[''] = '--';
+        foreach($results as $res){
+
+            $ret[$res['OrgUnit']] = $res['OrgUnit'];
+        }
+        return $ret;
+    }
+
     public function getUsers(){
         //$this->db->join('users', 'users.id = area_of_accountability.accountable_person');
         $query = $this->db->get('users');

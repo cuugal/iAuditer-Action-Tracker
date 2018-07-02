@@ -322,19 +322,10 @@ class Audits_model extends CI_Model {
                                 //echo json_encode($action_register);
                                 $action_registers[] = $action_register;
                             }
-
                         }
-
-
                     }
-
                 }
-
-
-
-
             }
-
         }
 
         $result['audits'] = $this->upsertBatch($data['audits']);
@@ -471,6 +462,25 @@ class Audits_model extends CI_Model {
     }
 
 
+    public function getTypesPicklist(){
+        $SQL = "select distinct(inspection_type) from audits 
+where template_archived = 0 
+and OrgUnit != '' 
+and inspection_type != '' 
+and area_of_accountability not like '%test%'";
+
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+
+        $ret = array();
+        $ret[''] = '--';
+        $suffix = ' - Manual Entry';
+        foreach($results as $res){
+
+            $ret[$res['inspection_type'].$suffix] = $res['inspection_type'].$suffix;
+        }
+        return $ret;
+    }
 
     public function getRecord($id){
         $this->db->where('audit_id',$id);

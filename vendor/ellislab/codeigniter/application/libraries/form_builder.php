@@ -658,6 +658,9 @@ class Form_builder {
                     break;
                 case 'form_hidden':
                     return form_hidden($this->elm_options['id'], $this->elm_options['value']);
+                    //default functionality doesn't add the ID attribute.  The below fixes it but I'm reluctant to put this in in case it breaks something else.
+                    //return form_input(array('type'=>'hidden', 'id'=>$this->elm_options['id'], 'name'=>$this->elm_options['id'], 'value'=>$this->elm_options['value']));
+                    return form_input($this->elm_options);
                 case 'form_submit':
                     $name = $this->elm_options['id'];
                     $label = $this->_make_label((isset($this->elm_options['label']) ? $this->elm_options['label'] : $this->elm_options['id']));

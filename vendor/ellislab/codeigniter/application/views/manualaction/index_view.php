@@ -1,0 +1,218 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h1>New Manual Action Entry</h1>
+
+
+        <?php if (isset($_SESSION['ma_message'])) : ?>
+            <div class="alert alert-success"><?=$_SESSION['ma_message'];?>
+            </div>
+        <?php endif; ?>
+
+        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+
+        <?= $this->form_builder->open_form(array('action' => ''));
+        echo $this->form_builder->build_form_horizontal(
+            array(
+
+                array(
+                    'id' => 'area_of_accountability',
+                    'type'=>'dropdown',
+                    'options' => $aoa,
+                    'class'=>"chosen-select"
+
+                ),
+                array(
+                    'id' => 'inspection_type',
+                    'type'=>'dropdown',
+                    'options' => $types,
+                    'class'=>"chosen-select"
+
+                ),
+                /*
+                array(
+                    'id' => 'inspector_name',
+                ),
+*/
+                array(
+                    'id' => 'created_at',
+                    'label' => 'Date',
+                    'data-provide'=>'datepicker',
+                    'data-date-format'=>"dd/mm/yyyy",
+                ),
+                array(
+                    'id' => 'location',
+                    'label'=>'Specific Location'
+                ),
+                array(
+                    'id' => 'inspector_name',
+                    'value'=>$inspector_name,
+                    'readonly'=>true
+                ),
+                array(
+                    'id' => 'items',
+                    'type'=>'hidden',
+
+                ),
+
+            )
+        );
+
+        ?>
+        <div class="panel-body with-table">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <div style="float:left">
+                        <a data-toggle="modal" data-target="#myModal" id="newBtn" class="btn btn-primary">New</a>
+                        <a style="margin-left:5px" id="removeBtn" class="btn btn-primary">Remove</a>
+                    </div>
+
+                </div>
+                <h4 style="text-align:left; float:left; padding-left:10px">Action Items</h4>
+            </div>
+            <table id="items" class="action_register table table-striped table-bordered table-hover" style="border: 2px solid #ddd" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Issue</th>
+                    <th>Inspection Notes</th>
+                    <th>Type of Hazard</th>
+                    <th>Proposed Action</th>
+                    <th>Reviewed Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <input type="submit" name="submit" class="btn btn-primary" value="Save"/>
+        <?php
+        echo $this->form_builder->close_form();?>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Action Item</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="POST" action="" class="form-horizontal col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Issue</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="issue" id="issue" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Inspection Notes</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="inspection_notes" id="inspection_notes">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Type Of Hazard</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control " name="hazard_type" id="hazard_type">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Proposed Action</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control " name="proposed_action" id="proposed_action">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Reviewed Action</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control " name="reviewed_action" id="reviewed_action">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <button type="button" id="newRow" class="btn btn-primary" style="float:none">Ok</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function htmlToJson(table) {
+        // If exists the cols: "edit" and "del" to remove from JSON just pass values = 1 to edit and del params
+
+        var data = [];
+        var colsLength = $(table.find('thead tr')[0]).find('th').length;
+        var rowsLength = $(table.find('tbody tr')).length;
+         // first row needs to be headers
+        var headers = [];
+        for (var i=1; i<colsLength; i++) {
+            head = $(table.find('thead tr')[0]).find('th').eq(i).text();
+            head=head.replace(/ /g,"_");
+            head = head.toLowerCase();
+            if(head == 'inspection_notes'){
+                head = 'notes';
+            }
+            headers[i] = head;
+        }
+
+        // go through cells
+        for (var i=0; i<rowsLength; i++) {
+            var tableRow = $(table.find('tbody tr')[i]);
+            var rowData = {};
+            for (var j=1; j<colsLength; j++) {
+                rowData[ headers[j] ] = tableRow.find('td').eq(j).text();
+            }
+            data.push(rowData);
+        }
+
+        return JSON.stringify(data)
+    }
+
+
+    $(".chosen-select").chosen();
+    $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="<?php echo site_url('Dashboard'); ?>">Cancel</a>');
+    $("#newRow").click(function(){
+        html = '<tr>';
+        html += '<td><input type="checkbox" name="select"></td>'
+        html += '<td>' + $("#issue").val() + '</td>';
+        html += '<td>' + $("#inspection_notes").val() + '</td>';
+        html += '<td>' + $("#hazard_type").val() + '</td>';
+        html += '<td>' + $("#proposed_action").val() + '</td>';
+        html += '<td>' + $("#reviewed_action").val() + '</td>';
+        html += '</tr>';
+
+        $('#items tbody').append(html);
+
+
+        tbl = htmlToJson($('#items'));
+        $("[name='items']").val(tbl);
+        $("#myModal").modal('hide');
+
+        $("#issue").val('');
+        $("#inspection_notes").val('');
+        $("#hazard_type").val('');
+        $("#proposed_action").val('');
+        $("#reviewed_action").val('');
+    });
+
+    $("#removeBtn").on("click", function () {
+        $('table tr').has('input[name="select"]:checked').remove();
+        tbl = htmlToJson($('#items'));
+        $("[name='items']").val(tbl);
+    })
+</script>

@@ -34,7 +34,9 @@
                           <a class="page-scroll" href="<?php echo site_url('ActionRegister'); ?>">Action Register</a>
                       </li>
 
-
+                      <li>
+                          <a id="defaulttab" class="page-scroll" href="<?php echo site_url('ManualAction'); ?>">Manual Action Entry</a>
+                      </li>
 
 
                           <?php if($this->ion_auth->is_admin()): ?>
