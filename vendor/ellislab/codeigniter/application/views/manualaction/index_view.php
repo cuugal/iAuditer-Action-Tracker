@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 
+
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <h1>New Manual Action Entry</h1>
@@ -129,8 +130,14 @@
                     <div class="form-group required">
                         <label class="control-label col-sm-2">Type Of Hazard</label>
                         <div class="col-sm-9">
-                            <input type="text" data-validate="required" required
-                                   class="form-control " name="hazard_type" id="hazard_type">
+
+
+                            <select data-validate="required" required class="chosen-select form-control"
+                                    name="hazard_type" id="hazard_type">
+                                <?php foreach($hazards as $key=>$value):?>
+                                    <option value="<?=$key;?>"><?=$value;?></option>
+                                <?php endforeach;?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group required">
@@ -198,6 +205,9 @@
     $(".chosen-select").chosen();
     $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="<?php echo site_url('Dashboard'); ?>">Cancel</a>');
 
+    $('#myModal').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen('destroy').chosen();
+    });
 
     $("#newRow").click(function(){
         jQuery.validator.setDefaults({

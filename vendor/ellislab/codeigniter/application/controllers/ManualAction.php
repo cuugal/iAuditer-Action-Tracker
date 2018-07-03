@@ -30,6 +30,7 @@ class ManualAction extends Auth_Controller
             $data = Array();
             $data['aoa'] = $this->areaofaccountability_model->getAOAPicklist();
             $data['types'] = $this->audits_model->getTypesPicklist();
+            $data['hazards'] = $this->audits_model->getHazardsPicklist();
             $data['inspector_name'] = $this->ion_auth->user()->row()->first_name.' '.$this->ion_auth->user()->row()->last_name;
             $this->load->view("manualaction/index_view.php", $data);
         }
