@@ -461,6 +461,7 @@ class Audits_model extends CI_Model {
         return $results;
     }
 
+    
 
     public function getTypesPicklist(){
         $SQL = "select distinct(inspection_type) from audits 
