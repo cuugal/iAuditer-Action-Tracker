@@ -44,10 +44,13 @@ class ManualAction extends Auth_Controller
             $audit['template_id'] = uniqid();
 
             $audit['created_at'] = str_replace('/', '-', $audit['created_at']);
-            $audit['created_at'] = date("Y-m-d", strtotime($audit['created_at']));
+            $audit['created_at'] = date("Y-m-d H:i:s", strtotime($audit['created_at']));
 
             $audit['modified_at'] =  $audit['created_at'];
             $audit['name'] = $audit['inspection_type'];
+
+            $audit['email'] = $this->ion_auth->user()->row()->email;
+            $audit['OrgUnit'] = $audit['area_of_accountability'];
 
             $auditsbatch = Array();
             $auditsbatch[] = $audit;
@@ -66,6 +69,7 @@ class ManualAction extends Auth_Controller
                         $item['audit_id'] = $audit['audit_id'];
                         $item['item_id'] = uniqid();
                         $item['key'] = $item['audit_id'].$item['item_id'];
+                        $item['response'] = 'No';
                     }
 
                     $action_registers = $this->actionregister_model->upsertBatch($action_items);

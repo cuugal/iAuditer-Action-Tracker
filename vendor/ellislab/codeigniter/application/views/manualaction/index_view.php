@@ -4,7 +4,8 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <h1>New Manual Action Entry</h1>
-
+            <br/>
+        <br/>
 
         <?php if (isset($_SESSION['ma_message'])) : ?>
             <div class="alert alert-success"><?=$_SESSION['ma_message'];?>
@@ -21,14 +22,16 @@
                     'id' => 'area_of_accountability',
                     'type'=>'dropdown',
                     'options' => $aoa,
-                    'class'=>"chosen-select"
+                    'class'=>"chosen-select",
+                    'req'=>true
 
                 ),
                 array(
                     'id' => 'inspection_type',
                     'type'=>'dropdown',
                     'options' => $types,
-                    'class'=>"chosen-select"
+                    'class'=>"chosen-select",
+                    'req'=>true
 
                 ),
                 /*
@@ -41,15 +44,18 @@
                     'label' => 'Date',
                     'data-provide'=>'datepicker',
                     'data-date-format'=>"dd/mm/yyyy",
+                    'req'=>true
                 ),
                 array(
                     'id' => 'location',
-                    'label'=>'Specific Location'
+                    'label'=>'Specific Location',
+                    'req'=>true
                 ),
                 array(
                     'id' => 'inspector_name',
                     'value'=>$inspector_name,
-                    'readonly'=>true
+                    'readonly'=>true,
+                    'req'=>true
                 ),
                 array(
                     'id' => 'items',
@@ -105,35 +111,40 @@
                 <h4 class="modal-title">Action Item</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="POST" action="" class="form-horizontal col-sm-12">
-                    <div class="form-group">
+                <form role="form" method="POST" action="" id="actionform" class="form-horizontal col-sm-12 validate">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Issue</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="issue" id="issue" value="">
+                            <input type="text" data-validate="required" required
+                                   class="form-control" name="issue" id="issue" value="">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Inspection Notes</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="inspection_notes" id="inspection_notes">
+                            <input type="text" data-validate="required" required
+                                   class="form-control" name="inspection_notes" id="inspection_notes">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Type Of Hazard</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control " name="hazard_type" id="hazard_type">
+                            <input type="text" data-validate="required" required
+                                   class="form-control " name="hazard_type" id="hazard_type">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Proposed Action</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control " name="proposed_action" id="proposed_action">
+                            <input type="text" data-validate="required" required
+                                   class="form-control " name="proposed_action" id="proposed_action">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label col-sm-2">Reviewed Action</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control " name="reviewed_action" id="reviewed_action">
+                            <input type="text" data-validate="required"
+                                   required class="form-control " name="reviewed_action" id="reviewed_action">
                         </div>
                     </div>
                     <div class="form-group">
@@ -186,7 +197,20 @@
 
     $(".chosen-select").chosen();
     $('input[name=submit]').after('<a style="margin-left:10px" class="btn btn-primary" href="<?php echo site_url('Dashboard'); ?>">Cancel</a>');
+
+
     $("#newRow").click(function(){
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        var form = $( "#actionform" );
+        form.validate();
+
+
+        if(!form.valid()){
+            return false;
+        }
         html = '<tr>';
         html += '<td><input type="checkbox" name="select"></td>'
         html += '<td>' + $("#issue").val() + '</td>';
@@ -216,3 +240,12 @@
         $("[name='items']").val(tbl);
     })
 </script>
+
+<style type="text/css">
+    input.error{
+        border: 1px solid red;
+    }
+    label.error{
+        color:red;
+    }
+</style>

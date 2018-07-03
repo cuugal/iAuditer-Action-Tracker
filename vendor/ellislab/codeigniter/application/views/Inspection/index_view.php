@@ -49,8 +49,14 @@
             "columns": [
                 { "data": "audit_id",
                     "render": function ( data, type, full, meta ) {
-                        return '<a class="btn btn-primary" href="inspection/request/'+data+'" >View</a>' +
-                            '<br/><a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>';
+                        if (data.match("^audit")) {
+                            // do this if begins with 'audit', it means this came form iAuditor and a PDF report can be provided
+                            return '<a class="btn btn-primary" href="inspection/request/'+data+'" >View</a>' +
+                                '<br/><a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>';
+                        }
+                        else{
+                            return '<a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>';
+                        }
                     }
                 },
                 { "data": "id"},

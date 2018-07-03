@@ -40,6 +40,8 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/ellipsis.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/moment.min.js"></script>
 
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/jquery.validate.min.js"></script>
+
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/dataTable.moment.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/pdfobject.min.js"></script>
