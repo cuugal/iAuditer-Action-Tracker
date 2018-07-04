@@ -11,9 +11,9 @@ $config['authorisation'] = 'Bearer 8b8ea571dddb278191d170799eeedd48d8509072cd9ed
 $config['template_url'] = 'https://api.safetyculture.io/templates/search?field=template_id&field=name';
 $config['audit_url'] = 'https://api.safetyculture.io/audits/';
 
-$config['manual_inspection_types'] = ['UTS Laboratory and Workshop Checklist V27-03-2017 - Manual Entry',
+$config['manual_inspection_types'] = Array('UTS Laboratory and Workshop Checklist V27-03-2017 - Manual Entry',
     'UTS PC2 Laboratory (GMO) Annual Inspection Checklist - Manual Entry',
-    'Office Inspection Checklist - Manual Entry'];
+    'Office Inspection Checklist - Manual Entry');
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
