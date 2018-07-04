@@ -14,6 +14,9 @@ $config['audit_url'] = 'https://api.safetyculture.io/audits/';
 $config['manual_inspection_types'] = Array('UTS Laboratory and Workshop Checklist V27-03-2017 - Manual Entry',
     'UTS PC2 Laboratory (GMO) Annual Inspection Checklist - Manual Entry',
     'Office Inspection Checklist - Manual Entry');
+
+$config['manual_hazard_types'] = Array('Hazard type 1', 'Hazard type 2');
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

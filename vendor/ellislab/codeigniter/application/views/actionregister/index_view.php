@@ -52,7 +52,9 @@
 <!--                <td>--><?//= date("d/m/Y", strtotime($i['created_at']));?><!--</td>-->
                 <td><?= $i['created_at'];?></td>
                 <td><?=$i['location']?></td>
-                <td><?=$i['issue']?><b> - No</b></td>
+                <td><?=$i['issue']?>
+                    <?php if (strpos($i['audit_id'], 'audit') !== false):?><b> - No</b><?php endif;?></td>
+
                 <td><?=$i['proposed_action']?></td>
                 <td><?=$i['reviewed_action']?></td>
                 <td class="priority"><?=$i['residual_risk']?></td>

@@ -90,7 +90,7 @@ class Inspection extends CI_Controller {
         }
 
 
-
+        $filename = 'WHS Inspection Action Report '.$results['audit']['id'];
 
 
         $html = $this->output->get_output();
@@ -107,7 +107,7 @@ class Inspection extends CI_Controller {
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream('Action Report.pdf',array('Attachment'=>0));
+        $dompdf->stream($filename ,array('Attachment'=>0));
 
     }
 

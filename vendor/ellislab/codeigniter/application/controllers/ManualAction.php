@@ -51,7 +51,9 @@ class ManualAction extends Auth_Controller
             $audit['name'] = $audit['inspection_type'];
 
             $audit['email'] = $this->ion_auth->user()->row()->email;
-            $audit['OrgUnit'] = $audit['area_of_accountability'];
+
+            $tmp = explode('.', $audit['area_of_accountability']);
+            $audit['OrgUnit'] = $tmp[0];
 
             $auditsbatch = Array();
             $auditsbatch[] = $audit;

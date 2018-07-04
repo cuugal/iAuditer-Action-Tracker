@@ -487,18 +487,26 @@ class Audits_model extends CI_Model {
     }
 
     public function getHazardsPicklist(){
-        $SQL = "select distinct (type_of_hazard) from action_register join audits on action_register.audit_id = audits.audit_id
-where type_of_hazard != '' and template_archived = 0 and response = 'No' and area_of_accountability not like '%test%'
-order by type_of_hazard";
+//        $SQL = "select distinct (type_of_hazard) from action_register join audits on action_register.audit_id = audits.audit_id
+//where type_of_hazard != '' and template_archived = 0 and response = 'No' and area_of_accountability not like '%test%'
+//order by type_of_hazard";
+//
+//        $query = $this->db->query($SQL);
+//        $results = $query->result_array();
+//
+//        $ret = array();
+//        $ret[''] = '--';
+//        foreach($results as $res){
+//
+//            $ret[$res['type_of_hazard']] = $res['type_of_hazard'];
+//        }
+//        return $ret;
 
-        $query = $this->db->query($SQL);
-        $results = $query->result_array();
-
-        $ret = array();
+        $types = $this->config->item('manual_hazard_types');
         $ret[''] = '--';
-        foreach($results as $res){
+        foreach($types as $t){
 
-            $ret[$res['type_of_hazard']] = $res['type_of_hazard'];
+            $ret[$t] = $t;
         }
         return $ret;
 
