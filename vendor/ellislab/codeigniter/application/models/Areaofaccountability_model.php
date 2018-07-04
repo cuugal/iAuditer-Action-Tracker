@@ -63,7 +63,7 @@ class Areaofaccountability_model extends CI_Model
         $ret[''] = '--';
         foreach($results as $res){
 
-            $ret[$res['OrgUnit']] = $res['OrgUnit'];
+            $ret[$res['name']] = $res['name'];
         }
         return $ret;
     }

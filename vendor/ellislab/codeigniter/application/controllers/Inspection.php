@@ -75,7 +75,7 @@ class Inspection extends CI_Controller {
         $this->load->view('inspection/index_view', $data);
     }
 
-    public function getActionItems($audit_id){
+    public function getActionItems($audit_id, $debug=false){
         ini_set('display_errors',true);
         $this->output->unset_template();
         $res = $this->audits_model->getAudits(false, $audit_id);
@@ -85,8 +85,9 @@ class Inspection extends CI_Controller {
 
         //Uncomment this return statement if you want to have a look at the
         //html behind the report (in case you want to change layout etc)
-
-        //return;
+        if($debug) {
+            return;
+        }
 
 
 
