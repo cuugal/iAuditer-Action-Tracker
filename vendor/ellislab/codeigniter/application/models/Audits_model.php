@@ -463,22 +463,25 @@ class Audits_model extends CI_Model {
 
 
 
-    public function getTypesPicklist(){
-        $SQL = "select distinct(inspection_type) from audits 
-where template_archived = 0 
-and OrgUnit != '' 
-and inspection_type != '' 
-and area_of_accountability not like '%test%'";
+    public function getManualInspectionTypesPicklist(){
+//        $SQL = "select distinct(inspection_type) from audits
+//where template_archived = 0
+//and OrgUnit != ''
+//and inspection_type != ''
+//and area_of_accountability not like '%test%'";
+//
+//        $query = $this->db->query($SQL);
+//        $results = $query->result_array();
+//
+//        $ret = array();
+//        $ret[''] = '--';
+//        $suffix = ' - Manual Entry';
 
-        $query = $this->db->query($SQL);
-        $results = $query->result_array();
-
-        $ret = array();
+        $types = $this->config->item('manual_inspection_types');
         $ret[''] = '--';
-        $suffix = ' - Manual Entry';
-        foreach($results as $res){
+        foreach($types as $t){
 
-            $ret[$res['inspection_type'].$suffix] = $res['inspection_type'].$suffix;
+            $ret[$t] = $t;
         }
         return $ret;
     }

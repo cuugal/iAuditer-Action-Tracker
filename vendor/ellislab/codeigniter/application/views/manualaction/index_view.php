@@ -87,7 +87,7 @@
                     <th>Inspection Notes</th>
                     <th>Type of Hazard</th>
                     <th>Proposed Action</th>
-                    <th>Reviewed Action</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -147,13 +147,7 @@
                                    class="form-control " name="proposed_action" id="proposed_action">
                         </div>
                     </div>
-                    <div class="form-group required">
-                        <label class="control-label col-sm-2">Reviewed Action</label>
-                        <div class="col-sm-9">
-                            <input type="text" data-validate="required"
-                                   required class="form-control " name="reviewed_action" id="reviewed_action">
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <div>
                             <button type="button" id="newRow" class="btn btn-primary" style="float:none">Ok</button>
@@ -227,7 +221,7 @@
         html += '<td>' + $("#inspection_notes").val() + '</td>';
         html += '<td>' + $("#hazard_type").val() + '</td>';
         html += '<td>' + $("#proposed_action").val() + '</td>';
-        html += '<td>' + $("#reviewed_action").val() + '</td>';
+        //html += '<td>' + $("#reviewed_action").val() + '</td>';
         html += '</tr>';
 
         $('#items tbody').append(html);
@@ -241,7 +235,7 @@
         $("#inspection_notes").val('');
         $("#hazard_type").val('');
         $("#proposed_action").val('');
-        $("#reviewed_action").val('');
+        //$("#reviewed_action").val('');
     });
 
     $("#removeBtn").on("click", function () {
