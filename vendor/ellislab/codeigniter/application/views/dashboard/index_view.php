@@ -29,7 +29,9 @@
             <td width="120px"><?=$i['au_id']?> - <?=$i['ar_id']?></td>
             <td><?=$i['area_of_accountability']?></td>
             <td><?=$i['location']?></td>
-            <td><?=$i['issue']?><b> - No</b></td>
+            <td><?=$i['issue']?>
+                <?php if (strpos($i['audit_id'], 'audit') !== false):?><b> - No</b><?php endif;?></td>
+
 
 
             <td><?=$i['completion_date']?></td>
@@ -97,7 +99,7 @@
             <td width="120px"><?=$i['au_id']?> - <?=$i['ar_id']?></td>
             <td><?=$i['area_of_accountability']?></td>
             <td><?=$i['location']?></td>
-            <td><?=$i['issue']?><b> - No</b></td>
+            <td><?=$i['issue']?><?php if (strpos($i['audit_id'], 'audit') !== false):?><b> - No</b><?php endif;?></td>
 
 
             <td><?=$i['completion_date']?></td>
@@ -147,8 +149,8 @@
             "paging":   false,
             "searching": false,
             columnDefs: [{
-                targets: [5],
-                render:  $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'),
+                //targets: [5],
+                //render:  $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'),
             } ],
             "createdRow": function( row, data, dataIndex ) {
                 if ( data[6] > 7 ) {

@@ -76,7 +76,12 @@ echo $this->form_builder->close_form();
         <h2>Hazard</h2>
 
 
-<?= $this->form_builder->open_form(array('action' => ''));
+<?php
+$issue = $dataSet['issue'];
+if (strpos($i['audit_id'], 'audit') !== false) {
+    $issue .= ' - NO';
+}
+$this->form_builder->open_form(array('action' => ''));
 echo $this->form_builder->build_form_horizontal(
     array(
         array(
@@ -89,7 +94,7 @@ echo $this->form_builder->build_form_horizontal(
             'id' => 'issue',
             'type'=>'textarea',
             'label' => 'Issue',
-            'value' => $dataSet['issue'].' - NO',
+            'value' => $issue,
             'readonly' => 'readonly',
         ),
         array(

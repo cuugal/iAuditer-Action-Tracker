@@ -25,12 +25,12 @@ class Reports_model extends CI_Model
 
         $SQL = "select OrgUnit, count(distinct(location)) as Locations,
 count(distinct(audits.id)) as Inspections,
-  sum(case action_register.action_status when 'Open' then 1 else null end) as OutstandingActions,
+  sum(case action_register.action_status when 'Open' then 1 else 0 end) as OutstandingActions,
   count(distinct(action_register.id)) as TotalActions
 from audits
-  join action_register on action_register.audit_id = audits.audit_id
-where template_archived = 0 and OrgUnit != '' and action_register.response = 'No'
-  and date(created_at) > date('$from') and date(created_at) < date('$to')
+  left outer join action_register on action_register.audit_id = audits.audit_id and action_register.response = 'No'
+where template_archived = 0 and OrgUnit != '' 
+  and date(created_at) >= date('$from') and date(created_at) <= date('$to')
 group by OrgUnit";
 
         //echo $SQL;

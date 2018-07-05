@@ -2,7 +2,7 @@
 
 
 
-<div class="row">
+<div class="row" >
     <div class="col-md-12 col-lg-12">
         <h1>New Manual Action Entry</h1>
             <br/>
@@ -68,7 +68,7 @@
         );
 
         ?>
-        <div class="panel-body with-table">
+        <div class="panel-body with-table" id="action_items">
             <div class="form-group">
                 <div class="col-sm-2">
                     <div style="float:left">
@@ -162,6 +162,14 @@
 
     </div>
 </div>
+
+<?php if(isset($_SESSION['ma_message'])):?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#action_items").hide();
+    })
+</script>
+<?php endif;?>
 
 <script type="text/javascript">
     function htmlToJson(table) {

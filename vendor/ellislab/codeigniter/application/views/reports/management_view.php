@@ -35,8 +35,9 @@
                 <thead>
                 <tr>
                     <th>OrgUnit</th>
+                    <th>Total Inspections Done</th>
                     <th>Locations Inspected</th>
-                    <th>Inspections Done</th>
+                    <th>Total Actions</th>
                     <th>Outstanding Actions</th>
 
                 </tr>
@@ -47,9 +48,10 @@
 
                     <tr>
                         <td><?= $row['OrgUnit'] ?></td>
-                        <td><?= $row['Inspections']?></td>
-                        <td><?= $row['OutstandingActions'];?></td>
+                        <td><?= $row['Inspections'];?></td>
+                        <td><?= $row['Locations']?></td>
                         <td><?= $row['TotalActions'];?></td>
+                        <td><?= $row['OutstandingActions'];?></td>
 
                     </tr>
 
