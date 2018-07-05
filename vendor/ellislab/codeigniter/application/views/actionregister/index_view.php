@@ -95,9 +95,12 @@
 
     function format ( d ) {
         var issue = d.issue;
-        if(d.au_id.match("^audit")){
+        var audit_id = String(d.audit_id);
+        if(audit_id.match("^audit")){
+
             issue = issue + '<b> - No </b>';
         }
+        
         // `d` is the original data object for the row
         return '<table class="table table-bordered" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
             '<tr>'+
