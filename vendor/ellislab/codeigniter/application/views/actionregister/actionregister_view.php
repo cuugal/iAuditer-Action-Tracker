@@ -78,10 +78,10 @@ echo $this->form_builder->close_form();
 
 <?php
 $issue = $dataSet['issue'];
-if (strpos($i['audit_id'], 'audit') !== false) {
+if (strpos($dataSet['audit_id'], 'audit') !== false) {
     $issue .= ' - NO';
 }
-$this->form_builder->open_form(array('action' => ''));
+echo $this->form_builder->open_form(array('action' => ''));
 echo $this->form_builder->build_form_horizontal(
     array(
         array(
