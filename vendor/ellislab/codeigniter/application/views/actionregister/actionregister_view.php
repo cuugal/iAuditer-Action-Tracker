@@ -237,7 +237,7 @@ echo $this->form_builder->close_form();
                 ),
                 array(
                     'id' => 'justification',
-                    'label' => 'Justification',
+                    'label' => 'Justification for No Action',
                     'value' => set_value_AA('justification',$dataSet),
                     'req'=>true,
                     ($isOpen) ? '':  'disabled'=>'disabled',

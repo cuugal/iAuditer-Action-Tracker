@@ -7,6 +7,7 @@
         <h1>New Manual Action Entry</h1>
             <br/>
         <br/>
+		NOTE: An email notification will be sent to the person accountable for this Area of Accountability.
 
         <?php if (isset($_SESSION['ma_message'])) : ?>
             <div class="alert alert-success"><?=$_SESSION['ma_message'];?>
