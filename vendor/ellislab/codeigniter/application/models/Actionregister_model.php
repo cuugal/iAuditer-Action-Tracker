@@ -101,7 +101,7 @@ class Actionregister_model extends CI_Model
         return $results;
     }
 
-    private function getAccountable($area){
+    public function getAccountable($area){
         $this->db->like('name', $area);
         $this->db->join('users', 'users.id = area_of_accountability.accountable_person');
         $query = $this->db->get('area_of_accountability');
@@ -133,7 +133,7 @@ class Actionregister_model extends CI_Model
         else return false;
     }
 
-    private function getResponsible($area){
+    public function getResponsible($area){
         //get RP by area
         $this->db->where('name', $area);
         $this->db->join('area_of_accountability', 'area_of_accountability.id = aoa_rp.aoa');
@@ -175,6 +175,8 @@ class Actionregister_model extends CI_Model
         $this->db->join('audits', 'audits.audit_id = action_register.audit_id');
         $query = $this->db->get('action_register');
         $results = $query->result_array();
+
+
 
         foreach($results as &$res){
             $res['image'] = '';

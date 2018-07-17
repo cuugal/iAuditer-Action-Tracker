@@ -71,9 +71,9 @@
         ?>
         <div class="panel-body with-table" id="action_items">
             <div class="form-group">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div style="float:left">
-                        <a data-toggle="modal" data-target="#myModal" id="newBtn" class="btn btn-primary">New</a>
+                        <a data-toggle="modal" data-target="#myModal" id="newBtn" class="btn btn-primary">Add Action Item</a>
                         <a style="margin-left:5px" id="removeBtn" class="btn btn-primary">Remove</a>
                     </div>
 
@@ -86,7 +86,7 @@
                     <th>&nbsp;</th>
                     <th>Issue</th>
                     <th>Inspection Notes</th>
-                    <th>Type of Hazard</th>
+                    <th>Hazard Type</th>
                     <th>Proposed Action</th>
 
                 </tr>
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="control-label col-sm-2">Type Of Hazard</label>
+                        <label class="control-label col-sm-2">Hazard Type</label>
                         <div class="col-sm-9">
 
 

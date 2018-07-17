@@ -33,6 +33,7 @@ class Mail_model extends CI_Model
         $data['InspectorName'] = $ar['inspector_name'];
         $data['Issue'] = $ar['issue'];
         $data['ProposedAction'] = $ar['proposed_action'];
+        //$data['inspections']    = $ar['inspections'];
 
         $this->email->clear();
 
@@ -77,6 +78,9 @@ class Mail_model extends CI_Model
         $data['Location']           = $ar['location'];
         $data['Deficiencies']       = $ar['deficiencies'];
         $data['TotalItems']         = $ar['totalitems'];
+        $data['InspectorName']      = $ar['inspector_name'];
+        $data['Accountable']        = $ar['accountable'];
+        $data['inspections']    = $ar['inspections'];
         $this->email->clear();
 
         $this->email->set_newline("\r\n");

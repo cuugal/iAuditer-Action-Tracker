@@ -23,9 +23,12 @@ class Dashboard extends Auth_Controller
             'Issue' => 'Electrical cables need to be inspected and tagged by a qualified technician',
             'Location' => 'Location',
             'Deficiencies'=>'20',
-            'TotalItems'=>'25'
+            'TotalItems'=>'25',
+        'InspectorName'=>'Red Symonds',
+            'Accountable'=>'Derek',
+            'inspections'=>array(array('ar_id'=>10, 'issue'=>'issue','notes'=>'notes','image'=>'Koala.jpg','type_of_hazard'=>'hazard type','proposed_action'=>'action proposed'))
             );
-        $this->load->view('emails/item_assigned', $data);
+        $this->load->view('emails/item_assigned_ap', $data);
     }
 
     function index(){

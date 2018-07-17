@@ -421,6 +421,7 @@ class Audits_model extends CI_Model {
             $this->db->where('audit_id', $audit_id);
         }
         $query = $this->db->get('audits');
+
         $results = $query->result_array();
 
         if(isset($audit_id)){
@@ -454,6 +455,15 @@ class Audits_model extends CI_Model {
             }
             else{
                 $r['number_of_actions_in_progress'] = "0/0";
+            }
+
+            if(isset($r['area_of_accountability'])){
+                $accountable =  $this->actionregister_model->getAccountable($r['area_of_accountability']);
+                $responsible = $this->actionregister_model->getResponsible($r['area_of_accountability']);
+
+                $r['accountable'] = $accountable;
+                $r['responsible'] = implode($responsible,', ');
+
             }
         }
 
@@ -618,6 +628,19 @@ class Audits_model extends CI_Model {
             else{
                 $res_lk['totalitems'] = 0;
             }
+
+            //set Accountable
+            if(isset($res_lk['area_of_accountability'])){
+                $accountable =  $this->actionregister_model->getAccountable($res_lk['area_of_accountability']);
+                $responsible = $this->actionregister_model->getResponsible($res_lk['area_of_accountability']);
+
+                $res_lk['accountable'] = $accountable;
+                $res_lk['responsible'] = implode($responsible,', ');
+
+            }
+
+            $res_lk['inspections'] = $this->actionregister_model->getForAudit($res_lk['audit_id']);
+
 
         }
 

@@ -19,10 +19,12 @@
         <td class="text-right">Actions in Progress:</td><td class="text-left"><?=$audit['number_of_actions_in_progress']?></td>
     </tr>
     <tr class="arheader">
-        <td class="text-right">Location:</td><td colspan="3" class="text-left"><?=$audit['location'];?></td>
+        <td class="text-right">Location:</td><td class="text-left"><?=$audit['location'];?></td>
+        <td class="text-right">Accountable Person:</td><td class="text-left"><?=$audit['accountable']?></td>
     </tr>
     <tr class="arheader">
         <td class="text-right">Inspector Name:</td><td colspan="3" class="text-left"><?=$audit['inspector_name'];?></td>
+        <!-- the Responsible person/s are in a variable called '$responsible', in case we need it in future -->
     </tr>
 
 </table>
