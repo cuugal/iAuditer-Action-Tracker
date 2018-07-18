@@ -77,9 +77,10 @@
                                 $img = base64_encode(file_get_contents(APPPATH.'../tmp/'.$item['image']));
                                 ?>
                                 <img height="75px" src="data:image/png;base64,<?=$img;?>" alt="<?=$item['image'];?>"></td>
+
+                            <?php endif;?></td>
                             <td style="padding:2px"><?=$item['type_of_hazard']?> </td>
                             <td style="padding:2px"><?=$item['proposed_action']?> </td>
-                            <?php endif;?></td>
                         </tr>
                     <?php endforeach;?>
                 </table>
