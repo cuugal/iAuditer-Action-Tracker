@@ -125,7 +125,7 @@
                         <label class="control-label col-sm-2">Inspection Notes</label>
                         <div class="col-sm-9">
                             <input type="text" data-validate="required" required
-                                   class="form-control" name="inspection_notes" id="inspection_notes">
+                                   class="form-control" name="notes" id="notes">
                         </div>
                     </div>
                     <div class="form-group required">
@@ -134,7 +134,7 @@
 
 
                             <select data-validate="required" required class="chosen-select form-control"
-                                    name="hazard_type" id="hazard_type">
+                                    name="type_of_hazard" id="type_of_hazard">
                                 <?php foreach($hazards as $key=>$value):?>
                                     <option value="<?=$key;?>"><?=$value;?></option>
                                 <?php endforeach;?>
@@ -188,6 +188,9 @@
             if(head == 'inspection_notes'){
                 head = 'notes';
             }
+            if(head == 'hazard_type'){
+                head = 'type_of_hazard';
+            }
             headers[i] = head;
         }
 
@@ -227,8 +230,8 @@
         html = '<tr>';
         html += '<td><input type="checkbox" name="select"></td>'
         html += '<td>' + $("#issue").val() + '</td>';
-        html += '<td>' + $("#inspection_notes").val() + '</td>';
-        html += '<td>' + $("#hazard_type").val() + '</td>';
+        html += '<td>' + $("#notes").val() + '</td>';
+        html += '<td>' + $("#type_of_hazard").val() + '</td>';
         html += '<td>' + $("#proposed_action").val() + '</td>';
         //html += '<td>' + $("#reviewed_action").val() + '</td>';
         html += '</tr>';
@@ -241,8 +244,8 @@
         $("#myModal").modal('hide');
 
         $("#issue").val('');
-        $("#inspection_notes").val('');
-        $("#hazard_type").val('');
+        $("#notes").val('');
+        $("#type_of_hazard").val('');
         $("#proposed_action").val('');
         //$("#reviewed_action").val('');
     });
