@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="row">
     <div class="col-md-12">
-        <h1>Log In</h1>
+        <h1>Log In to UTS Inspection Action Tracker</h1>
         <?php
         echo isset($_SESSION['auth_message']) ? $_SESSION['auth_message'] : FALSE;
         ?>
