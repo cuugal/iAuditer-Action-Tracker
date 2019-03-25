@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-8">
 
-                <p class="lead">A health and safety inspection hazard, assigned to you via <a href="<?php echo base_url(); ?>">UTS iAuditor Action Tracker</a> requires your attention. It has passed the target completion date of <mark><?=$TaskDueDate?></mark>.</p>
+                <p class="lead">A health and safety inspection hazard, assigned to you via <a href="<?php echo base_url(); ?>">UTS Inspection Action Tracker</a> requires your attention. It has passed the target completion date of <mark><?=$TaskDueDate?></mark>.</p>
                 <p><strong>A summary of the hazard follows:</strong></p>
 
 				<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=2 style='border-collapse:collapse;border:none'>
@@ -58,7 +58,7 @@
 				<p>&nbsp</p>
 
                 <p>
-                Please log into <a href="<?php echo base_url(); ?>">iAuditor Action Tracker</a> using your UTS email and Action Tracker password (not your UTS password) and:
+                Please log into <a href="<?php echo base_url(); ?>">Inspection Action Tracker</a> using your UTS email and Action Tracker password (not your UTS password) and:
                 <ul>
                     <li>Note Action Status as "Closed"  <strong>OR</strong></li>
                     <li>Amend the "Completion Date" to date you expect this action will be completed.</li>

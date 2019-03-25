@@ -6,11 +6,11 @@ class Mail_model extends CI_Model
 		/*  edit defaultFromMail with default email address e.g. void@uts.edu.au */ 
 
 {
-    private $defaultFromMail = 'iAuditor@uts.edu.au';
-    private $defaultFromName = 'iAuditor Action Tracker';
-    private $defaultCompletionSubject = 'iAuditor Action Tracker - Past Completion Date';
-    private $defaultAssignedSubject = 'iAuditor Action Tracker - Assigned Item';
-	private $defaultNotifySubject = 'iAuditor Action Tracker - Inspection Receipt';
+    private $defaultFromMail = 'void@uts.edu.au';
+    private $defaultFromName = 'Inspection Action Tracker';
+    private $defaultCompletionSubject = 'Inspection Action Tracker - Past Completion Date';
+    private $defaultAssignedSubject = 'Inspection Action Tracker - Assigned Item';
+	private $defaultNotifySubject = 'Inspection Action Tracker - Inspection Receipt';
 
 
     function __construct() {

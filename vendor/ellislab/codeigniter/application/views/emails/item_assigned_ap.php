@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-8">
 				<p>&nbsp</p>
-                <p class="lead">A health and safety inspection, completed using <a href="<?php echo base_url(); ?>">UTS iAuditor Action Tracker</a> has been assigned to you.</p>
+                <p class="lead">A health and safety inspection, completed using <a href="<?php echo base_url(); ?>">UTS Inspection Action Tracker</a> has been assigned to you.</p>
                 <p><strong>A summary of the inspection follows:</strong></p>
 
                 <!--table class="table"-->
@@ -84,7 +84,7 @@
                     <?php endforeach;?>
                 </table>
                 <p>
-                    Please log into <a href="<?php echo base_url(); ?>">iAuditor Action Tracker</a> using your UTS email and Action Tracker password (not your UTS password) and:
+                    Please log into <a href="<?php echo base_url(); ?>">Inspection Action Tracker</a> using your UTS email and Action Tracker password (not your UTS password) and:
                 </p>
 
                 <ul>
