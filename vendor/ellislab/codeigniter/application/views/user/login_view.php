@@ -38,6 +38,7 @@
         <div class="form-group">
 
             <div class="col-sm-12">
+				<p> NOTE: This is not your UTS password</p>
                 <a style="text-decoration: underline !important" href="<?php echo site_url('auth/forgot_password'); ?>">Forgot your password?</a><br/>
                 <a style="text-decoration: underline !important" href="<?php echo site_url('User/register'); ?>">Create an account</a>
             </div>

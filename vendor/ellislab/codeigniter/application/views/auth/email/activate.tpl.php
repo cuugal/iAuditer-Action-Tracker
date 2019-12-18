@@ -45,7 +45,7 @@
 
 			<p class="lead">
 			<h1><?php echo sprintf(lang('email_activate_heading'), $identity);?></h1>
-			To begin using the SDS system,
+			To begin using the Inspection Action Tracker system.
 			<?php echo sprintf(lang('email_activate_subheading'), anchor('auth/activate/'. $id .'/'. $activation, lang('email_activate_link')));?>
 			<br/>	<br/>
 
