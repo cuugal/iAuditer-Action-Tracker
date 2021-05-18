@@ -51,11 +51,11 @@
                     "render": function ( data, type, full, meta ) {
                         if (data.match("^audit")) {
                             // do this if begins with 'audit', it means this came form iAuditor and a PDF report can be provided
-                            return '<a class="btn btn-primary" href="inspection/request/'+data+'" >View</a>' +
-                                '<br/><a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>';
+							//removed from following line      + '<br/><a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>'
+                            return '<a class="btn btn-primary" href="inspection/request/'+data+'" >View</a>';
                         }
                         else{
-                            return '<a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>';
+                            return  '<a class="btn btn-primary stacked_btn" href="inspection/getActionItems/'+data+'" >Action Report</a>';
                         }
                     }
                 },
